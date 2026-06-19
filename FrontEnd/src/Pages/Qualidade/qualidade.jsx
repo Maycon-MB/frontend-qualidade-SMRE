@@ -13,18 +13,18 @@ import './qualidade.css';
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 const areas = [
-  { id: 'comercial', nome: 'COMERCIAL', tipo: 'PROCESSOS DE NEGÓCIO', color: '#00a859' },
-  { id: 'dgp', nome: 'DGP', tipo: 'PROCESSOS DE NEGÓCIO', color: '#00a859' },
-  { id: 'gente', nome: 'GENTE\n&\nGESTÃO', tipo: 'PROCESSOS DE SUPORTE', color: '#ffd100' },
-  { id: 'produtos', nome: 'GESTÃO\nDE\nPRODUTOS', tipo: 'PROCESSOS DE SUPORTE', color: '#ffd100' },
-  { id: 'gestao-financeira', nome: 'GESTÃO\nFINANCEIRA', tipo: 'PROCESSOS ESTRATÉGICOS', color: '#006cb5' },
-  { id: 'gov', nome: 'GOVERNANÇA\nCORPORATIVA', tipo: 'PROCESSOS ESTRATÉGICOS', color: '#006cb5' },
-  { id: 'juridico', nome: 'JURÍDICO', tipo: 'PROCESSOS ESTRATÉGICOS', color: '#006cb5' },
-  { id: 'operacoes', nome: 'OPERAÇÕES', tipo: 'PROCESSOS DE SUPORTE', color: '#ffd100' },
-  { id: 'qualidade', nome: 'QUALIDADE', tipo: 'PROCESSOS ESTRATÉGICOS', color: '#006cb5' },
-  { id: 'suprimentos', nome: 'SUPRIMENTOS', tipo: 'PROCESSOS DE SUPORTE', color: '#ffd100' },
-  { id: 'ti', nome: 'TECNOLOGIA\nDA\nINFORMAÇÃO', tipo: 'PROCESSOS DE SUPORTE', color: '#ffd100' },
-  { id: 'unidades', nome: 'UNIDADES', tipo: 'PROCESSOS DE NEGÓCIO', color: '#00a859' },
+    { id: 'comercial', nome: 'COMERCIAL', tipo: 'PROCESSOS DE NEGÓCIO', color: '#00a859' },
+    { id: 'dgp', nome: 'DGP', tipo: 'PROCESSOS DE NEGÓCIO', color: '#00a859' },
+    { id: 'gente', nome: 'GENTE\n&\nGESTÃO', tipo: 'PROCESSOS DE SUPORTE', color: '#ffd100' },
+    { id: 'produtos', nome: 'GESTÃO\nDE\nPRODUTOS', tipo: 'PROCESSOS DE SUPORTE', color: '#ffd100' },
+    { id: 'gestao-financeira', nome: 'GESTÃO\nFINANCEIRA', tipo: 'PROCESSOS ESTRATÉGICOS', color: '#006cb5' },
+    { id: 'gov', nome: 'GOVERNANÇA\nCORPORATIVA', tipo: 'PROCESSOS ESTRATÉGICOS', color: '#006cb5' },
+    { id: 'juridico', nome: 'JURÍDICO', tipo: 'PROCESSOS ESTRATÉGICOS', color: '#006cb5' },
+    { id: 'operacoes', nome: 'OPERAÇÕES', tipo: 'PROCESSOS DE SUPORTE', color: '#ffd100' },
+    { id: 'qualidade', nome: 'QUALIDADE', tipo: 'PROCESSOS ESTRATÉGICOS', color: '#006cb5' },
+    { id: 'suprimentos', nome: 'SUPRIMENTOS', tipo: 'PROCESSOS DE SUPORTE', color: '#ffd100' },
+    { id: 'ti', nome: 'TECNOLOGIA\nDA\nINFORMAÇÃO', tipo: 'PROCESSOS DE SUPORTE', color: '#ffd100' },
+    { id: 'unidades', nome: 'UNIDADES', tipo: 'PROCESSOS DE NEGÓCIO', color: '#00a859' },
 ];
 
 const PDF_URL = '/pdfs/Estrutura_Organizacional.pdf';
@@ -97,34 +97,34 @@ const Qualidade = () => {
             <Container fluid className="px-4 qualidade-body">
                 {view === 'menu' && (
                     <>
-                    <div className="qualidade-nav-bar">
-                        <button className="qualidade-nav-btn" onClick={() => window.history.length > 1 ? navigate(-1) : navigate('/')} title="Página anterior">
-                            <i className="fa-solid fa-arrow-left"></i>
-                        </button>
-                        <button className="qualidade-nav-btn" onClick={() => navigate('/')} title="Início">
-                            <i className="fa-solid fa-house"></i>
-                        </button>
-                    </div>
-                    <div className="areas-grid">
-                        {areas.map(area => (
-                            <div
-                                key={area.id}
-                                className="area-card"
-                                onClick={() => {
-                                    if (area.id === 'qualidade') {
-                                        setView('qualidade');
-                                    } else {
-                                        alert('Página em construção para: ' + area.nome.replace(/\n/g, ' '));
-                                    }
-                                }}
-                            >
-                                <div className="area-card-title" style={{ whiteSpace: 'pre-line' }}>{area.nome}</div>
-                                <div className="area-card-badge" style={{ backgroundColor: area.color }}>
-                                    {area.tipo}
+                        <div className="qualidade-nav-bar">
+                            <button className="qualidade-nav-btn" onClick={() => window.history.length > 1 ? navigate(-1) : navigate('/')} title="Página anterior">
+                                <i className="fa-solid fa-arrow-left"></i>
+                            </button>
+                            <button className="qualidade-nav-btn" onClick={() => navigate('/')} title="Início">
+                                <i className="fa-solid fa-house"></i>
+                            </button>
+                        </div>
+                        <div className="areas-grid">
+                            {areas.map(area => (
+                                <div
+                                    key={area.id}
+                                    className="area-card"
+                                    onClick={() => {
+                                        if (area.id === 'qualidade') {
+                                            setView('qualidade');
+                                        } else {
+                                            alert('Página em construção para: ' + area.nome.replace(/\n/g, ' '));
+                                        }
+                                    }}
+                                >
+                                    <div className="area-card-title" style={{ whiteSpace: 'pre-line' }}>{area.nome}</div>
+                                    <div className="area-card-badge" style={{ backgroundColor: area.color }}>
+                                        {area.tipo}
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
+                            ))}
+                        </div>
                     </>
                 )}
 

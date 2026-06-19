@@ -1,8 +1,7 @@
 import React, { useState, useContext } from "react";
 
 import { AuthContext } from "../../contexts/auth";
-
-
+import { Link } from "react-router-dom";
 
 import './styles.css';
 
@@ -51,8 +50,8 @@ const LoginPage = () => {
                         </div>
                         <div className="links">
                         <br></br>
-                            <a href="./enviaReset" className="mx-3">Novo Cadastro</a>
-                            <a href="./enviaReset" className="mx-3">Resetar Senha</a>
+                            <Link to="/enviaReset" className="mx-3">Novo Cadastro</Link>
+                            <Link to="/enviaReset" className="mx-3">Resetar Senha</Link>
                         </div>
                         <div className="actions">
                             <button type="submit" className="btn btn-outline-primary btn-lg btn-banner" id="button">Entrar</button>

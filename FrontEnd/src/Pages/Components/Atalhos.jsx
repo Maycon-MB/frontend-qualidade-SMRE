@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { PartyPopper, HeartPulse, FileText, Palmtree, Receipt, BadgeCheck } from 'lucide-react';
 import './Atalhos.css';
 
@@ -22,7 +23,7 @@ const AtalhoItem = ({ botao }) => {
     const { Icon } = botao;
 
     return (
-        <a href={botao.link} className="text-decoration-none">
+        <Link to={botao.link} className="text-decoration-none">
             <div
                 className={`atalho-card-simples ${isHovered ? 'is-hover' : ''}`}
                 onMouseEnter={() => setIsHovered(true)}
@@ -37,7 +38,7 @@ const AtalhoItem = ({ botao }) => {
                     <div className="atalho-nome">{botao.nome}</div>
                 </div>
             </div>
-        </a>
+        </Link>
     );
 };
 
