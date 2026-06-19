@@ -1,0 +1,50 @@
+.top {
+  font-size: medium;
+}
+
+.top2 {
+    width: 45%;
+    margin: auto;
+    font-size: medium;
+    margin-left: 32%;
+    
+}
+
+.top3 {
+    font-size: medium;
+    
+
+}
+
+.top4 {
+    font-size: medium;
+    margin-left: 65%;
+    
+}
+
+.top5 {
+   padding: 1%;
+   width: 65%;
+   margin-bottom: 15px;
+   margin-top: -53px;
+}
+
+
+
+.usuarioimg {
+    max-width: 100%;
+    height: auto;
+    width: 100vw;
+    margin-top: -1%;
+
+}
+
+.unidades {
+    font-size: 20px;
+    text-align:left;
+    font-family: 'Nunito Sans', sans-serif;
+    margin-left: 5%;
+    width: 70%;
+    overflow-y: scroll;
+    
+}

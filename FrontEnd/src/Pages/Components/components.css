@@ -1,0 +1,80 @@
+.logo1 {
+    width: 100px; 
+    height: 75px;
+}
+
+.Menu1 {
+    width: 100%;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 20px;
+
+}
+
+.nav-link {
+    color: #006cb5;
+    font-weight: bolder;
+    margin-left: 25px;
+    font-size: medium;
+   
+}
+
+.footer {
+    max-width: 100%;
+    height: auto;
+    width: 100vw;
+}
+
+.carrocel {
+    max-width: 100%;
+    height: auto;
+    width: 100vw;
+}
+
+.LogoNova {
+    width: 15%;
+}
+
+.LogoFooter {
+    width: 10%;
+    
+}
+
+.Footer {
+    
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    
+    max-width: 100%;
+    height: auto;
+    width: 100vw;
+  }
+
+
+  @media (max-width: 768px) {
+    .carrocel img {
+      height: 250px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .carrocel img {
+      height: 150px;
+    }
+  }
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+

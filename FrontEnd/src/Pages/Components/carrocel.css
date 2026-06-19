@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
+
+.carrocel-wrapper {
+    border-radius: 20px;
+    overflow: hidden;
+    /* Garante que a imagem não saia do arredondamento */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    height: 100%;
+}
+
+.carrocel-container {
+    border-radius: 20px;
+    overflow: hidden;
+    height: 380px;
+    /* Define uma altura mestra para o carrossel */
+    background-color: #f0f0f0;
+    /* Cor de fundo caso a imagem demore a carregar */
+}
+
+.carrocel-img {
+    /* Faz a imagem ocupar 100% do container */
+    width: 100%;
+    height: 380px;
+
+    /* MÁGICA DO RESIZE: 
+       'cover' redimensiona a imagem para cobrir o espaço sem distorcer, 
+       cortando as sobras (como um zoom inteligente) */
+    object-fit: cover;
+
+    /* Foca o corte no centro da imagem */
+    object-position: center;
+}
+
+/* Ajuste para Mobile: diminui a altura para não ocupar a tela toda */
+@media (max-width: 768px) {
+
+    .carrocel-container,
+    .carrocel-img {
+        height: 250px;
+    }
+}
+
+.carrocel-img {
+    object-fit: cover;
+    height: 350px;
+    /* Ajuste a altura conforme a necessidade das artes */
+}
+
+/* Customização dos Controles (Setas) do Carrossel Principal */
+.main-carrocel .carousel-control-prev,
+.main-carrocel .carousel-control-next {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    top: auto;
+    bottom: 20px;
+    /* Posicionado embaixo conforme o design */
+    opacity: 0.8;
+}
+
+.main-carrocel .carousel-control-prev {
+    left: auto;
+    right: 70px;
+    /* Juntas no canto inferior direito */
+}
+
+.main-carrocel .carousel-control-next {
+    left: auto;
+    right: 20px;
+}
+
+.custom-nav-icon {
+    width: 50px;
+    height: auto;
+}
+
+/* Indicadores (Pontinhos) */
+.carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 991px) {
+    .carrocel-img {
+        height: 250px;
+    }
+
+    .main-carrocel .carousel-control-prev,
+    .main-carrocel .carousel-control-next {
+        bottom: 10px;
+    }
+}
+
+.aniversariante-card {
+    background-color: #ffffff;
+    border-radius: 18px;
+    /* Arredondamento conforme mockup */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.aniversariante-card .card-title {
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    /* Bold */
+    color: #006CB5;
+    /* Azul principal conforme manual */
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.aniversariante-card .card-text {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    /* Regular */
+    color: #333333;
+    font-size: 1rem;
+    text-align: center;
+}

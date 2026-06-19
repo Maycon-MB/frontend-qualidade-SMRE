@@ -1,0 +1,32 @@
+.Container {
+    height: 100vh;
+  }
+  
+  .Meio01 {
+    width: 50%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  .btn1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8vh; /* opcional: define a altura da div pai para ocupar toda a altura da tela */
+    width: 50%;
+
+  }
+
+  .Meio02 {
+     margin-left: 35%;
+  }
+  
+  .h11 {
+    font-weight: bold;
+    text-align: center;
+  }
+
+

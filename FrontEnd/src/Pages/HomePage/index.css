@@ -1,0 +1,227 @@
+    .Homepage {
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        background-color: #eef3f9;
+    }
+
+    .homepage-content {
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .homepage-row {
+        flex: 1;
+        min-height: 0;
+    }
+
+    .homepage-col {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* ── Mobile / Tablet ── */
+    @media (max-width: 991px) {
+        .Homepage {
+            height: auto;
+            min-height: 100vh;
+            overflow-y: auto;
+        }
+
+        .homepage-content {
+            flex: none;
+            min-height: auto;
+            overflow: visible;
+            display: block;
+        }
+
+        .homepage-row {
+            flex: none;
+            min-height: auto;
+        }
+
+        .homepage-col {
+            height: auto;
+            margin-bottom: 20px;
+        }
+    }
+
+    .qualidade-nav-bar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .qualidade-nav-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        border: 1.5px solid rgba(0, 108, 181, 0.2);
+        background: #ffffff;
+        color: #006CB5;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
+    }
+
+    .qualidade-nav-btn:hover {
+        background: #eef6ff;
+        border-color: #006CB5;
+        transform: translateY(-2px);
+    }
+
+    .menu {
+        width: auto;
+        height: fit-content;
+    }
+
+    .nav {
+        width: auto;
+    }
+
+    .mid {
+
+        width: auto;
+        padding: 15px;
+        margin: auto;
+        color: #000000;
+        font-size: medium;
+
+
+        border: 2px solid rgb(0, 0, 0);
+        border-radius: 30px;
+        border-style: solid solid solid solid;
+        border-width: 10px 5px 10px 5px;
+        border-color: #006cb5 #fc8702 #006cb5 #fc8702;
+        background-color: rgb(255, 255, 255);
+
+    }
+
+    .letreiro1 {
+        font-size: 35px;
+        text-align: center;
+        font-family: 'Nunito Sans', sans-serif;
+        font-weight: bold;
+    }
+
+    .mid2 {
+        margin-left: 35%;
+        cursor: pointer;
+
+    }
+
+    .mid3 {
+
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+
+    }
+
+
+
+    .mid4 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        /* background-color: #000000cc; */
+    }
+
+    .Portal1 {
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        margin-left: 3%;
+        /* ou outro valor, se preferir */
+    }
+
+    .ListaComprovante {
+        width: 100%;
+        padding: 20px 32px;
+        box-sizing: border-box;
+    }
+
+    .tableComprovante {
+        width: 100% !important;
+        table-layout: auto;
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 16px rgba(0, 108, 181, 0.08);
+    }
+
+    .tableComprovante thead tr {
+        background: linear-gradient(90deg, #006CB5 0%, #00A6E4 100%);
+    }
+
+    .tableComprovante th {
+        font-family: 'Lato', sans-serif;
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        padding: 14px 16px;
+        border: none !important;
+        white-space: nowrap;
+    }
+
+    .tableComprovante td {
+        font-family: 'Lato', sans-serif;
+        font-size: 0.9rem;
+        color: #2d3a4a;
+        padding: 12px 16px;
+        vertical-align: middle;
+        border-color: rgba(0, 108, 181, 0.07) !important;
+    }
+
+    .tableComprovante tbody tr:hover {
+        background-color: #f0f7ff;
+    }
+
+    .tabela-scroll {
+        overflow: auto;
+    }
+
+    @media (max-width: 600px) {
+        .tableComprovante {
+            font-size: 13px;
+        }
+
+        .ListaComprovante {
+            padding: 12px 16px;
+        }
+    }
+
+    .h2texto {
+        color: #4b4b4b;
+
+
+    }
+
+    .welcome-message {
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
+        color: #006CB5;
+        /* Azul principal conforme manual */
+        letter-spacing: 0.05em;
+        margin-bottom: 20px;
+        text-transform: capitalize;
+    }

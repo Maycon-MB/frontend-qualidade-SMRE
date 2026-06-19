@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+
+.footer-ouvidoria {
+    background: linear-gradient(90deg, #005a96 0%, #006CB5 60%, #0080cc 100%);
+    margin: 0;
+    border-radius: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.footer-ouvidoria-inner {
+    padding: 14px 36px 12px;
+}
+
+.footer-ouvidoria-content {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 16px;
+}
+
+.footer-ouvidoria-content .footer-ouvidoria-btn {
+    justify-self: center;
+}
+
+.footer-ouvidoria-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.footer-ouvidoria-icon-wrap {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.footer-ouvidoria-icon {
+    width: 24px;
+    height: 24px;
+    color: #ffffff;
+}
+
+.footer-ouvidoria-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.footer-ouvidoria-label {
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    font-size: 0.88rem;
+    color: #ffffff;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.footer-ouvidoria-desc {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.75);
+    letter-spacing: 0.02em;
+}
+
+.footer-ouvidoria-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+    color: #ffffff;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+    white-space: nowrap;
+}
+
+.footer-ouvidoria-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.6);
+    color: #ffffff;
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.footer-btn-arrow {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s ease;
+}
+
+.footer-ouvidoria-btn:hover .footer-btn-arrow {
+    transform: translateX(3px);
+}
+
+.footer-divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    margin: 20px 0 14px;
+}
+
+.footer-copy {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.55);
+    text-align: center;
+    letter-spacing: 0.02em;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .footer-ouvidoria {
+        margin: 30px 0 0;
+        border-radius: 0;
+    }
+
+    .footer-ouvidoria-inner {
+        padding: 22px 20px 18px;
+    }
+
+    .footer-ouvidoria-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .footer-ouvidoria-btn {
+        align-self: stretch;
+        justify-content: center;
+    }
+}

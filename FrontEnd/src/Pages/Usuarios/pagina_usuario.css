@@ -1,0 +1,46 @@
+.h5usuario {
+    font-size: 35px;
+    text-align: center;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: bold; 
+    color: #006cb5;
+}
+
+.h6usuario {
+    font-size: 35px;
+    font-family: 'Nunito Sans', sans-serif;
+    text-align: left;
+    color: #006cb5;
+    font-weight: bold; 
+}
+
+.h7usuario {
+    font-size: 25px;
+    font-family: 'Nunito Sans', sans-serif;
+    text-align: left;
+    color: #006cb5;
+    font-weight: bolder; 
+    margin: 15px;
+    
+    
+    margin-left: auto;
+    margin-right: auto;
+    width: 15em
+    
+}
+
+.dados1 {
+        width: 400px;
+        padding: 15px;
+        margin: auto;
+        color: #000000;
+        font-size: medium;
+}
+
+.Button2{
+    width: 30%;
+    margin: 1%;
+    font-size: medium;
+    margin-left: 35%;
+    
+}
