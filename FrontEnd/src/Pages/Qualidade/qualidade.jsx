@@ -27,7 +27,7 @@ const areas = [
     { id: 'unidades', nome: 'UNIDADES', tipo: 'PROCESSOS DE NEGÓCIO', color: '#00a859' },
 ];
 
-const PDF_URL = '/pdfs/Estrutura_Organizacional.pdf';
+const PDF_URL = process.env.PUBLIC_URL + '/pdfs/Estrutura_Organizacional.pdf';
 
 function OrganogramaPDF() {
     const [numPages, setNumPages] = useState(null);
