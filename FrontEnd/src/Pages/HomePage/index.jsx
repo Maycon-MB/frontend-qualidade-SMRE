@@ -18,7 +18,6 @@ import Atalhos from '../Components/Atalhos';
 import ComunicadosAcordeon from '../Components/ComunicadosAcordeon';
 import Menu from "./homepage_menu";
 import Footer from '../Components/footer';
-import ChatButton from '../Components/ChatButton';
 
 import './index.css';
 
@@ -71,7 +70,6 @@ const Homepage = () => {
             </Container>
 
             <Footer />
-            <ChatButton />
         </div>
     );
 };

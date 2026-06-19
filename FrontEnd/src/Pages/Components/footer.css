@@ -14,20 +14,22 @@
 }
 
 .footer-ouvidoria-content {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
     align-items: center;
-    gap: 16px;
-}
-
-.footer-ouvidoria-content .footer-ouvidoria-btn {
-    justify-self: center;
+    justify-content: flex-start;
 }
 
 .footer-ouvidoria-brand {
     display: flex;
     align-items: center;
     gap: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.footer-ouvidoria-brand:hover {
+    opacity: 0.8;
 }
 
 .footer-ouvidoria-icon-wrap {
