@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { PartyPopper, HeartPulse, FileText, Palmtree, Receipt, BadgeCheck } from 'lucide-react';
 import './menu.css';
 
@@ -22,7 +23,7 @@ function Menu({ foto, nome }) {
                 <Container fluid className="navbar-container">
 
                     {/* Lado Esquerdo: Logo e Título conforme imagem de marketing */}
-                    <Navbar.Brand href="/" className="brand-section">
+                    <Navbar.Brand as={Link} to="/" className="brand-section">
                         <img src={LogoNegativa} alt="Santa Mônica" className="logo-sm" />
                         <div className="vertical-divider"></div>
                         <h2 className="portal-title">PORTAL DO COLABORADOR</h2>
@@ -54,7 +55,7 @@ function Menu({ foto, nome }) {
                             >
                                 {/* Botões do Menu */}
                                 {botoes.map(({ id, nome, Icon, link }) => (
-                                    <NavDropdown.Item key={id} href={link}>
+                                    <NavDropdown.Item key={id} as={Link} to={link === '#' ? '/' : link}>
                                         <Icon size={15} strokeWidth={1.8} style={{ marginRight: '0.5rem', verticalAlign: 'middle', color: '#006CB5' }} />
                                         {nome}
                                     </NavDropdown.Item>
