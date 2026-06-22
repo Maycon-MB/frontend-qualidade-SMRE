@@ -5,10 +5,12 @@ import {
     Route,
     Routes,
     Navigate,
-    useParams
+    useParams,
+    useLocation
 } from "react-router-dom";
 
 import LoginPage from './Pages/LoginPage';
+import ChatButton from './Pages/Components/ChatButton';
 import HomePage from './Pages/HomePage/index.jsx';
 import EnviaReset from './Pages/LoginPage/enviaReset.jsx';
 import ResetSenha from './Pages/Usuarios/resetsenha.jsx';
@@ -25,7 +27,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { AuthProvider, AuthContext } from "./contexts/auth";
 
-const AppRoutes = () => {
+const AppContent = () => {
+    const location = useLocation();
+
     const Private = ({ children }) => {
         const { authenticated, loading } = useContext(AuthContext);
 
@@ -39,27 +43,32 @@ const AppRoutes = () => {
     }
 
     return (
+        <AuthProvider>
+            <Routes>
+                <Route exact path="/login" element={<LoginPage />} />
+                <Route exact path="/enviaReset" element={<EnviaReset />} />
+                <Route exact path="/" element={<Private><HomePage /></Private>} />
+                <Route exact path="/uploadCC" element={<Private><UploadCC /></Private>} />
+                <Route exact path="/uploadGPT" element={<Private><UploadGPT /></Private>} />
+                <Route exact path="/contaDocs" element={<Private><ContaDocs /></Private>} />
+                <Route exact path="/listaDocs" element={<Private><ListaDocs /></Private>} />
+                <Route exact path="/resetSenha/:token" element={<ResetSenha />} />
+                <Route exact path="/qualidade" element={<Private><Qualidade /></Private>} />
+                <Route exact path="/contraCheque" element={<Private><ContraCheque /></Private>} />
+                <Route exact path="/uploadGPTFotos" element={<Private><UploadGPTFotos /></Private>} />
+
+            </Routes>
+            <ToastContainer />
+            {location.pathname !== "/login" && <ChatButton />}
+        </AuthProvider>
+    )
+}
+
+const AppRoutes = () => {
+    return (
         <Router>
-            <AuthProvider>
-                <Routes>
-                    <Route exact path="/login" element={<LoginPage />} />
-                    <Route exact path="/enviaReset" element={<EnviaReset />} />
-                    <Route exact path="/" element={<Private><HomePage /></Private>} />
-                    <Route exact path="/uploadCC" element={<Private><UploadCC /></Private>} />
-                    <Route exact path="/uploadGPT" element={<Private><UploadGPT /></Private>} />
-                    <Route exact path="/contaDocs" element={<Private><ContaDocs /></Private>} />
-                    <Route exact path="/listaDocs" element={<Private><ListaDocs /></Private>} />
-                    <Route exact path="/resetSenha/:token" element={<ResetSenha />} />
-                    <Route exact path="/qualidade" element={<Private><Qualidade /></Private>} />
-                    <Route exact path="/contraCheque" element={<Private><ContraCheque /></Private>} />
-                    <Route exact path="/uploadGPTFotos" element={<Private><UploadGPTFotos /></Private>} />
-
-                </Routes>
-                <ToastContainer />
-            </AuthProvider>
-
+            <AppContent />
         </Router>
-
     )
 }
 

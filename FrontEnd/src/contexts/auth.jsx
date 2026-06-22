@@ -29,7 +29,14 @@ export const AuthProvider = ({ children }) => {
     const login = async (cpf, password) => {
         console.log("login auth :", { cpf, password });
 
-        const response = await createSession(cpf, password);
+        let response;
+        try {
+            response = await createSession(cpf, password);
+        } catch (error) {
+            console.error("login error:", error);
+            toast.error("Não foi possível conectar ao servidor. Verifique sua conexão.");
+            return;
+        }
 
         console.log("response:", response.data);
 
