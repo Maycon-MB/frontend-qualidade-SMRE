@@ -20,7 +20,7 @@ const Footer = () => {
                         </div>
                         <div className="footer-ouvidoria-info">
                             <span className="footer-ouvidoria-label">OUVIDORIA SMREDE</span>
-                            <span className="footer-ouvidoria-desc">Canal de escuta ativa e transparência</span>
+                            <span className="footer-ouvidoria-desc">Canal de escuta ativa, transparente e acessível!</span>
                         </div>
                     </a>
                 </div>

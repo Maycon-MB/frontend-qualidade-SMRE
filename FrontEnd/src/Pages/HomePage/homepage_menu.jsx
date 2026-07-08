@@ -9,12 +9,12 @@ import IconMenu from '../../img/Portal_Func/Três pontos Desktop - Menu de Usuá
 
 function Menu({ foto, nome }) {
     const botoes = [
-        { id: 1, nome: 'ANIVERSARIANTES',       Icon: PartyPopper, link: '#' },
-        { id: 2, nome: 'BENEFÍCIOS',             Icon: HeartPulse,  link: '#' },
-        { id: 3, nome: 'CONTRACHEQUE',           Icon: FileText,    link: '/contraCheque' },
-        { id: 4, nome: 'FÉRIAS',                 Icon: Palmtree,    link: '#' },
-        { id: 5, nome: 'INFORME DE RENDIMENTOS', Icon: Receipt,     link: '#' },
-        { id: 6, nome: 'QUALIDADE',              Icon: BadgeCheck,  link: '/qualidade' },
+        { id: 1, nome: 'ANIVERSARIANTES', Icon: PartyPopper, link: '#' },
+        { id: 2, nome: 'BENEFÍCIOS', Icon: HeartPulse, link: '#' },
+        { id: 3, nome: 'CONTRACHEQUE', Icon: FileText, link: '/contraCheque' },
+        { id: 4, nome: 'FÉRIAS', Icon: Palmtree, link: '#' },
+        { id: 5, nome: 'INFORME DE RENDIMENTOS', Icon: Receipt, link: '#' },
+        { id: 6, nome: 'GESTÃO DA QUALIDADE', Icon: BadgeCheck, link: '/qualidade' },
     ];
 
     return (
@@ -35,16 +35,16 @@ function Menu({ foto, nome }) {
                         <Nav className="ms-auto align-items-center" style={{ gap: '12px' }}>
 
                             {(foto || nome) && (
-                            <div className="navbar-user-info">
-                                <span className="navbar-user-greeting">Olá, {nome}!</span>
-                                {foto && (
-                                    <img src={`data:image/jpeg;base64,${foto}`} alt="Foto do colaborador" className="navbar-user-avatar" />
-                                )}
-                                {!foto && (
-                                    <div className="navbar-user-placeholder" />
-                                )}
-                            </div>
-                        )}
+                                <div className="navbar-user-info">
+                                    <span className="navbar-user-greeting">Olá, {nome}!</span>
+                                    {foto && (
+                                        <img src={`data:image/jpeg;base64,${foto}`} alt="Foto do colaborador" className="navbar-user-avatar" />
+                                    )}
+                                    {!foto && (
+                                        <div className="navbar-user-placeholder" />
+                                    )}
+                                </div>
+                            )}
 
 
                             <NavDropdown

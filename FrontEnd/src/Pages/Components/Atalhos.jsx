@@ -8,7 +8,7 @@ const botoes = [
     { id: 2, nome: 'BENEFÍCIOS',             Icon: HeartPulse,  link: '#' },
     { id: 3, nome: 'CONTRACHEQUE',           Icon: FileText,    link: '/contraCheque' },
     { id: 4, nome: 'FÉRIAS',                 Icon: Palmtree,    link: '#' },
-    { id: 5, nome: 'INFORME DE RENDIMENTOS', Icon: Receipt,     link: '#' },
+    { id: 5, nome: 'INFORME DE RENDIMENTOS', Icon: Receipt,     link: '/contraCheque' },
     { id: 6, nome: 'QUALIDADE',              Icon: BadgeCheck,  link: '/qualidade' },
 ];
 
@@ -23,7 +23,7 @@ const AtalhoItem = ({ botao }) => {
     const { Icon } = botao;
 
     return (
-        <Link to={botao.link} className="text-decoration-none">
+        <Link to={botao.link} className="text-decoration-none atalho-grid-item">
             <div
                 className={`atalho-card-simples ${isHovered ? 'is-hover' : ''}`}
                 onMouseEnter={() => setIsHovered(true)}
