@@ -4,12 +4,12 @@ import { PartyPopper, HeartPulse, FileText, Palmtree, Receipt, BadgeCheck } from
 import './Atalhos.css';
 
 const botoes = [
-    { id: 1, nome: 'ANIVERSARIANTES',       Icon: PartyPopper, link: '#' },
-    { id: 2, nome: 'BENEFÍCIOS',             Icon: HeartPulse,  link: '#' },
-    { id: 3, nome: 'CONTRACHEQUE',           Icon: FileText,    link: '/contraCheque' },
-    { id: 4, nome: 'FÉRIAS',                 Icon: Palmtree,    link: '#' },
-    { id: 5, nome: 'INFORME DE RENDIMENTOS', Icon: Receipt,     link: '/contraCheque' },
-    { id: 6, nome: 'QUALIDADE',              Icon: BadgeCheck,  link: '/qualidade' },
+    { id: 1, nome: 'ANIVERSARIANTES', Icon: PartyPopper, link: '#' },
+    { id: 2, nome: 'BENEFÍCIOS', Icon: HeartPulse, link: '#' },
+    { id: 3, nome: 'CONTRACHEQUE', Icon: FileText, link: '/contraCheque' },
+    { id: 4, nome: 'FÉRIAS', Icon: Palmtree, link: '#' },
+    { id: 5, nome: 'INFORME DE RENDIMENTOS', Icon: Receipt, link: '/contraCheque' },
+    { id: 6, nome: 'GESTÃO DA QUALIDADE', Icon: BadgeCheck, link: '/qualidade' },
 ];
 
 const Atalhos = () => (
