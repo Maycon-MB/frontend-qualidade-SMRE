@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/beta/static/css/main.50506537.css",
+    "main.js": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/beta/static/js/main.05edbd19.js",
+    "static/js/787.201eaf24.chunk.js": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/beta/static/js/787.201eaf24.chunk.js",
+    "static/media/teste.jpg": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/beta/static/media/teste.ee9c25c6ee5da7f3e97c.jpg",
+    "static/media/logomarca.png": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/beta/static/media/logomarca.c3aa2d6442ba78913451.png",
+    "static/media/SMRE_logo_negativo.png": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/beta/static/media/SMRE_logo_negativo.b4b54e646ce8d2d153b5.png",
+    "index.html": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/beta/index.html",
+    "main.50506537.css.map": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/beta/static/css/main.50506537.css.map",
+    "main.05edbd19.js.map": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/beta/static/js/main.05edbd19.js.map",
+    "787.201eaf24.chunk.js.map": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/beta/static/js/787.201eaf24.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.50506537.css",
+    "static/js/main.05edbd19.js"
+  ]
+}
