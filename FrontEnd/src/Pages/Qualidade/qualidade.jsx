@@ -110,7 +110,26 @@ const areaDetails = {
         documentos: [
             { eventKey: '0', titulo: 'PE.02-0.1 - Estrutura Organizacional', corpo: <p>Conteúdo do documento PE.02-0.1 - Estrutura Organizacional</p> },
             { eventKey: '1', titulo: 'PE.02-0.2 - Missão, Visão e Valores', corpo: <p>Conteúdo do documento PE.02-0.2 - Missão, Visão e Valores</p> },
-            { eventKey: '2', titulo: 'PE.02-0.3 - Código de Ética e Conduta', corpo: <p>Conteúdo do documento PE.02-0.3 - Código de Ética e Conduta</p> },
+            {
+                eventKey: '2',
+                titulo: 'PE.02-0.3 - Código de Ética e Conduta',
+                corpo: (
+                    <>
+                        <p>O Código de Ética e Conduta reúne os princípios e as regras de comportamento que orientam todos os colaboradores do Santa Mônica Rede de Ensino: respeito às leis e regulamentações, integridade na condução dos negócios, conduta profissional, sigilo e confidencialidade, relacionamentos confiáveis com clientes, fornecedores e concorrentes, e a gestão do próprio código pelo Comitê de Ética e Conduta e pela Ouvidoria SMREDE.</p>
+                        <p>Edição 02 — em vigor a partir de 18/03/2026.</p>
+                        <Button
+                            as="a"
+                            href={`${process.env.PUBLIC_URL}/documentos/PE.02-0.3-codigo-de-etica-e-conduta.pdf`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn-visualizar-doc"
+                        >
+                            VISUALIZAR DOCUMENTO <i className="fa-solid fa-angles-right"></i>
+                        </Button>
+                        <div style={{ clear: 'both' }}></div>
+                    </>
+                ),
+            },
         ],
         defaultDocKey: '0',
         subareas: [
