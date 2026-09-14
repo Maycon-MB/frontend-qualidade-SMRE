@@ -14,7 +14,7 @@ import * as yup from "yup";
 
 import { Row, Col, Container } from "react-bootstrap";
 
-import Atalhos from '../Components/Atalhos';
+import Atalhos, { contarAtalhosVisiveis } from '../Components/Atalhos';
 import ComunicadosAcordeon from '../Components/ComunicadosAcordeon';
 import Menu from "./homepage_menu";
 import Footer from '../Components/footer';
@@ -44,8 +44,12 @@ const Homepage = () => {
             return;
         }
         (async () => {
-            const resultado = await busca_foto(funcionario[0].cpf);
-            setFoto(resultado.data);
+            try {
+                const resultado = await busca_foto(funcionario[0].cpf);
+                setFoto(resultado.data);
+            } catch (error) {
+                console.log(error);
+            }
         })();
     }, []);
 
@@ -54,16 +58,18 @@ const Homepage = () => {
     const nomePrimeiro = funcionario[0].nome.split(' ')[0];
     const nomeFormatado = nomePrimeiro.charAt(0).toUpperCase() + nomePrimeiro.slice(1).toLowerCase();
 
+    const poucosAtalhos = contarAtalhosVisiveis() <= 3;
+
     return (
         <div className="Homepage">
             <Menu foto={foto} nome={nomeFormatado} />
 
             <Container fluid className="homepage-content px-4 pt-3 pb-3">
                 <Row className="gx-4 homepage-row">
-                    <Col lg={5} md={12} className="homepage-col">
+                    <Col lg={poucosAtalhos ? 3 : 5} md={12} className="homepage-col">
                         <Atalhos />
                     </Col>
-                    <Col lg={7} md={12} className="homepage-col">
+                    <Col lg={poucosAtalhos ? 9 : 7} md={12} className="homepage-col">
                         <ComunicadosAcordeon />
                     </Col>
                 </Row>

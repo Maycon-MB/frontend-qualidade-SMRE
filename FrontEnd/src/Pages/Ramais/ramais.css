@@ -1,0 +1,232 @@
+/* ====== BACKGROUND ====== */
+.Ramais {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #f0f4f8;
+}
+
+.ramais-body {
+    flex: 1;
+}
+
+/* ====== NAV BAR ====== */
+.ramais-nav-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 0 0;
+}
+
+.ramais-nav-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: 1.5px solid rgba(0, 108, 181, 0.2);
+    background: #ffffff;
+    color: #006CB5;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
+}
+
+.ramais-nav-btn:hover {
+    background: #eef6ff;
+    border-color: #006CB5;
+    transform: translateY(-2px);
+}
+
+.ramais-nav-titulo {
+    color: #006CB5;
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: 0.3px;
+    margin-left: 8px;
+}
+
+/* ====== BUSCA ====== */
+.ramais-busca-wrapper {
+    position: relative;
+    margin-top: 22px;
+    margin-bottom: 24px;
+}
+
+.ramais-busca-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8a94a0;
+    font-size: 0.85rem;
+}
+
+.ramais-busca-input {
+    width: 100%;
+    padding: 11px 16px 11px 40px;
+    border-radius: 10px;
+    border: 1.5px solid rgba(0, 108, 181, 0.15);
+    background: #f7fafc;
+    font-size: 0.9rem;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.ramais-busca-input:focus {
+    border-color: #006CB5;
+    background: white;
+}
+
+/* ====== ESTADOS ====== */
+.ramais-estado {
+    text-align: center;
+    padding: 50px 20px;
+    color: #6c7a89;
+    font-size: 0.95rem;
+}
+
+.ramais-retry-btn {
+    margin-top: 14px;
+    padding: 9px 22px;
+    border-radius: 20px;
+    border: none;
+    background: linear-gradient(135deg, #006CB5 0%, #00A6E4 100%);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* ====== PAINEL / ABAS (mesma linguagem da página Qualidade) ====== */
+.ramais-painel .nav-tabs {
+    border-bottom: none;
+    gap: 8px;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.ramais-painel .nav-tabs .nav-link {
+    color: #006CB5;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 108, 181, 0.2);
+    border-bottom: none;
+    border-radius: 12px 12px 0 0;
+    padding: 11px 24px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: all 0.25s ease;
+}
+
+.ramais-painel .nav-tabs .nav-link:hover {
+    color: #00A6E4;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.ramais-painel .nav-tabs .nav-link.active {
+    background: linear-gradient(135deg, #006CB5 0%, #00A6E4 100%);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 -4px 14px rgba(0, 108, 181, 0.3);
+}
+
+.ramais-tab-content {
+    background: white;
+    border-radius: 0 16px 16px 16px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 108, 181, 0.06);
+    overflow: hidden;
+}
+
+.ramais-painel > .ramais-tabela {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 108, 181, 0.06);
+    overflow: hidden;
+}
+
+/* ====== TABELA ====== */
+.ramais-tabela {
+    width: 100%;
+    table-layout: fixed;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+.ramais-col-setor { width: 32%; }
+.ramais-col-responsavel { width: 38%; }
+.ramais-col-unidade { width: 18%; }
+.ramais-col-ramal { width: 20%; }
+
+.ramais-tabela thead {
+    background: linear-gradient(90deg, #006CB5 0%, #00A6E4 100%);
+}
+
+.ramais-tabela thead th {
+    text-align: left;
+    padding: 14px 20px;
+    background: transparent;
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    border-bottom: none;
+    white-space: nowrap;
+}
+
+.ramais-tabela tbody td {
+    padding: 13px 20px;
+    color: #444;
+    vertical-align: middle;
+    overflow-wrap: break-word;
+}
+
+.ramais-td-setor {
+    color: #0d3a5c;
+    font-weight: 700;
+}
+
+.ramais-numeros {
+    display: inline-block;
+}
+
+.ramais-numero {
+    color: #006CB5;
+    font-weight: 700;
+}
+
+.ramais-numeros-sep {
+    color: #b0bac2;
+    margin: 0 4px;
+}
+
+/* ====== MOBILE ====== */
+@media (max-width: 767px) {
+    .ramais-nav-titulo {
+        font-size: 1.05rem;
+    }
+
+    .ramais-painel .nav-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 0 2px;
+    }
+
+    .ramais-painel .nav-tabs .nav-link {
+        white-space: nowrap;
+        padding: 9px 16px;
+        font-size: 0.7rem;
+    }
+
+    .ramais-tabela {
+        font-size: 0.8rem;
+    }
+
+    .ramais-tabela thead th,
+    .ramais-tabela tbody td {
+        padding: 10px 12px;
+    }
+}

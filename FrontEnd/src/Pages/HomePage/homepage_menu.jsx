@@ -1,21 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { PartyPopper, HeartPulse, FileText, Palmtree, Receipt, BadgeCheck } from 'lucide-react';
+import { PartyPopper, HeartPulse, FileText, Palmtree, Receipt, BadgeCheck, Phone } from 'lucide-react';
+import { emProducao } from '../../config/fase';
 import './menu.css';
 
 import LogoNegativa from '../../img/Portal_Func/SMRE_logo_negativo.png';
 import IconMenu from '../../img/Portal_Func/Três pontos Desktop - Menu de Usuário.png';
 
 function Menu({ foto, nome }) {
+    const [fotoComErro, setFotoComErro] = useState(false);
+    const fotoValida = typeof foto === 'string' && foto.length > 100 && !fotoComErro;
+    const fotoSrc = fotoValida && (foto.startsWith('data:image') ? foto : `data:image/jpeg;base64,${foto}`);
+
     const botoes = [
         { id: 1, nome: 'ANIVERSARIANTES', Icon: PartyPopper, link: '#' },
-        { id: 2, nome: 'BENEFÍCIOS', Icon: HeartPulse, link: '#' },
+        { id: 2, nome: 'BENEFÍCIOS', Icon: HeartPulse, link: '#', ocultoEmProducao: true },
         { id: 3, nome: 'CONTRACHEQUE', Icon: FileText, link: '/contraCheque' },
-        { id: 4, nome: 'FÉRIAS', Icon: Palmtree, link: '#' },
-        { id: 5, nome: 'INFORME DE RENDIMENTOS', Icon: Receipt, link: '#' },
-        { id: 6, nome: 'GESTÃO DA QUALIDADE', Icon: BadgeCheck, link: '/qualidade' },
-    ];
+        { id: 4, nome: 'FÉRIAS', Icon: Palmtree, link: '#', ocultoEmProducao: true },
+        { id: 5, nome: 'GESTÃO DA QUALIDADE', Icon: BadgeCheck, link: '/qualidade' },
+        { id: 6, nome: 'INFORME DE RENDIMENTOS', Icon: Receipt, link: '#', ocultoEmProducao: true },
+        { id: 7, nome: 'RAMAIS', Icon: Phone, link: '/ramais' },
+    ].filter((botao) => !(emProducao && botao.ocultoEmProducao));
 
     return (
         <>
@@ -37,11 +43,10 @@ function Menu({ foto, nome }) {
                             {(foto || nome) && (
                                 <div className="navbar-user-info">
                                     <span className="navbar-user-greeting">Olá, {nome}!</span>
-                                    {foto && (
-                                        <img src={`data:image/jpeg;base64,${foto}`} alt="Foto do colaborador" className="navbar-user-avatar" />
-                                    )}
-                                    {!foto && (
-                                        <div className="navbar-user-placeholder" />
+                                    {fotoValida ? (
+                                        <img src={fotoSrc} alt="Foto do colaborador" className="navbar-user-avatar" onError={() => setFotoComErro(true)} />
+                                    ) : (
+                                        <div className="navbar-user-placeholder">{nome ? nome.charAt(0) : ''}</div>
                                     )}
                                 </div>
                             )}
