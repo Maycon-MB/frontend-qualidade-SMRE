@@ -80,7 +80,7 @@ const areaDetails = {
                 <p>A área da Qualidade tem como principal objetivo assegurar que os serviços e processos atendam aos requisitos definidos e às expectativas dos alunos e famílias, promovendo a melhoria contínua.</p>
             </div>
         ),
-        organogramaSvg: null,
+        organogramaSvg: 'qualidade.svg',
         documentos: [
             { eventKey: '0', titulo: 'PE.01-1.1 - Macroprocessos', corpo: <p>Conteúdo do documento PE.01-1.1 - Macroprocessos</p> },
             { eventKey: '1', titulo: 'PE.01-1.1.1 - Política da Qualidade', corpo: <p>Conteúdo do documento PE.01-1.1.1 - Política da Qualidade</p> },
