@@ -70,6 +70,11 @@
     transform: translateY(-3px);
 }
 
+.qualidade-tabs .nav-tabs .nav-link:focus-visible {
+    outline: 3px solid #F5821F;
+    outline-offset: 2px;
+}
+
 .qualidade-tab-content {
     border: none;
     border-radius: 0 20px 20px 20px;
@@ -118,7 +123,7 @@
         overflow-x: auto;
         overflow-y: hidden;
         scrollbar-width: none;
-        padding: 6px 2px 0;
+        padding: 10px 2px 0;
         gap: 3px;
     }
 
@@ -162,7 +167,7 @@
 
 @media (max-width: 400px) {
     .qualidade-tabs .nav-tabs {
-        padding: 6px 0 0;
+        padding: 10px 0 0;
         gap: 2px;
     }
 
@@ -599,30 +604,6 @@
     min-height: 600px;
 }
 
-.pdf-container {
-    width: 100%;
-}
-
-.pdf-page {
-    margin-bottom: 20px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 10px 35px rgba(0,0,0,0.1);
-}
-
-.pdf-page canvas {
-    border-radius: 12px;
-    width: 100% !important;
-    height: auto !important;
-}
-
-.organograma-lista {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
 .organograma-setor {
     width: 100%;
     padding: 4px 0;
@@ -697,8 +678,10 @@
 }
 
 .organograma-modal-body .organograma-img {
-    max-width: none;
-    max-height: 100%;
+    width: auto;
+    max-width: 100%;
+    max-height: calc(100vh - 90px);
+    object-fit: contain;
 }
 
 .organograma-setor-vazio {
@@ -706,12 +689,4 @@
     text-align: center;
     color: #6c757d;
     font-size: 0.95rem;
-}
-
-.pdf-loading {
-    text-align: center;
-    padding: 60px;
-    color: #006CB5;
-    font-weight: 600;
-    font-size: 1.1rem;
 }
