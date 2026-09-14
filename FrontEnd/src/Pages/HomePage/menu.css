@@ -34,18 +34,18 @@
 }
 
 .navbar-user-placeholder {
-    width: 24px;
-    height: 24px;
+    width: 62px;
+    height: 62px;
     border-radius: 50%;
-    background: #006CB5;
-    color: #fff;
+    background: #ffffff;
+    color: #006CB5;
+    border: 2px solid #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.75rem;
-    font-weight: 500;
+    font-size: 1.5rem;
+    font-weight: 700;
     font-family: 'Lato', sans-serif;
-    margin-right: 12px;
 }
 
 /* Marca e Título */
@@ -166,9 +166,11 @@
         margin-right: 4px;
     }
 
-    .navbar-user-avatar {
+    .navbar-user-avatar,
+    .navbar-user-placeholder {
         width: 38px;
         height: 38px;
+        font-size: 1rem;
     }
 
     .navbar-user-info {

@@ -44,10 +44,21 @@ const ContraCheque = () => {
             return;
         }
         (async () => {
-            const resultado1 = await lista_proventos(funcionario[0].cpf);
-            setComprovantes(resultado1);
-            const resultado2 = await busca_foto(funcionario[0].cpf);
-            setFoto(resultado2.data);
+            try {
+                const resultado = await lista_proventos(funcionario[0].cpf);
+                setComprovantes(Array.isArray(resultado) ? resultado : []);
+            } catch (error) {
+                console.log(error);
+                toast.error("Não foi possível carregar os contracheques.");
+            }
+        })();
+        (async () => {
+            try {
+                const resultado = await busca_foto(funcionario[0].cpf);
+                setFoto(resultado.data);
+            } catch (error) {
+                console.log(error);
+            }
         })();
     }, []);
 

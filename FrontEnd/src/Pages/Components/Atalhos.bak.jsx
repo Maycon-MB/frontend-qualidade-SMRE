@@ -24,7 +24,7 @@ const Atalhos = () => {
         { id: 2, nome: 'FÉRIAS', img: IconFerias, hover: HoverFerias, link: '#' },
         { id: 3, nome: 'INFORME DE RENDIMENTOS', img: IconIR, hover: HoverIR, link: '#' },
         { id: 4, nome: 'CONTRACHEQUE', img: IconContracheque, hover: HoverContracheque, link: '/contraCheque' },
-        { id: 5, nome: 'QUALIDADE', img: IconQualidade, hover: HoverQualidade, link: '/qualidade' },
+        { id: 5, nome: 'GESTÃO DA QUALIDADE', img: IconQualidade, hover: HoverQualidade, link: '/qualidade' },
     ];
 
     return (

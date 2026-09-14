@@ -27,8 +27,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "predeploy": "cross-env REACT_APP_FASE=producao react-scripts build",
+    "deploy": "gh-pages -d build --add",
+    "build:beta": "cross-env PUBLIC_URL=https://Maycon-MB.github.io/frontend-qualidade-SMRE/beta react-scripts build",
+    "deploy:beta": "npm run build:beta && gh-pages -d build -e beta"
   },
   "eslintConfig": {
     "extends": [
@@ -49,6 +51,7 @@
     ]
   },
   "devDependencies": {
+    "cross-env": "^10.1.0",
     "gh-pages": "^6.3.0"
   }
 }

@@ -43,20 +43,21 @@ export const AuthProvider = ({ children }) => {
         const loggedUser = response.data.acesso;
         const token = response.data.token;
 
-        if ((response.data.message === "Cannot read property 'chave' of undefined") || (token === null)) toast.warning("Usuário ou chave não encontrados.");
-
+        if (!token || !loggedUser) {
+            toast.warning("Usuário ou chave não encontrados.");
+            localStorage.removeItem("user");
+            localStorage.removeItem("token");
+            navigate("/login", { state: "false" });
+            return;
+        }
 
         localStorage.setItem("user", JSON.stringify(loggedUser));
         localStorage.setItem("token", token);
 
         api.defaults.headers.Authorization = `Bearer ${token}`;
 
-        if (token !== null) {
-            setUser(loggedUser);
-            navigate("/");
-        } else {
-            navigate("/login", { state: "false" });
-        }
+        setUser(loggedUser);
+        navigate("/");
     };
 
     const logout = () => {
