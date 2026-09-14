@@ -25,7 +25,7 @@ const areas = [
 // Organograma por setor. Quando chegar o SVG de um setor, salve em public/organograma/ e preencha `svg`.
 // `recorte` (opcional) é o viewBox "x y largura altura" da área desenhada, para cortar a margem vazia do arquivo (1440x810).
 const ORGANOGRAMA_SETORES = [
-    { id: 'governanca', titulo: 'GOVERNANÇA CORPORATIVA', svg: 'governanca-corporativa.svg', recorte: '327 105 786 410' },
+    { id: 'governanca', titulo: 'GOVERNANÇA CORPORATIVA', svg: 'governanca-corporativa.svg' },
     { id: 'alta-direcao', titulo: 'ALTA DIREÇÃO', svg: null },
     { id: 'financeira', titulo: 'DIRETORIA FINANCEIRA', svg: null },
     { id: 'produtos', titulo: 'GESTÃO DE PRODUTOS', svg: null },
