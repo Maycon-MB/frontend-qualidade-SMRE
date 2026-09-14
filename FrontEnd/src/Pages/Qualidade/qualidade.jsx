@@ -5,12 +5,7 @@ import { Container, Tab, Tabs, Accordion, Button } from "react-bootstrap";
 import Menu from "../HomePage/homepage_menu";
 import Footer from "../Components/footer";
 import { busca_foto } from "../../services/api";
-import { Document, Page, pdfjs } from 'react-pdf';
-import 'react-pdf/dist/Page/AnnotationLayer.css';
-import 'react-pdf/dist/Page/TextLayer.css';
 import './qualidade.css';
-
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 const areas = [
     { id: 'comercial', nome: 'COMERCIAL', tipo: 'PROCESSOS DE NEGÓCIO', color: '#4ea8de' },
@@ -27,40 +22,42 @@ const areas = [
     { id: 'unidades', nome: 'UNIDADES', tipo: 'PROCESSOS DE NEGÓCIO', color: '#4ea8de' },
 ];
 
-const PDF_URL = process.env.PUBLIC_URL + '/pdfs/Estrutura_Organizacional.pdf';
+// Organograma por setor. Quando chegar o SVG de um setor, salve em public/organograma/ e preencha `svg`.
+const ORGANOGRAMA_SETORES = [
+    { id: 'governanca', titulo: 'GOVERNANÇA CORPORATIVA', svg: 'governanca-corporativa.svg' },
+    { id: 'alta-direcao', titulo: 'ALTA DIREÇÃO', svg: null },
+    { id: 'financeira', titulo: 'DIRETORIA FINANCEIRA', svg: null },
+    { id: 'produtos', titulo: 'GESTÃO DE PRODUTOS', svg: null },
+    { id: 'csc', titulo: 'DIRETORIA CSC', svg: null },
+    { id: 'comercial', titulo: 'DIRETORIA COMERCIAL', svg: null },
+    { id: 'operacoes', titulo: 'DIRETORIA OPERAÇÕES', svg: null },
+    { id: 'ti', titulo: 'DIRETORIA TI', svg: null },
+    { id: 'gente', titulo: 'GENTE & GESTÃO', svg: null },
+    { id: 'suprimentos', titulo: 'SUPRIMENTOS', svg: null },
+    { id: 'pedagogica', titulo: 'DIRETORIA GESTÃO PEDAGÓGICA', svg: null },
+    { id: 'unidades', titulo: 'UNIDADES', svg: null },
+];
 
-function OrganogramaPDF() {
-    const [numPages, setNumPages] = useState(null);
-    const [containerWidth, setContainerWidth] = useState(null);
-    const containerRef = React.useRef(null);
-
-    React.useEffect(() => {
-        if (containerRef.current) {
-            setContainerWidth(containerRef.current.offsetWidth);
-        }
-    }, []);
+function OrganogramaSetores({ setores }) {
+    const lista = setores ? ORGANOGRAMA_SETORES.filter((s) => setores.includes(s.id)) : ORGANOGRAMA_SETORES;
 
     return (
-        <div ref={containerRef} className="pdf-container">
-            <Document
-                file={PDF_URL}
-                onLoadSuccess={({ numPages }) => setNumPages(numPages)}
-                loading={<div className="pdf-loading">Carregando organograma...</div>}
-                error={<div className="pdf-loading">Erro ao carregar o PDF.</div>}
-            >
-                {numPages &&
-                    Array.from({ length: numPages - 1 }, (_, i) => i + 2).map((pageNum) => (
-                        <Page
-                            key={pageNum}
-                            pageNumber={pageNum}
-                            width={containerWidth || 800}
-                            className="pdf-page"
-                            renderTextLayer={false}
-                            renderAnnotationLayer={false}
+        <div className="organograma-lista">
+            {lista.map((setor) => (
+                <section key={setor.id} className="organograma-setor">
+                    <h3 className="organograma-setor-titulo">{setor.titulo}</h3>
+                    {setor.svg ? (
+                        <img
+                            src={`${process.env.PUBLIC_URL}/organograma/${setor.svg}`}
+                            alt={`Organograma - ${setor.titulo}`}
+                            className="organograma-setor-img"
+                            loading="lazy"
                         />
-                    ))
-                }
-            </Document>
+                    ) : (
+                        <div className="organograma-setor-vazio">Organograma em breve.</div>
+                    )}
+                </section>
+            ))}
         </div>
     );
 }
@@ -85,7 +82,7 @@ const areaDetails = {
                 <p>A área da Qualidade tem como principal objetivo assegurar que os serviços e processos atendam aos requisitos definidos e às expectativas dos alunos e famílias, promovendo a melhoria contínua.</p>
             </div>
         ),
-        temOrganograma: true,
+        organograma: 'todos',
         documentos: [
             { eventKey: '0', titulo: 'PE.01-1.1 - Macroprocessos', corpo: <p>Conteúdo do documento PE.01-1.1 - Macroprocessos</p> },
             { eventKey: '1', titulo: 'PE.01-1.1.1 - Política da Qualidade', corpo: <p>Conteúdo do documento PE.01-1.1.1 - Política da Qualidade</p> },
@@ -111,7 +108,7 @@ const areaDetails = {
     gov: {
         titulo: 'GOVERNANÇA CORPORATIVA',
         objetivo: null,
-        temOrganograma: false,
+        organograma: ['governanca'],
         documentos: [
             { eventKey: '0', titulo: 'PE.02-0.1 - Estrutura Organizacional', corpo: <p>Conteúdo do documento PE.02-0.1 - Estrutura Organizacional</p> },
             { eventKey: '1', titulo: 'PE.02-0.2 - Missão, Visão e Valores', corpo: <p>Conteúdo do documento PE.02-0.2 - Missão, Visão e Valores</p> },
@@ -278,8 +275,8 @@ function AreaDetail({ config, onVoltar, onHome }) {
                     </Tab>
                     <Tab eventKey="organograma" title={<TabTitle icone="fa-sitemap" texto="ORGANOGRAMA" />}>
                         <div className="qualidade-tab-content qualidade-pdf-wrapper">
-                            {config.temOrganograma ? (
-                                <OrganogramaPDF />
+                            {config.organograma ? (
+                                <OrganogramaSetores setores={config.organograma === 'todos' ? null : config.organograma} />
                             ) : (
                                 <div className="pdf-loading">Organograma em breve.</div>
                             )}
@@ -340,8 +337,12 @@ const Qualidade = () => {
             return;
         }
         (async () => {
-            const resultado = await busca_foto(funcionario[0].cpf);
-            setFoto(resultado.data);
+            try {
+                const resultado = await busca_foto(funcionario[0].cpf);
+                setFoto(resultado.data);
+            } catch (error) {
+                console.log(error);
+            }
         })();
     }, []);
 

@@ -594,6 +594,37 @@
     height: auto !important;
 }
 
+.organograma-lista {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.organograma-setor {
+    padding: 8px 4px;
+}
+
+.organograma-setor-titulo {
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    color: #006CB5;
+    margin: 0 0 12px;
+}
+
+.organograma-setor-img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.organograma-setor-vazio {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
 .pdf-loading {
     text-align: center;
     padding: 60px;
