@@ -114,18 +114,25 @@
 
     .qualidade-tabs .nav-tabs {
         flex-wrap: nowrap;
-        padding: 0 2px;
+        justify-content: flex-start;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: none;
+        padding: 6px 2px 0;
         gap: 3px;
     }
 
+    .qualidade-tabs .nav-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
     .qualidade-tabs .nav-tabs .nav-item {
-        flex: 1 1 0;
-        min-width: 0;
+        flex: 1 0 auto;
     }
 
     .qualidade-tabs .nav-tabs .nav-link {
         width: 100%;
-        padding: 8px 2px;
+        padding: 8px 8px;
         letter-spacing: 0;
         border-radius: 8px 8px 0 0;
     }
@@ -141,15 +148,30 @@
     }
 
     .qualidade-tab-text {
-        font-size: 0.58rem;
+        font-size: 0.6rem;
         line-height: 1.1;
-        white-space: normal;
+        white-space: nowrap;
     }
 
     .qualidade-tab-content {
         padding: 20px;
         border-radius: 0 14px 14px 14px;
         min-height: 300px;
+    }
+}
+
+@media (max-width: 400px) {
+    .qualidade-tabs .nav-tabs {
+        padding: 6px 0 0;
+        gap: 2px;
+    }
+
+    .qualidade-tabs .nav-tabs .nav-link {
+        padding: 8px 2px;
+    }
+
+    .qualidade-tab-text {
+        font-size: 0.56rem;
     }
 }
 
@@ -602,6 +624,7 @@
 }
 
 .organograma-setor {
+    width: 100%;
     padding: 4px 0;
 }
 
@@ -678,59 +701,11 @@
     max-height: 100%;
 }
 
-.organograma-pendentes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 12px;
-    margin-top: 10px;
-}
-
-.organograma-pendente {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    min-height: 110px;
-    padding: 14px 10px;
+.organograma-setor-vazio {
+    padding: 40px 0;
     text-align: center;
-    background: #ffffff;
-    border: 1.5px dashed rgba(0, 108, 181, 0.25);
-    border-radius: 12px;
-    color: #006CB5;
-}
-
-.organograma-pendente .fa-sitemap {
-    font-size: 1.3rem;
-    opacity: 0.45;
-}
-
-.organograma-pendente-titulo {
-    font-family: 'Lato', sans-serif;
-    font-weight: 700;
-    font-size: 0.8rem;
-    letter-spacing: 0.03em;
-}
-
-.organograma-pendente-status {
-    font-size: 0.72rem;
     color: #6c757d;
-}
-
-@media (max-width: 767px) {
-    .organograma-pendentes-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 8px;
-    }
-
-    .organograma-pendente {
-        min-height: 84px;
-        padding: 10px 6px;
-    }
-
-    .organograma-pendente-titulo {
-        font-size: 0.7rem;
-    }
+    font-size: 0.95rem;
 }
 
 .pdf-loading {
