@@ -602,7 +602,15 @@
 }
 
 .organograma-setor {
-    padding: 8px 4px;
+    padding: 4px 0;
+}
+
+.organograma-setor-cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
 }
 
 .organograma-setor-titulo {
@@ -611,18 +619,119 @@
     font-size: 1rem;
     letter-spacing: 0.05em;
     color: #006CB5;
-    margin: 0 0 12px;
+    margin: 0;
 }
 
-.organograma-setor-img {
+.organograma-ampliar-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    border: 1.5px solid rgba(0, 108, 181, 0.25);
+    background: #ffffff;
+    color: #006CB5;
+    border-radius: 10px;
+    padding: 6px 14px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.organograma-ampliar-btn:hover {
+    background: #eef6ff;
+    border-color: #006CB5;
+}
+
+.organograma-ampliar-btn:focus-visible,
+.organograma-img-btn:focus-visible {
+    outline: 3px solid #F5821F;
+    outline-offset: 3px;
+}
+
+.organograma-img-btn {
     display: block;
     width: 100%;
-    height: auto;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: zoom-in;
 }
 
-.organograma-setor-vazio {
+.organograma-img {
+    display: block;
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.organograma-modal-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f6fa;
+}
+
+.organograma-modal-body .organograma-img {
+    max-width: none;
+    max-height: 100%;
+}
+
+.organograma-pendentes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.organograma-pendente {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 110px;
+    padding: 14px 10px;
+    text-align: center;
+    background: #ffffff;
+    border: 1.5px dashed rgba(0, 108, 181, 0.25);
+    border-radius: 12px;
+    color: #006CB5;
+}
+
+.organograma-pendente .fa-sitemap {
+    font-size: 1.3rem;
+    opacity: 0.45;
+}
+
+.organograma-pendente-titulo {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+}
+
+.organograma-pendente-status {
+    font-size: 0.72rem;
     color: #6c757d;
-    font-size: 0.9rem;
+}
+
+@media (max-width: 767px) {
+    .organograma-pendentes-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .organograma-pendente {
+        min-height: 84px;
+        padding: 10px 6px;
+    }
+
+    .organograma-pendente-titulo {
+        font-size: 0.7rem;
+    }
 }
 
 .pdf-loading {

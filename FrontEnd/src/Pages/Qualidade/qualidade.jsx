@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Tab, Tabs, Accordion, Button } from "react-bootstrap";
+import { Container, Tab, Tabs, Accordion, Button, Modal } from "react-bootstrap";
 
 import Menu from "../HomePage/homepage_menu";
 import Footer from "../Components/footer";
@@ -23,8 +23,9 @@ const areas = [
 ];
 
 // Organograma por setor. Quando chegar o SVG de um setor, salve em public/organograma/ e preencha `svg`.
+// `recorte` (opcional) é o viewBox "x y largura altura" da área desenhada, para cortar a margem vazia do arquivo (1440x810).
 const ORGANOGRAMA_SETORES = [
-    { id: 'governanca', titulo: 'GOVERNANÇA CORPORATIVA', svg: 'governanca-corporativa.svg' },
+    { id: 'governanca', titulo: 'GOVERNANÇA CORPORATIVA', svg: 'governanca-corporativa.svg', recorte: '327 105 786 410' },
     { id: 'alta-direcao', titulo: 'ALTA DIREÇÃO', svg: null },
     { id: 'financeira', titulo: 'DIRETORIA FINANCEIRA', svg: null },
     { id: 'produtos', titulo: 'GESTÃO DE PRODUTOS', svg: null },
@@ -38,26 +39,63 @@ const ORGANOGRAMA_SETORES = [
     { id: 'unidades', titulo: 'UNIDADES', svg: null },
 ];
 
+function OrganogramaImagem({ setor }) {
+    const src = `${process.env.PUBLIC_URL}/organograma/${setor.svg}`;
+    if (!setor.recorte) {
+        return <img src={src} alt={`Organograma - ${setor.titulo}`} className="organograma-img" />;
+    }
+    return (
+        <svg viewBox={setor.recorte} className="organograma-img" role="img" aria-label={`Organograma - ${setor.titulo}`}>
+            <image href={src} x="0" y="0" width="1440" height="810" />
+        </svg>
+    );
+}
+
 function OrganogramaSetores({ setores }) {
+    const [ampliado, setAmpliado] = useState(null);
     const lista = setores ? ORGANOGRAMA_SETORES.filter((s) => setores.includes(s.id)) : ORGANOGRAMA_SETORES;
+    const prontos = lista.filter((s) => s.svg);
+    const pendentes = lista.filter((s) => !s.svg);
 
     return (
         <div className="organograma-lista">
-            {lista.map((setor) => (
+            {prontos.map((setor) => (
                 <section key={setor.id} className="organograma-setor">
-                    <h3 className="organograma-setor-titulo">{setor.titulo}</h3>
-                    {setor.svg ? (
-                        <img
-                            src={`${process.env.PUBLIC_URL}/organograma/${setor.svg}`}
-                            alt={`Organograma - ${setor.titulo}`}
-                            className="organograma-setor-img"
-                            loading="lazy"
-                        />
-                    ) : (
-                        <div className="organograma-setor-vazio">Organograma em breve.</div>
-                    )}
+                    <div className="organograma-setor-cabecalho">
+                        <h3 className="organograma-setor-titulo">{setor.titulo}</h3>
+                        <button className="organograma-ampliar-btn" onClick={() => setAmpliado(setor)} title="Ver em tela cheia">
+                            <i className="fa-solid fa-expand"></i> Ampliar
+                        </button>
+                    </div>
+                    <button className="organograma-img-btn" onClick={() => setAmpliado(setor)} title="Ver em tela cheia" aria-label={`Ampliar organograma - ${setor.titulo}`}>
+                        <OrganogramaImagem setor={setor} />
+                    </button>
                 </section>
             ))}
+
+            {pendentes.length > 0 && (
+                <section className="organograma-pendentes">
+                    {prontos.length > 0 && <h3 className="organograma-setor-titulo">OUTROS SETORES</h3>}
+                    <div className="organograma-pendentes-grid">
+                        {pendentes.map((setor) => (
+                            <div key={setor.id} className="organograma-pendente">
+                                <i className="fa-solid fa-sitemap"></i>
+                                <span className="organograma-pendente-titulo">{setor.titulo}</span>
+                                <span className="organograma-pendente-status">Em breve</span>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+            )}
+
+            <Modal show={!!ampliado} onHide={() => setAmpliado(null)} fullscreen>
+                <Modal.Header closeButton>
+                    <Modal.Title className="organograma-setor-titulo">{ampliado?.titulo}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="organograma-modal-body">
+                    {ampliado && <OrganogramaImagem setor={ampliado} />}
+                </Modal.Body>
+            </Modal>
         </div>
     );
 }
