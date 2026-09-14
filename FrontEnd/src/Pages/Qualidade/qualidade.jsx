@@ -22,81 +22,41 @@ const areas = [
     { id: 'unidades', nome: 'UNIDADES', tipo: 'PROCESSOS DE NEGÓCIO', color: '#4ea8de' },
 ];
 
-// Organograma por setor. Quando chegar o SVG de um setor, salve em public/organograma/ e preencha `svg`.
-// `recorte` (opcional) é o viewBox "x y largura altura" da área desenhada, para cortar a margem vazia do arquivo (1440x810).
-const ORGANOGRAMA_SETORES = [
-    { id: 'governanca', titulo: 'GOVERNANÇA CORPORATIVA', svg: 'governanca-corporativa.svg' },
-    { id: 'alta-direcao', titulo: 'ALTA DIREÇÃO', svg: null },
-    { id: 'financeira', titulo: 'DIRETORIA FINANCEIRA', svg: null },
-    { id: 'produtos', titulo: 'GESTÃO DE PRODUTOS', svg: null },
-    { id: 'csc', titulo: 'DIRETORIA CSC', svg: null },
-    { id: 'comercial', titulo: 'DIRETORIA COMERCIAL', svg: null },
-    { id: 'operacoes', titulo: 'DIRETORIA OPERAÇÕES', svg: null },
-    { id: 'ti', titulo: 'DIRETORIA TI', svg: null },
-    { id: 'gente', titulo: 'GENTE & GESTÃO', svg: null },
-    { id: 'suprimentos', titulo: 'SUPRIMENTOS', svg: null },
-    { id: 'pedagogica', titulo: 'DIRETORIA GESTÃO PEDAGÓGICA', svg: null },
-    { id: 'unidades', titulo: 'UNIDADES', svg: null },
-];
-
-function OrganogramaImagem({ setor }) {
-    const src = `${process.env.PUBLIC_URL}/organograma/${setor.svg}`;
-    if (!setor.recorte) {
-        return <img src={src} alt={`Organograma - ${setor.titulo}`} className="organograma-img" />;
-    }
-    return (
-        <svg viewBox={setor.recorte} className="organograma-img" role="img" aria-label={`Organograma - ${setor.titulo}`}>
-            <image href={src} x="0" y="0" width="1440" height="810" />
-        </svg>
-    );
-}
-
-function OrganogramaSetores({ setores }) {
-    const [ampliado, setAmpliado] = useState(null);
-    const lista = setores ? ORGANOGRAMA_SETORES.filter((s) => setores.includes(s.id)) : ORGANOGRAMA_SETORES;
-    const prontos = lista.filter((s) => s.svg);
-    const pendentes = lista.filter((s) => !s.svg);
+// Organograma da área: salve o SVG em public/organograma/ e preencha `organogramaSvg` no areaDetails da área.
+function OrganogramaArea({ titulo, svg }) {
+    const [ampliado, setAmpliado] = useState(false);
+    const src = svg && `${process.env.PUBLIC_URL}/organograma/${svg}`;
 
     return (
-        <div className="organograma-lista">
-            {prontos.map((setor) => (
-                <section key={setor.id} className="organograma-setor">
-                    <div className="organograma-setor-cabecalho">
-                        <h3 className="organograma-setor-titulo">{setor.titulo}</h3>
-                        <button className="organograma-ampliar-btn" onClick={() => setAmpliado(setor)} title="Ver em tela cheia">
-                            <i className="fa-solid fa-expand"></i> Ampliar
-                        </button>
-                    </div>
-                    <button className="organograma-img-btn" onClick={() => setAmpliado(setor)} title="Ver em tela cheia" aria-label={`Ampliar organograma - ${setor.titulo}`}>
-                        <OrganogramaImagem setor={setor} />
+        <section className="organograma-setor">
+            <div className="organograma-setor-cabecalho">
+                <h3 className="organograma-setor-titulo">{titulo}</h3>
+                {svg && (
+                    <button className="organograma-ampliar-btn" onClick={() => setAmpliado(true)} title="Ver em tela cheia">
+                        <i className="fa-solid fa-expand"></i> Ampliar
                     </button>
-                </section>
-            ))}
+                )}
+            </div>
 
-            {pendentes.length > 0 && (
-                <section className="organograma-pendentes">
-                    {prontos.length > 0 && <h3 className="organograma-setor-titulo">OUTROS SETORES</h3>}
-                    <div className="organograma-pendentes-grid">
-                        {pendentes.map((setor) => (
-                            <div key={setor.id} className="organograma-pendente">
-                                <i className="fa-solid fa-sitemap"></i>
-                                <span className="organograma-pendente-titulo">{setor.titulo}</span>
-                                <span className="organograma-pendente-status">Em breve</span>
-                            </div>
-                        ))}
-                    </div>
-                </section>
+            {svg ? (
+                <button className="organograma-img-btn" onClick={() => setAmpliado(true)} title="Ver em tela cheia" aria-label={`Ampliar organograma - ${titulo}`}>
+                    <img src={src} alt={`Organograma - ${titulo}`} className="organograma-img" />
+                </button>
+            ) : (
+                <div className="organograma-setor-vazio">Organograma em breve.</div>
             )}
 
-            <Modal show={!!ampliado} onHide={() => setAmpliado(null)} fullscreen>
-                <Modal.Header closeButton>
-                    <Modal.Title className="organograma-setor-titulo">{ampliado?.titulo}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="organograma-modal-body">
-                    {ampliado && <OrganogramaImagem setor={ampliado} />}
-                </Modal.Body>
-            </Modal>
-        </div>
+            {svg && (
+                <Modal show={ampliado} onHide={() => setAmpliado(false)} fullscreen>
+                    <Modal.Header closeButton>
+                        <Modal.Title className="organograma-setor-titulo">{titulo}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body className="organograma-modal-body">
+                        <img src={src} alt={`Organograma - ${titulo}`} className="organograma-img" />
+                    </Modal.Body>
+                </Modal>
+            )}
+        </section>
     );
 }
 
@@ -120,7 +80,7 @@ const areaDetails = {
                 <p>A área da Qualidade tem como principal objetivo assegurar que os serviços e processos atendam aos requisitos definidos e às expectativas dos alunos e famílias, promovendo a melhoria contínua.</p>
             </div>
         ),
-        organograma: 'todos',
+        organogramaSvg: null,
         documentos: [
             { eventKey: '0', titulo: 'PE.01-1.1 - Macroprocessos', corpo: <p>Conteúdo do documento PE.01-1.1 - Macroprocessos</p> },
             { eventKey: '1', titulo: 'PE.01-1.1.1 - Política da Qualidade', corpo: <p>Conteúdo do documento PE.01-1.1.1 - Política da Qualidade</p> },
@@ -146,7 +106,7 @@ const areaDetails = {
     gov: {
         titulo: 'GOVERNANÇA CORPORATIVA',
         objetivo: null,
-        organograma: ['governanca'],
+        organogramaSvg: 'governanca-corporativa.svg',
         documentos: [
             { eventKey: '0', titulo: 'PE.02-0.1 - Estrutura Organizacional', corpo: <p>Conteúdo do documento PE.02-0.1 - Estrutura Organizacional</p> },
             { eventKey: '1', titulo: 'PE.02-0.2 - Missão, Visão e Valores', corpo: <p>Conteúdo do documento PE.02-0.2 - Missão, Visão e Valores</p> },
@@ -313,11 +273,7 @@ function AreaDetail({ config, onVoltar, onHome }) {
                     </Tab>
                     <Tab eventKey="organograma" title={<TabTitle icone="fa-sitemap" texto="ORGANOGRAMA" />}>
                         <div className="qualidade-tab-content qualidade-pdf-wrapper">
-                            {config.organograma ? (
-                                <OrganogramaSetores setores={config.organograma === 'todos' ? null : config.organograma} />
-                            ) : (
-                                <div className="pdf-loading">Organograma em breve.</div>
-                            )}
+                            <OrganogramaArea titulo={config.titulo} svg={config.organogramaSvg} />
                         </div>
                     </Tab>
                     <Tab eventKey="documentos" title={<TabTitle icone="fa-file-lines" texto="DOCUMENTOS" />}>
