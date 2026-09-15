@@ -23,40 +23,56 @@ const areas = [
 ];
 
 // Organograma da área: salve o SVG em public/organograma/ e preencha `organogramaSvg` no areaDetails da área.
-function OrganogramaArea({ titulo, svg }) {
+// Aceita um nome de arquivo (usa o título da área) ou uma lista de { titulo, svg } para vários organogramas.
+function OrganogramaImagemSecao({ titulo, svg }) {
     const [ampliado, setAmpliado] = useState(false);
-    const src = svg && `${process.env.PUBLIC_URL}/organograma/${svg}`;
+    const src = `${process.env.PUBLIC_URL}/organograma/${svg}`;
 
     return (
         <section className="organograma-setor">
             <div className="organograma-setor-cabecalho">
                 <h3 className="organograma-setor-titulo">{titulo}</h3>
-                {svg && (
-                    <button className="organograma-ampliar-btn" onClick={() => setAmpliado(true)} title="Ver em tela cheia">
-                        <i className="fa-solid fa-expand"></i> Ampliar
-                    </button>
-                )}
+                <button className="organograma-ampliar-btn" onClick={() => setAmpliado(true)} title="Ver em tela cheia">
+                    <i className="fa-solid fa-expand"></i> Ampliar
+                </button>
             </div>
 
-            {svg ? (
-                <button className="organograma-img-btn" onClick={() => setAmpliado(true)} title="Ver em tela cheia" aria-label={`Ampliar organograma - ${titulo}`}>
-                    <img src={src} alt={`Organograma - ${titulo}`} className="organograma-img" />
-                </button>
-            ) : (
-                <div className="organograma-setor-vazio">Organograma em breve.</div>
-            )}
+            <button className="organograma-img-btn" onClick={() => setAmpliado(true)} title="Ver em tela cheia" aria-label={`Ampliar organograma - ${titulo}`}>
+                <img src={src} alt={`Organograma - ${titulo}`} className="organograma-img" />
+            </button>
 
-            {svg && (
-                <Modal show={ampliado} onHide={() => setAmpliado(false)} fullscreen>
-                    <Modal.Header closeButton>
-                        <Modal.Title className="organograma-setor-titulo">{titulo}</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body className="organograma-modal-body">
-                        <img src={src} alt={`Organograma - ${titulo}`} className="organograma-img" />
-                    </Modal.Body>
-                </Modal>
-            )}
+            <Modal show={ampliado} onHide={() => setAmpliado(false)} fullscreen>
+                <Modal.Header closeButton>
+                    <Modal.Title className="organograma-setor-titulo">{titulo}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="organograma-modal-body">
+                    <img src={src} alt={`Organograma - ${titulo}`} className="organograma-img" />
+                </Modal.Body>
+            </Modal>
         </section>
+    );
+}
+
+function OrganogramaArea({ titulo, svg }) {
+    const itens = Array.isArray(svg) ? svg : (svg ? [{ titulo, svg }] : []);
+
+    if (itens.length === 0) {
+        return (
+            <section className="organograma-setor">
+                <div className="organograma-setor-cabecalho">
+                    <h3 className="organograma-setor-titulo">{titulo}</h3>
+                </div>
+                <div className="organograma-setor-vazio">Organograma em breve.</div>
+            </section>
+        );
+    }
+
+    return (
+        <div className="organograma-lista-area">
+            {itens.map((item) => (
+                <OrganogramaImagemSecao key={item.svg} titulo={item.titulo} svg={item.svg} />
+            ))}
+        </div>
     );
 }
 
@@ -116,7 +132,10 @@ const areaDetails = {
                 </ul>
             </div>
         ),
-        organogramaSvg: 'governanca-corporativa.svg',
+        organogramaSvg: [
+            { titulo: 'CONSELHO DIRETOR', svg: 'governanca-corporativa.svg' },
+            { titulo: 'ALTA DIREÇÃO', svg: 'alta-direcao.svg' },
+        ],
         documentos: [
             {
                 eventKey: '0',
@@ -161,12 +180,12 @@ const areaDetails = {
         subareas: [
             {
                 id: 'planejamento-estrategico',
-                nome: 'Planejamento Estratégico',
+                nome: 'PE.02-1 - Planejamento Estratégico',
                 documentos: [],
             },
             {
                 id: 'novos-negocios',
-                nome: 'Novos Negócios',
+                nome: 'PE.02-2 - Novos Negócios',
                 documentos: [],
             },
         ],
@@ -176,7 +195,8 @@ const areaDetails = {
 Object.values(areaDetails).forEach((area) => {
     area.documentos = ordenarPorTexto(area.documentos, (d) => d.titulo);
     if (area.subareas) {
-        area.subareas = ordenarPorTexto(area.subareas, (s) => s.nome).map((sub) => ({
+        // Subáreas mantêm a ordem em que foram declaradas; só os documentos são ordenados.
+        area.subareas = area.subareas.map((sub) => ({
             ...sub,
             documentos: ordenarPorTexto(sub.documentos, (d) => d.titulo),
         }));
