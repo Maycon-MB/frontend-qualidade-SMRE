@@ -198,6 +198,12 @@
     margin-bottom: 4px;
 }
 
+/* Neutraliza o `* { font-family }` global da página de login dentro dos textos */
+.qualidade-texto-politica :not(i):not([class*="fa-"]),
+.accordion-item-custom .accordion-body :not(i):not([class*="fa-"]) {
+    font-family: inherit;
+}
+
 @media (max-width: 767px) {
     .qualidade-texto-politica {
         font-size: 1rem;
@@ -241,6 +247,7 @@
 
 .accordion-item-custom .accordion-body {
     color: #555;
+    font-family: 'Lato', sans-serif;
     text-align: justify;
     padding: 25px;
     font-size: 1.05rem;

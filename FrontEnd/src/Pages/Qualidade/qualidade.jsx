@@ -145,19 +145,14 @@ const areaDetails = {
         defaultDocKey: '0',
         subareas: [
             {
-                id: 'sub-exemplo-1',
-                nome: '[EXEMPLO] Compliance',
-                documentos: [
-                    { eventKey: 'sub1-0', titulo: '[EXEMPLO] PE.02-1.1 - Política Anticorrupção', corpo: <p>Conteúdo de teste do documento PE.02-1.1 - Política Anticorrupção.</p> },
-                    { eventKey: 'sub1-1', titulo: '[EXEMPLO] PE.02-1.2 - Canal de Denúncias', corpo: <p>Conteúdo de teste do documento PE.02-1.2 - Canal de Denúncias.</p> },
-                ],
+                id: 'planejamento-estrategico',
+                nome: 'Planejamento Estratégico',
+                documentos: [],
             },
             {
-                id: 'sub-exemplo-2',
-                nome: '[EXEMPLO] Auditoria Interna',
-                documentos: [
-                    { eventKey: 'sub2-0', titulo: '[EXEMPLO] PE.02-2.1 - Plano Anual de Auditoria', corpo: <p>Conteúdo de teste do documento PE.02-2.1 - Plano Anual de Auditoria.</p> },
-                ],
+                id: 'novos-negocios',
+                nome: 'Novos Negócios',
+                documentos: [],
             },
         ],
     },
