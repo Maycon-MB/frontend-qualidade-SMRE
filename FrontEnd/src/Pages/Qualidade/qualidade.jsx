@@ -115,8 +115,9 @@ const areaDetails = {
                 titulo: 'PE.02-0.3 - Código de Ética e Conduta',
                 corpo: (
                     <>
-                        <p>O Código de Ética e Conduta reúne os princípios e as regras de comportamento que orientam todos os colaboradores do Santa Mônica Rede de Ensino: respeito às leis e regulamentações, integridade na condução dos negócios, conduta profissional, sigilo e confidencialidade, relacionamentos confiáveis com clientes, fornecedores e concorrentes, e a gestão do próprio código pelo Comitê de Ética e Conduta e pela Ouvidoria SMREDE.</p>
-                        <p>Edição 02 — em vigor a partir de 18/03/2026.</p>
+                        <p>O Santa Mônica Rede de Ensino tem como compromisso oferecer uma educação de excelência, promovendo o desenvolvimento integral dos alunos nos aspectos intelectual, social, emocional, físico e ético. A instituição busca formar cidadãos conscientes, solidários, criativos e preparados para enfrentar desafios, contando, para isso, com uma equipe comprometida com seus princípios e valores.</p>
+                        <p>Para preservar sua reputação e credibilidade, a instituição estabelece como fundamentos de atuação a honestidade, o respeito, a integridade e a ética. A conduta de seus profissionais deve estar alinhada a esses princípios, bem como às políticas, normas e procedimentos internos.</p>
+                        <p>O Código de Ética e Conduta, fundamentado na Missão, Visão e Valores da instituição, orienta o comportamento esperado de administradores, diretores, colaboradores, estagiários, jovens aprendizes e terceiros que mantêm relacionamento com o Santa Mônica Rede de Ensino. Seu objetivo é assegurar uma atuação ética e responsável, fortalecendo a confiança de alunos, famílias, fornecedores, parceiros e da sociedade.</p>
                         <Button
                             as="a"
                             href={`${process.env.PUBLIC_URL}/documentos/PE.02-0.3-codigo-de-etica-e-conduta.pdf`}
