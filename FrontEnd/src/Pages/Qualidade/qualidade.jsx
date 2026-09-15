@@ -151,7 +151,19 @@ const areaDetails = {
                 eventKey: '1',
                 titulo: 'PE.02-0.2 - Identidade Organizacional',
                 corpo: (
-                    <p>A <strong>Identidade Organizacional</strong>, constituída por nossa <strong>Missão, Visão e Valores</strong>, tem como função orientar as decisões estratégicas, alinhar as equipes em torno de um propósito comum e fortalecer a essência e a cultura da instituição. Além disso, contribui para aumentar o engajamento, aprimorar a comunicação com as famílias e parceiros e facilitar o processo da Qualidade, por estar diretamente relacionada às Políticas Internas do SMREDE, aos objetivos institucionais e aos processos de melhoria contínua.</p>
+                    <>
+                        <p>A <strong>Identidade Organizacional</strong>, constituída por nossa <strong>Missão, Visão e Valores</strong>, tem como função orientar as decisões estratégicas, alinhar as equipes em torno de um propósito comum e fortalecer a essência e a cultura da instituição. Além disso, contribui para aumentar o engajamento, aprimorar a comunicação com as famílias e parceiros e facilitar o processo da Qualidade, por estar diretamente relacionada às Políticas Internas do SMREDE, aos objetivos institucionais e aos processos de melhoria contínua.</p>
+                        <Button
+                            as="a"
+                            href={`${process.env.PUBLIC_URL}/documentos/PE.02-0.2-identidade-organizacional.pdf`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn-visualizar-doc"
+                        >
+                            VISUALIZAR DOCUMENTO <i className="fa-solid fa-angles-right"></i>
+                        </Button>
+                        <div style={{ clear: 'both' }}></div>
+                    </>
                 ),
             },
             {
