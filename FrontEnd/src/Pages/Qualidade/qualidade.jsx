@@ -110,24 +110,39 @@ const areaDetails = {
                 <p>A Governança Corporativa do SMREDE estabelece diretrizes, responsabilidades e processos para uma gestão ética, transparente e integrada, promovendo o alinhamento entre a Central Administrativa e as Unidades, a tomada de decisões responsável, a redução de riscos e a sustentabilidade da instituição, sempre em consonância com seus valores e objetivos educacionais.</p>
                 <p><strong>Estrutura:</strong></p>
                 <ul>
-                    <li>Conselho Diretor - Órgão máximo de decisão. Responsável pela estratégia e supervisão da gestão.</li>
-                    <li>Diretoria Executiva - Responsável pela gestão do dia a dia.</li>
-                    <li>Comitês (Comitê de Segurança da Informação e Comitê de Ética e Conduta) - Controle e fiscalização.</li>
+                    <li><strong>Conselho Diretor</strong> - Órgão máximo de decisão. Responsável pela estratégia e supervisão da gestão.</li>
+                    <li><strong>Diretoria Executiva</strong> - Responsável pela gestão do dia a dia.</li>
+                    <li><strong>Comitês (Comitê de Segurança da Informação e Comitê de Ética e Conduta)</strong> - Controle e fiscalização.</li>
                 </ul>
             </div>
         ),
         organogramaSvg: 'governanca-corporativa.svg',
         documentos: [
-            { eventKey: '0', titulo: 'PE.02-0.1 - Estrutura Organizacional', corpo: <p>Conteúdo do documento PE.02-0.1 - Estrutura Organizacional</p> },
-            { eventKey: '1', titulo: 'PE.02-0.2 - Missão, Visão e Valores', corpo: <p>Conteúdo do documento PE.02-0.2 - Missão, Visão e Valores</p> },
+            {
+                eventKey: '0',
+                titulo: 'PE.02-0.1 - Estrutura Organizacional',
+                corpo: (
+                    <>
+                        <p>A estrutura organizacional é uma representação com base nos objetivos traçados pela instituição, diz respeito ao desenho de cargos, funções e departamentos, além da relação entre líderes e seus liderados.</p>
+                        <p>Ela é essencial para organizar departamentos e seus profissionais, processos e atividades, de forma que todos compreendam suas responsabilidades e seus papéis.</p>
+                    </>
+                ),
+            },
+            {
+                eventKey: '1',
+                titulo: 'PE.02-0.2 - Identidade Organizacional',
+                corpo: (
+                    <p>A <strong>Identidade Organizacional</strong>, constituída por nossa <strong>Missão, Visão e Valores</strong>, tem como função orientar as decisões estratégicas, alinhar as equipes em torno de um propósito comum e fortalecer a essência e a cultura da instituição. Além disso, contribui para aumentar o engajamento, aprimorar a comunicação com as famílias e parceiros e facilitar o processo da Qualidade, por estar diretamente relacionada às Políticas Internas do SMREDE, aos objetivos institucionais e aos processos de melhoria contínua.</p>
+                ),
+            },
             {
                 eventKey: '2',
                 titulo: 'PE.02-0.3 - Código de Ética e Conduta',
                 corpo: (
                     <>
-                        <p>O Santa Mônica Rede de Ensino tem como compromisso oferecer uma educação de excelência, promovendo o desenvolvimento integral dos alunos nos aspectos intelectual, social, emocional, físico e ético. A instituição busca formar cidadãos conscientes, solidários, criativos e preparados para enfrentar desafios, contando, para isso, com uma equipe comprometida com seus princípios e valores.</p>
-                        <p>Para preservar sua reputação e credibilidade, a instituição estabelece como fundamentos de atuação a honestidade, o respeito, a integridade e a ética. A conduta de seus profissionais deve estar alinhada a esses princípios, bem como às políticas, normas e procedimentos internos.</p>
-                        <p>O Código de Ética e Conduta, fundamentado na Missão, Visão e Valores da instituição, orienta o comportamento esperado de administradores, diretores, colaboradores, estagiários, jovens aprendizes e terceiros que mantêm relacionamento com o Santa Mônica Rede de Ensino. Seu objetivo é assegurar uma atuação ética e responsável, fortalecendo a confiança de alunos, famílias, fornecedores, parceiros e da sociedade.</p>
+                        <p>O <strong>Santa Mônica Rede de Ensino</strong> tem como compromisso oferecer uma educação de excelência, promovendo o desenvolvimento integral dos alunos nos aspectos intelectual, social, emocional, físico e ético. A instituição busca formar cidadãos conscientes, solidários, criativos e preparados para enfrentar desafios, contando, para isso, com uma equipe comprometida com seus princípios e valores.</p>
+                        <p>Para preservar sua reputação e credibilidade, a instituição estabelece como fundamentos de atuação a <strong>honestidade, o respeito, a integridade e a ética</strong>. A conduta de seus profissionais deve estar alinhada a esses princípios, bem como às políticas, normas e procedimentos internos.</p>
+                        <p>O <strong>Código de Ética e Conduta</strong>, fundamentado na Missão, Visão e Valores da instituição, orienta o comportamento esperado de administradores, diretores, colaboradores, estagiários, jovens aprendizes e terceiros que mantêm relacionamento com o Santa Mônica Rede de Ensino. Seu objetivo é assegurar uma atuação ética e responsável, fortalecendo a confiança de alunos, famílias, fornecedores, parceiros e da sociedade.</p>
                         <Button
                             as="a"
                             href={`${process.env.PUBLIC_URL}/documentos/PE.02-0.3-codigo-de-etica-e-conduta.pdf`}
