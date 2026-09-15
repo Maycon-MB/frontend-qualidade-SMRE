@@ -105,7 +105,17 @@ const areaDetails = {
     },
     gov: {
         titulo: 'GOVERNANÇA CORPORATIVA',
-        objetivo: null,
+        objetivo: (
+            <div className="qualidade-texto-politica">
+                <p>A Governança Corporativa do SMREDE estabelece diretrizes, responsabilidades e processos para uma gestão ética, transparente e integrada, promovendo o alinhamento entre a Central Administrativa e as Unidades, a tomada de decisões responsável, a redução de riscos e a sustentabilidade da instituição, sempre em consonância com seus valores e objetivos educacionais.</p>
+                <p><strong>Estrutura:</strong></p>
+                <ul>
+                    <li>Conselho Diretor - Órgão máximo de decisão. Responsável pela estratégia e supervisão da gestão.</li>
+                    <li>Diretoria Executiva - Responsável pela gestão do dia a dia.</li>
+                    <li>Comitês (Comitê de Segurança da Informação e Comitê de Ética e Conduta) - Controle e fiscalização.</li>
+                </ul>
+            </div>
+        ),
         organogramaSvg: 'governanca-corporativa.svg',
         documentos: [
             { eventKey: '0', titulo: 'PE.02-0.1 - Estrutura Organizacional', corpo: <p>Conteúdo do documento PE.02-0.1 - Estrutura Organizacional</p> },
