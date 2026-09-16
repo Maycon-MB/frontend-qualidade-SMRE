@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Tabs, Tab, Container, Table } from 'react-bootstrap';
+import { Container, Table } from 'react-bootstrap';
 import Menu from '../HomePage/homepage_menu';
 import Footer from '../Components/footer';
 import { busca_foto } from '../../services/api';
@@ -89,7 +89,7 @@ function Aniversariantes() {
     const [dados, setDados] = useState(null);
     const [erro, setErro] = useState(false);
     const [busca, setBusca] = useState('');
-    const [unidadeAtiva, setUnidadeAtiva] = useState(null);
+    const [unidadeFiltro, setUnidadeFiltro] = useState('todas');
     const controleRef = useRef(null);
     const navigate = useNavigate();
 
@@ -162,22 +162,33 @@ function Aniversariantes() {
     }, [dados]);
 
     useEffect(() => {
-        if (unidades.length && !unidades.includes(unidadeAtiva)) setUnidadeAtiva(unidades[0]);
-    }, [unidades, unidadeAtiva]);
+        if (dados && unidadeFiltro !== 'todas' && !unidades.includes(unidadeFiltro)) setUnidadeFiltro('todas');
+    }, [dados, unidades, unidadeFiltro]);
+
+    const contagemPorUnidade = useMemo(() => {
+        const contagem = {};
+        if (!dados) return contagem;
+        dados.forEach((d) => {
+            contagem[d.unidade] = (contagem[d.unidade] || 0) + 1;
+        });
+        return contagem;
+    }, [dados]);
 
     const buscando = busca.trim() !== '';
 
-    const resultadosBusca = useMemo(() => {
-        if (!dados || !buscando) return [];
+    const itensVisiveis = useMemo(() => {
+        if (!dados) return [];
         const alvo = normalizar(busca);
         return ordenarPorDia(
             dados.filter((d) =>
-                normalizar(d.nome).includes(alvo) ||
-                normalizar(d.funcao).includes(alvo) ||
-                normalizar(d.setor).includes(alvo)
+                (unidadeFiltro === 'todas' || d.unidade === unidadeFiltro) &&
+                (!buscando ||
+                    normalizar(d.nome).includes(alvo) ||
+                    normalizar(d.funcao).includes(alvo) ||
+                    normalizar(d.setor).includes(alvo))
             )
         );
-    }, [dados, busca, buscando]);
+    }, [dados, busca, buscando, unidadeFiltro]);
 
     if (!funcionario || !funcionario[0]) return null;
 
@@ -212,7 +223,19 @@ function Aniversariantes() {
                         />
                     </div>
                     <select
-                        className="aniversariantes-mes-select"
+                        className="aniversariantes-select aniversariantes-unidade-select"
+                        value={unidadeFiltro}
+                        onChange={(e) => setUnidadeFiltro(e.target.value)}
+                        aria-label="Unidade"
+                        disabled={!dados || dados.length === 0}
+                    >
+                        <option value="todas">Todas as unidades{dados ? ` (${dados.length})` : ''}</option>
+                        {unidades.map((unidade) => (
+                            <option key={unidade} value={unidade}>{unidade} ({contagemPorUnidade[unidade] || 0})</option>
+                        ))}
+                    </select>
+                    <select
+                        className="aniversariantes-select aniversariantes-mes-select"
                         value={mes}
                         onChange={(e) => setMes(Number(e.target.value))}
                         aria-label="Mês"
@@ -240,22 +263,7 @@ function Aniversariantes() {
 
                 {!erro && dados && dados.length > 0 && (
                     <div className="aniversariantes-painel">
-                        {buscando ? (
-                            <TabelaAniversariantes itens={resultadosBusca} mostrarUnidade hoje={hoje} />
-                        ) : (
-                            <Tabs activeKey={unidadeAtiva} onSelect={setUnidadeAtiva} id="aniversariantes-tab" className="mb-0">
-                                {unidades.map((unidade) => {
-                                    const itensUnidade = ordenarPorDia(dados.filter((d) => d.unidade === unidade));
-                                    return (
-                                        <Tab key={unidade} eventKey={unidade} title={`${unidade} (${itensUnidade.length})`}>
-                                            <div className="aniversariantes-tab-content">
-                                                <TabelaAniversariantes itens={itensUnidade} hoje={hoje} />
-                                            </div>
-                                        </Tab>
-                                    );
-                                })}
-                            </Tabs>
-                        )}
+                        <TabelaAniversariantes itens={itensVisiveis} mostrarUnidade={unidadeFiltro === 'todas'} hoje={hoje} />
                     </div>
                 )}
             </Container>
