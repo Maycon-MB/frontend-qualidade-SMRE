@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Container, Table } from 'react-bootstrap';
+import { Container, Table, Dropdown } from 'react-bootstrap';
 import Menu from '../HomePage/homepage_menu';
 import Footer from '../Components/footer';
 import { busca_foto } from '../../services/api';
@@ -39,6 +39,64 @@ const doisDigitos = (n) => String(n).padStart(2, '0');
 
 const ordenarPorDia = (lista) =>
     [...lista].sort((a, b) => a.dia - b.dia || normalizar(a.nome).localeCompare(normalizar(b.nome)));
+
+// Dropdown com caixas de marcar: nenhuma unidade marcada equivale a "Todas as unidades".
+function FiltroUnidades({ unidades, contagem, total, selecionadas, onChange, desabilitado }) {
+    const todas = selecionadas.length === 0 || selecionadas.length === unidades.length;
+    const totalSelecionado = selecionadas.reduce((soma, u) => soma + (contagem[u] || 0), 0);
+
+    let rotulo = `Todas as unidades (${total})`;
+    if (!todas && selecionadas.length === 1) rotulo = `${selecionadas[0]} (${totalSelecionado})`;
+    if (!todas && selecionadas.length > 1) rotulo = `${selecionadas.length} unidades (${totalSelecionado})`;
+
+    const alternar = (unidade) =>
+        onChange(selecionadas.includes(unidade) ? selecionadas.filter((u) => u !== unidade) : [...selecionadas, unidade]);
+
+    return (
+        <Dropdown autoClose="outside" className="aniversariantes-unidades">
+            <Dropdown.Toggle
+                as="button"
+                type="button"
+                className="aniversariantes-controle aniversariantes-unidades-toggle"
+                disabled={desabilitado}
+                aria-label="Filtrar por unidade"
+            >
+                <i className="fa-solid fa-building aniversariantes-controle-icone"></i>
+                <span className="aniversariantes-unidades-rotulo">{rotulo}</span>
+            </Dropdown.Toggle>
+            <Dropdown.Menu className="aniversariantes-unidades-menu">
+                <div className="aniversariantes-unidades-cabecalho">
+                    <span>Unidades</span>
+                    <button
+                        type="button"
+                        className="aniversariantes-unidades-limpar"
+                        onClick={() => onChange([])}
+                        disabled={selecionadas.length === 0}
+                    >
+                        Limpar seleção
+                    </button>
+                </div>
+                <label className={`aniversariantes-unidades-item aniversariantes-unidades-todas ${todas ? 'is-marcada' : ''}`}>
+                    <input type="checkbox" checked={todas} onChange={() => onChange([])} />
+                    <span className="aniversariantes-unidades-nome">Todas as unidades</span>
+                    <span className="aniversariantes-unidades-contagem">{total}</span>
+                </label>
+                <div className="aniversariantes-unidades-lista">
+                    {unidades.map((unidade) => {
+                        const marcada = selecionadas.includes(unidade);
+                        return (
+                            <label key={unidade} className={`aniversariantes-unidades-item ${marcada ? 'is-marcada' : ''}`}>
+                                <input type="checkbox" checked={marcada} onChange={() => alternar(unidade)} />
+                                <span className="aniversariantes-unidades-nome">{unidade}</span>
+                                <span className="aniversariantes-unidades-contagem">{contagem[unidade] || 0}</span>
+                            </label>
+                        );
+                    })}
+                </div>
+            </Dropdown.Menu>
+        </Dropdown>
+    );
+}
 
 function TabelaAniversariantes({ itens, mostrarUnidade, hoje }) {
     if (itens.length === 0) {
@@ -92,7 +150,7 @@ function Aniversariantes() {
     const [dados, setDados] = useState(null);
     const [erro, setErro] = useState(false);
     const [busca, setBusca] = useState('');
-    const [unidadeFiltro, setUnidadeFiltro] = useState('todas');
+    const [unidadesSelecionadas, setUnidadesSelecionadas] = useState([]);
     const controleRef = useRef(null);
     const navigate = useNavigate();
 
@@ -161,9 +219,14 @@ function Aniversariantes() {
         return [...fixas, ...restantes];
     }, [dados]);
 
+    // Ao trocar de mês, desmarca unidades que não têm aniversariantes no mês carregado.
     useEffect(() => {
-        if (dados && unidadeFiltro !== 'todas' && !unidades.includes(unidadeFiltro)) setUnidadeFiltro('todas');
-    }, [dados, unidades, unidadeFiltro]);
+        if (!dados) return;
+        setUnidadesSelecionadas((atuais) => {
+            const validas = atuais.filter((u) => unidades.includes(u));
+            return validas.length === atuais.length ? atuais : validas;
+        });
+    }, [dados, unidades]);
 
     const contagemPorUnidade = useMemo(() => {
         const contagem = {};
@@ -181,14 +244,14 @@ function Aniversariantes() {
         const alvo = normalizar(busca);
         return ordenarPorDia(
             dados.filter((d) =>
-                (unidadeFiltro === 'todas' || d.unidade === unidadeFiltro) &&
+                (unidadesSelecionadas.length === 0 || unidadesSelecionadas.includes(d.unidade)) &&
                 (!buscando ||
                     normalizar(d.nome).includes(alvo) ||
                     normalizar(d.funcao).includes(alvo) ||
                     normalizar(d.setor).includes(alvo))
             )
         );
-    }, [dados, busca, buscando, unidadeFiltro]);
+    }, [dados, busca, buscando, unidadesSelecionadas]);
 
     if (!funcionario || !funcionario[0]) return null;
 
@@ -222,20 +285,16 @@ function Aniversariantes() {
                             onChange={(e) => setBusca(e.target.value)}
                         />
                     </div>
+                    <FiltroUnidades
+                        unidades={unidades}
+                        contagem={contagemPorUnidade}
+                        total={dados ? dados.length : 0}
+                        selecionadas={unidadesSelecionadas}
+                        onChange={setUnidadesSelecionadas}
+                        desabilitado={!dados || dados.length === 0}
+                    />
                     <select
-                        className="aniversariantes-select aniversariantes-unidade-select"
-                        value={unidadeFiltro}
-                        onChange={(e) => setUnidadeFiltro(e.target.value)}
-                        aria-label="Unidade"
-                        disabled={!dados || dados.length === 0}
-                    >
-                        <option value="todas">Todas as unidades{dados ? ` (${dados.length})` : ''}</option>
-                        {unidades.map((unidade) => (
-                            <option key={unidade} value={unidade}>{unidade} ({contagemPorUnidade[unidade] || 0})</option>
-                        ))}
-                    </select>
-                    <select
-                        className="aniversariantes-select aniversariantes-mes-select"
+                        className="aniversariantes-controle aniversariantes-mes-select"
                         value={mes}
                         onChange={(e) => setMes(Number(e.target.value))}
                         aria-label="Mês"
@@ -263,7 +322,7 @@ function Aniversariantes() {
 
                 {!erro && dados && dados.length > 0 && (
                     <div className="aniversariantes-painel">
-                        <TabelaAniversariantes itens={itensVisiveis} mostrarUnidade={unidadeFiltro === 'todas'} hoje={hoje} />
+                        <TabelaAniversariantes itens={itensVisiveis} mostrarUnidade={unidadesSelecionadas.length !== 1} hoje={hoje} />
                     </div>
                 )}
             </Container>
