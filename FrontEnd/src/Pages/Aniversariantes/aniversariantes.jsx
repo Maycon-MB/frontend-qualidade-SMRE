@@ -10,7 +10,10 @@ const NIVER_URL = 'https://auto.smrede.tec.br/webhook/niver/';
 
 const MESES = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
-const ORDEM_FIXA = ['Centro Administrativo'];
+// O cadastro do RH usa "Centro Administrativo"; o nome oficial exibido é "Central Administrativa".
+const NOMES_UNIDADES = { 'Centro Administrativo': 'Central Administrativa' };
+
+const ORDEM_FIXA = ['Central Administrativa'];
 
 const PALAVRAS_MINUSCULAS = new Set(['de', 'da', 'do', 'das', 'dos', 'e']);
 
@@ -130,7 +133,6 @@ function TabelaAniversariantes({ itens, mostrarUnidade, hoje }) {
             <colgroup>
                 <col className="aniversariantes-col-dia" />
                 <col className="aniversariantes-col-nome" />
-                <col className="aniversariantes-col-funcao" />
                 <col className="aniversariantes-col-setor" />
                 {mostrarUnidade && <col className="aniversariantes-col-unidade" />}
             </colgroup>
@@ -138,7 +140,6 @@ function TabelaAniversariantes({ itens, mostrarUnidade, hoje }) {
                 <tr>
                     <th>Dia</th>
                     <th>Nome</th>
-                    <th>Função</th>
                     <th>Setor</th>
                     {mostrarUnidade && <th>Unidade</th>}
                 </tr>
@@ -153,7 +154,6 @@ function TabelaAniversariantes({ itens, mostrarUnidade, hoje }) {
                                 {ehHoje && <i className="fa-solid fa-cake-candles aniversariantes-icone-hoje" title="Aniversário hoje"></i>}
                             </td>
                             <td className="aniversariantes-td-nome">{item.nome}</td>
-                            <td>{item.funcao}</td>
                             <td>{item.setor}</td>
                             {mostrarUnidade && <td>{item.unidade}</td>}
                         </tr>
@@ -214,14 +214,14 @@ function Aniversariantes() {
                     .filter((p) => !p.dtdemissao && p.dtnascimento)
                     .map((p, i) => {
                         const { dia, mes: mesNasc } = diaEMes(p.dtnascimento);
+                        const nomeEmpresa = String(p.nomeempresa ?? '').trim();
                         return {
                             chave: `${p.empresa}-${p.nmfuncionario}-${i}`,
                             dia,
                             mes: mesNasc,
                             nome: tituloCaso(p.nmfuncionario),
-                            funcao: tituloCaso(p.nmfuncao),
                             setor: tituloCaso(p.nmdepartamento),
-                            unidade: String(p.nomeempresa ?? '').trim(),
+                            unidade: NOMES_UNIDADES[nomeEmpresa] || nomeEmpresa,
                         };
                     });
                 setDados(ativos);
@@ -244,7 +244,7 @@ function Aniversariantes() {
         return [...fixas, ...restantes];
     }, [dados]);
 
-    // Quem estava com todas as unidades marcadas continua vendo todas ao trocar de mês (as unidades mudam conforme o mês).
+    // Ao trocar de mês, quem via todas as unidades continua vendo todas (a lista muda por mês).
     useEffect(() => {
         if (!dados) return;
         const anteriores = unidadesAnterioresRef.current;
@@ -277,7 +277,6 @@ function Aniversariantes() {
                 (unidadesSelecionadas === null || unidadesSelecionadas.includes(d.unidade)) &&
                 (!buscando ||
                     normalizar(d.nome).includes(alvo) ||
-                    normalizar(d.funcao).includes(alvo) ||
                     normalizar(d.setor).includes(alvo))
             )
         );
@@ -310,7 +309,7 @@ function Aniversariantes() {
                         <input
                             type="text"
                             className="aniversariantes-busca-input"
-                            placeholder="Buscar por nome, função ou setor..."
+                            placeholder="Buscar por nome ou setor..."
                             value={busca}
                             onChange={(e) => setBusca(e.target.value)}
                         />
