@@ -327,11 +327,10 @@
     margin-bottom: 0;
 }
 
-.aniversariantes-col-dia { width: 10%; }
-.aniversariantes-col-nome { width: 30%; }
-.aniversariantes-col-funcao { width: 26%; }
-.aniversariantes-col-setor { width: 20%; }
-.aniversariantes-col-unidade { width: 14%; }
+.aniversariantes-col-dia { width: 12%; }
+.aniversariantes-col-nome { width: 42%; }
+.aniversariantes-col-setor { width: 30%; }
+.aniversariantes-col-unidade { width: 16%; }
 
 .aniversariantes-tabela thead {
     background: linear-gradient(90deg, #006CB5 0%, #00A6E4 100%);
@@ -405,7 +404,7 @@
     .aniversariantes-tabela {
         font-size: 0.8rem;
         table-layout: auto;
-        min-width: 560px;
+        min-width: 0;
     }
 
     .aniversariantes-tabela thead th,
