@@ -40,17 +40,27 @@ const doisDigitos = (n) => String(n).padStart(2, '0');
 const ordenarPorDia = (lista) =>
     [...lista].sort((a, b) => a.dia - b.dia || normalizar(a.nome).localeCompare(normalizar(b.nome)));
 
-// Dropdown com caixas de marcar: nenhuma unidade marcada equivale a "Todas as unidades".
+// Dropdown com caixas de marcar. "Todas as unidades" marca/desmarca todas as caixas.
 function FiltroUnidades({ unidades, contagem, total, selecionadas, onChange, desabilitado }) {
-    const todas = selecionadas.length === 0 || selecionadas.length === unidades.length;
+    const todas = unidades.length > 0 && selecionadas.length === unidades.length;
+    const parcial = selecionadas.length > 0 && !todas;
     const totalSelecionado = selecionadas.reduce((soma, u) => soma + (contagem[u] || 0), 0);
+    const todasRef = useRef(null);
+
+    useEffect(() => {
+        if (todasRef.current) todasRef.current.indeterminate = parcial;
+    }, [parcial]);
 
     let rotulo = `Todas as unidades (${total})`;
-    if (!todas && selecionadas.length === 1) rotulo = `${selecionadas[0]} (${totalSelecionado})`;
-    if (!todas && selecionadas.length > 1) rotulo = `${selecionadas.length} unidades (${totalSelecionado})`;
+    if (selecionadas.length === 0) rotulo = 'Nenhuma unidade';
+    else if (!todas && selecionadas.length === 1) rotulo = `${selecionadas[0]} (${totalSelecionado})`;
+    else if (!todas) rotulo = `${selecionadas.length} unidades (${totalSelecionado})`;
 
-    const alternar = (unidade) =>
-        onChange(selecionadas.includes(unidade) ? selecionadas.filter((u) => u !== unidade) : [...selecionadas, unidade]);
+    // Mantém a ordem da lista de unidades, independente da ordem em que foram marcadas.
+    const alternar = (unidade) => {
+        const marcadas = selecionadas.includes(unidade) ? selecionadas.filter((u) => u !== unidade) : [...selecionadas, unidade];
+        onChange(unidades.filter((u) => marcadas.includes(u)));
+    };
 
     return (
         <Dropdown autoClose="outside" className="aniversariantes-unidades">
@@ -67,17 +77,15 @@ function FiltroUnidades({ unidades, contagem, total, selecionadas, onChange, des
             <Dropdown.Menu className="aniversariantes-unidades-menu">
                 <div className="aniversariantes-unidades-cabecalho">
                     <span>Unidades</span>
-                    <button
-                        type="button"
-                        className="aniversariantes-unidades-limpar"
-                        onClick={() => onChange([])}
-                        disabled={selecionadas.length === 0}
-                    >
-                        Limpar seleção
-                    </button>
+                    <span>{selecionadas.length} de {unidades.length}</span>
                 </div>
                 <label className={`aniversariantes-unidades-item aniversariantes-unidades-todas ${todas ? 'is-marcada' : ''}`}>
-                    <input type="checkbox" checked={todas} onChange={() => onChange([])} />
+                    <input
+                        ref={todasRef}
+                        type="checkbox"
+                        checked={todas}
+                        onChange={() => onChange(todas ? [] : [...unidades])}
+                    />
                     <span className="aniversariantes-unidades-nome">Todas as unidades</span>
                     <span className="aniversariantes-unidades-contagem">{total}</span>
                 </label>
@@ -92,6 +100,24 @@ function FiltroUnidades({ unidades, contagem, total, selecionadas, onChange, des
                             </label>
                         );
                     })}
+                </div>
+                <div className="aniversariantes-unidades-rodape">
+                    <button
+                        type="button"
+                        className="aniversariantes-unidades-btn aniversariantes-unidades-btn-limpar"
+                        onClick={() => onChange([])}
+                        disabled={selecionadas.length === 0}
+                    >
+                        <i className="fa-solid fa-eraser"></i> Limpar
+                    </button>
+                    <button
+                        type="button"
+                        className="aniversariantes-unidades-btn aniversariantes-unidades-btn-todas"
+                        onClick={() => onChange([...unidades])}
+                        disabled={todas}
+                    >
+                        <i className="fa-solid fa-check-double"></i> Marcar todas
+                    </button>
                 </div>
             </Dropdown.Menu>
         </Dropdown>
@@ -150,7 +176,9 @@ function Aniversariantes() {
     const [dados, setDados] = useState(null);
     const [erro, setErro] = useState(false);
     const [busca, setBusca] = useState('');
-    const [unidadesSelecionadas, setUnidadesSelecionadas] = useState([]);
+    // null = ainda não inicializado (ao carregar, todas as unidades vêm marcadas).
+    const [unidadesSelecionadas, setUnidadesSelecionadas] = useState(null);
+    const unidadesAnterioresRef = useRef([]);
     const controleRef = useRef(null);
     const navigate = useNavigate();
 
@@ -219,14 +247,20 @@ function Aniversariantes() {
         return [...fixas, ...restantes];
     }, [dados]);
 
-    // Ao trocar de mês, desmarca unidades que não têm aniversariantes no mês carregado.
+    // Ao carregar um mês: se todas estavam marcadas (ou é a primeira carga), marca todas as unidades do mês;
+    // senão mantém a escolha, descartando unidades que não têm aniversariantes no mês carregado.
     useEffect(() => {
         if (!dados) return;
+        const anteriores = unidadesAnterioresRef.current;
+        unidadesAnterioresRef.current = unidades;
         setUnidadesSelecionadas((atuais) => {
-            const validas = atuais.filter((u) => unidades.includes(u));
-            return validas.length === atuais.length ? atuais : validas;
+            const eraTodas = atuais === null || (anteriores.length > 0 && anteriores.every((u) => atuais.includes(u)));
+            if (eraTodas) return unidades;
+            return unidades.filter((u) => atuais.includes(u));
         });
     }, [dados, unidades]);
+
+    const selecionadas = unidadesSelecionadas || [];
 
     const contagemPorUnidade = useMemo(() => {
         const contagem = {};
@@ -244,7 +278,7 @@ function Aniversariantes() {
         const alvo = normalizar(busca);
         return ordenarPorDia(
             dados.filter((d) =>
-                (unidadesSelecionadas.length === 0 || unidadesSelecionadas.includes(d.unidade)) &&
+                (unidadesSelecionadas === null || unidadesSelecionadas.includes(d.unidade)) &&
                 (!buscando ||
                     normalizar(d.nome).includes(alvo) ||
                     normalizar(d.funcao).includes(alvo) ||
@@ -289,7 +323,7 @@ function Aniversariantes() {
                         unidades={unidades}
                         contagem={contagemPorUnidade}
                         total={dados ? dados.length : 0}
-                        selecionadas={unidadesSelecionadas}
+                        selecionadas={selecionadas}
                         onChange={setUnidadesSelecionadas}
                         desabilitado={!dados || dados.length === 0}
                     />
@@ -322,7 +356,11 @@ function Aniversariantes() {
 
                 {!erro && dados && dados.length > 0 && (
                     <div className="aniversariantes-painel">
-                        <TabelaAniversariantes itens={itensVisiveis} mostrarUnidade={unidadesSelecionadas.length !== 1} hoje={hoje} />
+                        {unidadesSelecionadas !== null && unidadesSelecionadas.length === 0 ? (
+                            <div className="aniversariantes-estado">Nenhuma unidade selecionada. Marque ao menos uma unidade no filtro.</div>
+                        ) : (
+                            <TabelaAniversariantes itens={itensVisiveis} mostrarUnidade={selecionadas.length !== 1} hoje={hoje} />
+                        )}
                     </div>
                 )}
             </Container>
