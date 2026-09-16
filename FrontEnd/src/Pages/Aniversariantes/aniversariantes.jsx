@@ -218,11 +218,13 @@ function Aniversariantes() {
                     .map((p, i) => {
                         const { dia, mes: mesNasc } = diaEMes(p.dtnascimento);
                         const nomeEmpresa = String(p.nomeempresa ?? '').trim();
+                        // O n8n passou a enviar o nome curto (nmcurto); nmfuncionario fica só como reserva.
+                        const nomeExibido = String(p.nmcurto ?? '').trim() || String(p.nmfuncionario ?? '').trim();
                         return {
-                            chave: `${p.empresa}-${p.nmfuncionario}-${i}`,
+                            chave: `${p.empresa}-${nomeExibido}-${i}`,
                             dia,
                             mes: mesNasc,
-                            nome: tituloCaso(p.nmfuncionario),
+                            nome: tituloCaso(nomeExibido),
                             setor: tituloCaso(p.nmdepartamento),
                             unidade: NOMES_UNIDADES[nomeEmpresa] || nomeEmpresa,
                         };
