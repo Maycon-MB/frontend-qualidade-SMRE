@@ -10,7 +10,7 @@ const NIVER_URL = 'https://auto.smrede.tec.br/webhook/niver/';
 
 const MESES = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
-// Unidades que aparecem primeiro nas abas; as demais seguem em ordem alfabética.
+// Unidades que aparecem primeiro na lista; as demais seguem em ordem alfabética.
 const ORDEM_FIXA = ['Centro Administrativo'];
 
 const PALAVRAS_MINUSCULAS = new Set(['de', 'da', 'do', 'das', 'dos', 'e']);
@@ -36,6 +36,9 @@ const diaEMes = (iso) => {
 };
 
 const doisDigitos = (n) => String(n).padStart(2, '0');
+
+const ordenarPorDia = (lista) =>
+    [...lista].sort((a, b) => a.dia - b.dia || normalizar(a.nome).localeCompare(normalizar(b.nome)));
 
 function TabelaAniversariantes({ itens, mostrarUnidade, hoje }) {
     if (itens.length === 0) {
@@ -149,9 +152,6 @@ function Aniversariantes() {
         carregar(mes);
         return () => controleRef.current?.abort();
     }, [mes, carregar]);
-
-    const ordenarPorDia = (lista) =>
-        [...lista].sort((a, b) => a.dia - b.dia || normalizar(a.nome).localeCompare(normalizar(b.nome)));
 
     const unidades = useMemo(() => {
         if (!dados) return [];
