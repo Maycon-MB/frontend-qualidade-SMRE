@@ -10,7 +10,6 @@ const NIVER_URL = 'https://auto.smrede.tec.br/webhook/niver/';
 
 const MESES = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
-// Unidades que aparecem primeiro na lista; as demais seguem em ordem alfabética.
 const ORDEM_FIXA = ['Centro Administrativo'];
 
 const PALAVRAS_MINUSCULAS = new Set(['de', 'da', 'do', 'das', 'dos', 'e']);
@@ -40,7 +39,6 @@ const doisDigitos = (n) => String(n).padStart(2, '0');
 const ordenarPorDia = (lista) =>
     [...lista].sort((a, b) => a.dia - b.dia || normalizar(a.nome).localeCompare(normalizar(b.nome)));
 
-// Dropdown com caixas de marcar. "Todas as unidades" marca/desmarca todas as caixas.
 function FiltroUnidades({ unidades, contagem, total, selecionadas, onChange, desabilitado }) {
     const todas = unidades.length > 0 && selecionadas.length === unidades.length;
     const parcial = selecionadas.length > 0 && !todas;
@@ -56,7 +54,6 @@ function FiltroUnidades({ unidades, contagem, total, selecionadas, onChange, des
     else if (!todas && selecionadas.length === 1) rotulo = `${selecionadas[0]} (${totalSelecionado})`;
     else if (!todas) rotulo = `${selecionadas.length} unidades (${totalSelecionado})`;
 
-    // Mantém a ordem da lista de unidades, independente da ordem em que foram marcadas.
     const alternar = (unidade) => {
         const marcadas = selecionadas.includes(unidade) ? selecionadas.filter((u) => u !== unidade) : [...selecionadas, unidade];
         onChange(unidades.filter((u) => marcadas.includes(u)));
@@ -176,7 +173,7 @@ function Aniversariantes() {
     const [dados, setDados] = useState(null);
     const [erro, setErro] = useState(false);
     const [busca, setBusca] = useState('');
-    // null = ainda não inicializado (ao carregar, todas as unidades vêm marcadas).
+    // null até o primeiro carregamento, para distinguir "ainda não carregou" de "nenhuma unidade marcada".
     const [unidadesSelecionadas, setUnidadesSelecionadas] = useState(null);
     const unidadesAnterioresRef = useRef([]);
     const controleRef = useRef(null);
@@ -247,8 +244,7 @@ function Aniversariantes() {
         return [...fixas, ...restantes];
     }, [dados]);
 
-    // Ao carregar um mês: se todas estavam marcadas (ou é a primeira carga), marca todas as unidades do mês;
-    // senão mantém a escolha, descartando unidades que não têm aniversariantes no mês carregado.
+    // Quem estava com todas as unidades marcadas continua vendo todas ao trocar de mês (as unidades mudam conforme o mês).
     useEffect(() => {
         if (!dados) return;
         const anteriores = unidadesAnterioresRef.current;
