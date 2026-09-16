@@ -124,6 +124,48 @@ function FiltroUnidades({ unidades, contagem, total, selecionadas, onChange, des
     );
 }
 
+function FiltroMes({ mes, mesAtual, onChange, desabilitado }) {
+    return (
+        <Dropdown className="aniversariantes-meses" onSelect={(chave) => onChange(Number(chave))}>
+            <Dropdown.Toggle
+                as="button"
+                type="button"
+                className="aniversariantes-controle aniversariantes-meses-toggle"
+                disabled={desabilitado}
+                aria-label="Selecionar mês"
+            >
+                <i className="fa-solid fa-calendar-days aniversariantes-controle-icone"></i>
+                <span className="aniversariantes-unidades-rotulo">{MESES[mes - 1]}</span>
+            </Dropdown.Toggle>
+            <Dropdown.Menu className="aniversariantes-unidades-menu aniversariantes-meses-menu">
+                <div className="aniversariantes-unidades-cabecalho">
+                    <span>Mês</span>
+                </div>
+                <div className="aniversariantes-meses-grade">
+                    {MESES.map((nome, i) => {
+                        const numero = i + 1;
+                        const classes = ['aniversariantes-meses-item'];
+                        if (numero === mes) classes.push('is-selecionado');
+                        if (numero === mesAtual) classes.push('is-atual');
+                        return (
+                            <Dropdown.Item
+                                key={nome}
+                                as="button"
+                                type="button"
+                                eventKey={String(numero)}
+                                active={numero === mes}
+                                className={classes.join(' ')}
+                            >
+                                {nome}
+                            </Dropdown.Item>
+                        );
+                    })}
+                </div>
+            </Dropdown.Menu>
+        </Dropdown>
+    );
+}
+
 function TabelaAniversariantes({ itens, mostrarUnidade, hoje }) {
     if (itens.length === 0) {
         return <div className="aniversariantes-estado">Nenhum aniversariante encontrado.</div>;
@@ -327,16 +369,7 @@ function Aniversariantes() {
                         onChange={setUnidadesSelecionadas}
                         desabilitado={!dados || dados.length === 0}
                     />
-                    <select
-                        className="aniversariantes-controle aniversariantes-mes-select"
-                        value={mes}
-                        onChange={(e) => setMes(Number(e.target.value))}
-                        aria-label="Mês"
-                    >
-                        {MESES.map((nome, i) => (
-                            <option key={nome} value={i + 1}>{nome}</option>
-                        ))}
-                    </select>
+                    <FiltroMes mes={mes} mesAtual={mesAtual} onChange={setMes} />
                 </div>
 
                 {erro && (
