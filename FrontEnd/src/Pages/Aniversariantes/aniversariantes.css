@@ -367,6 +367,10 @@
     font-weight: 700;
 }
 
+.aniversariantes-unidade-mobile {
+    display: none;
+}
+
 /* Destaque de quem faz aniversário hoje */
 .aniversariantes-tabela tbody tr.aniversariantes-hoje > td {
     background-color: rgba(245, 130, 31, 0.14);
@@ -410,5 +414,26 @@
     .aniversariantes-tabela thead th,
     .aniversariantes-tabela tbody td {
         padding: 10px 12px;
+    }
+
+    .aniversariantes-tabela col {
+        width: auto;
+    }
+
+    .aniversariantes-col-unidade {
+        visibility: collapse;
+    }
+
+    .aniversariantes-th-unidade,
+    .aniversariantes-td-unidade {
+        display: none;
+    }
+
+    .aniversariantes-unidade-mobile {
+        display: block;
+        margin-top: 2px;
+        color: #6c7a89;
+        font-size: 0.72rem;
+        font-weight: 600;
     }
 }

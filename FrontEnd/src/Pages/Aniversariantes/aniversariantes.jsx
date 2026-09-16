@@ -141,7 +141,7 @@ function TabelaAniversariantes({ itens, mostrarUnidade, hoje }) {
                     <th>Dia</th>
                     <th>Nome</th>
                     <th>Setor</th>
-                    {mostrarUnidade && <th>Unidade</th>}
+                    {mostrarUnidade && <th className="aniversariantes-th-unidade">Unidade</th>}
                 </tr>
             </thead>
             <tbody>
@@ -153,9 +153,12 @@ function TabelaAniversariantes({ itens, mostrarUnidade, hoje }) {
                                 {doisDigitos(item.dia)}/{doisDigitos(item.mes)}
                                 {ehHoje && <i className="fa-solid fa-cake-candles aniversariantes-icone-hoje" title="Aniversário hoje"></i>}
                             </td>
-                            <td className="aniversariantes-td-nome">{item.nome}</td>
+                            <td className="aniversariantes-td-nome">
+                                {item.nome}
+                                {mostrarUnidade && <span className="aniversariantes-unidade-mobile">{item.unidade}</span>}
+                            </td>
                             <td>{item.setor}</td>
-                            {mostrarUnidade && <td>{item.unidade}</td>}
+                            {mostrarUnidade && <td className="aniversariantes-td-unidade">{item.unidade}</td>}
                         </tr>
                     );
                 })}
