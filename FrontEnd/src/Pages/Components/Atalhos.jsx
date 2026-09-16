@@ -5,7 +5,7 @@ import { emProducao } from '../../config/fase';
 import './Atalhos.css';
 
 const botoes = [
-    { id: 1, nome: 'ANIVERSARIANTES', Icon: PartyPopper, link: '/' },
+    { id: 1, nome: 'ANIVERSARIANTES', Icon: PartyPopper, link: '/aniversariantes' },
     { id: 2, nome: 'BENEFÍCIOS', Icon: HeartPulse, link: '#', ocultoEmProducao: true },
     { id: 3, nome: 'CONTRACHEQUE', Icon: FileText, link: '/contraCheque' },
     { id: 4, nome: 'FÉRIAS', Icon: Palmtree, link: '#', ocultoEmProducao: true },

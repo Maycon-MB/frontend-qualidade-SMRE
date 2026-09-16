@@ -22,6 +22,7 @@ import Qualidade from "./Pages/Qualidade/qualidade";
 import UploadGPTFotos from "./Pages/uploadCC/uploadGPTFotos.jsx";
 import ContraCheque from "./Pages/HomePage/contra_cheque.jsx";
 import Ramais from "./Pages/Ramais/ramais.jsx";
+import Aniversariantes from "./Pages/Aniversariantes/aniversariantes.jsx";
 import { emProducao } from "./config/fase";
 
 import { ToastContainer } from "react-toastify";
@@ -59,6 +60,7 @@ const AppContent = () => {
                 <Route exact path="/contraCheque" element={<Private><ContraCheque /></Private>} />
                 <Route exact path="/uploadGPTFotos" element={<Private><UploadGPTFotos /></Private>} />
                 <Route exact path="/ramais" element={<Private><Ramais /></Private>} />
+                <Route exact path="/aniversariantes" element={<Private><Aniversariantes /></Private>} />
 
             </Routes>
             <ToastContainer />
