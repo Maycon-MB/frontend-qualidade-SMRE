@@ -202,6 +202,61 @@ const areaDetails = {
             },
         ],
     },
+    ti: {
+        titulo: 'TECNOLOGIA DA INFORMAÇÃO',
+        objetivo: (
+            <div className="qualidade-texto-politica">
+                <p>A área de Tecnologia da Informação (TI) tem como objetivo garantir que toda a infraestrutura tecnológica do SMREDE funcione de forma segura, eficiente, integrada e disponível, apoiando as atividades pedagógicas, administrativas e operacionais da Central Administrativa e das Unidades.</p>
+                <p><strong>Entre suas principais responsabilidades estão:</strong></p>
+                <ul>
+                    <li>Gestão e manutenção da <strong>infraestrutura de TI</strong>, incluindo redes, internet, servidores, computadores, notebooks, equipamentos e periféricos;</li>
+                    <li>Suporte técnico aos <strong>colaboradores, professores e demais usuários</strong>;</li>
+                    <li>Administração de <strong>sistemas, plataformas educacionais, ferramentas corporativas e recursos tecnológicos</strong>;</li>
+                    <li>Gestão de <strong>acessos, segurança da informação, proteção de dados, backups e continuidade dos serviços</strong>;</li>
+                    <li>Apoio à implementação de <strong>novas tecnologias e projetos de inovação</strong>, contribuindo para a transformação digital do SMREDE;</li>
+                    <li>Planejamento de <strong>aquisições, contratos, licenças, fornecedores e renovação do parque tecnológico</strong>;</li>
+                    <li>Gestão da infraestrutura de <strong>CFTV (Circuito Fechado de Televisão)</strong>, contemplando câmeras, gravadores, armazenamento, monitoramento e disponibilidade do sistema, em apoio à <strong>segurança patrimonial e operacional</strong> das Unidades.</li>
+                </ul>
+            </div>
+        ),
+        organogramaSvg: [
+            { titulo: 'DIRETORIA TI', svg: 'diretoria-ti.svg' },
+        ],
+        documentos: [
+            {
+                eventKey: '0',
+                titulo: 'PS.06-0.1 - Política de Privacidade',
+                corpo: (
+                    <p>No Santa Mônica Rede de Ensino, privacidade e segurança são prioridades inegociáveis. Comprometemo-nos com a total transparência no tratamento de dados pessoais de nossos usuários, em estrita conformidade com a legislação vigente. Esta política detalha os procedimentos de coleta, uso e transferência de informações de clientes (famílias e alunos) e demais usuários que acessam ou utilizam nosso site.</p>
+                ),
+            },
+            {
+                eventKey: '1',
+                titulo: 'PS.06-0.2 - Política de Segurança da Informação',
+                corpo: (
+                    <p>Esta política estabelece diretrizes e normas obrigatórias para proteger os ativos de informação do SMREDE, garantindo a confidencialidade, integridade, disponibilidade, autenticidade e rastreabilidade (CIDAR). Também orienta o uso seguro, responsável e monitorado dos recursos tecnológicos e informacionais da instituição, em conformidade com a legislação aplicável, especialmente a <strong>Lei Geral de Proteção de Dados Pessoais</strong> (LGPD), bem como com boas práticas e referenciais de mercado.</p>
+                ),
+            },
+        ],
+        defaultDocKey: '0',
+        subareas: [
+            {
+                id: 'ps-06-1-infraestrutura',
+                nome: 'PS.06.1 - Infraestrutura',
+                documentos: [],
+            },
+            {
+                id: 'ps-06-2-sistemas',
+                nome: 'PS.06.2 - Sistemas',
+                documentos: [],
+            },
+            {
+                id: 'ps-06-3-tecnica',
+                nome: 'PS.06.3 - Técnica',
+                documentos: [],
+            },
+        ],
+    },
 };
 
 Object.values(areaDetails).forEach((area) => {
