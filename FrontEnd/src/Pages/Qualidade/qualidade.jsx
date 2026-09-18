@@ -227,14 +227,38 @@ const areaDetails = {
                 eventKey: '0',
                 titulo: 'PS.06-0.1 - Política de Privacidade',
                 corpo: (
-                    <p>No Santa Mônica Rede de Ensino, privacidade e segurança são prioridades inegociáveis. Comprometemo-nos com a total transparência no tratamento de dados pessoais de nossos usuários, em estrita conformidade com a legislação vigente. Esta política detalha os procedimentos de coleta, uso e transferência de informações de clientes (famílias e alunos) e demais usuários que acessam ou utilizam nosso site.</p>
+                    <>
+                        <p>No Santa Mônica Rede de Ensino, privacidade e segurança são prioridades inegociáveis. Comprometemo-nos com a total transparência no tratamento de dados pessoais de nossos usuários, em estrita conformidade com a legislação vigente. Esta política detalha os procedimentos de coleta, uso e transferência de informações de clientes (famílias e alunos) e demais usuários que acessam ou utilizam nosso site.</p>
+                        <Button
+                            as="a"
+                            href={`${process.env.PUBLIC_URL}/documentos/PS.06-0.1-politica-de-privacidade.pdf`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn-visualizar-doc"
+                        >
+                            VISUALIZAR DOCUMENTO <i className="fa-solid fa-angles-right"></i>
+                        </Button>
+                        <div style={{ clear: 'both' }}></div>
+                    </>
                 ),
             },
             {
                 eventKey: '1',
                 titulo: 'PS.06-0.2 - Política de Segurança da Informação',
                 corpo: (
-                    <p>Esta política estabelece diretrizes e normas obrigatórias para proteger os ativos de informação do SMREDE, garantindo a confidencialidade, integridade, disponibilidade, autenticidade e rastreabilidade (CIDAR). Também orienta o uso seguro, responsável e monitorado dos recursos tecnológicos e informacionais da instituição, em conformidade com a legislação aplicável, especialmente a <strong>Lei Geral de Proteção de Dados Pessoais</strong> (LGPD), bem como com boas práticas e referenciais de mercado.</p>
+                    <>
+                        <p>Esta política estabelece diretrizes e normas obrigatórias para proteger os ativos de informação do SMREDE, garantindo a confidencialidade, integridade, disponibilidade, autenticidade e rastreabilidade (CIDAR). Também orienta o uso seguro, responsável e monitorado dos recursos tecnológicos e informacionais da instituição, em conformidade com a legislação aplicável, especialmente a <strong>Lei Geral de Proteção de Dados Pessoais</strong> (LGPD), bem como com boas práticas e referenciais de mercado.</p>
+                        <Button
+                            as="a"
+                            href={`${process.env.PUBLIC_URL}/documentos/PS.06-0.2-politica-de-seguranca-da-informacao.pdf`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn-visualizar-doc"
+                        >
+                            VISUALIZAR DOCUMENTO <i className="fa-solid fa-angles-right"></i>
+                        </Button>
+                        <div style={{ clear: 'both' }}></div>
+                    </>
                 ),
             },
         ],
