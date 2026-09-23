@@ -4,6 +4,7 @@ import { Container, Tab, Tabs, Accordion, Button, Modal } from "react-bootstrap"
 
 import Menu from "../HomePage/homepage_menu";
 import Footer from "../Components/footer";
+import { linkEmConstrucao } from "../EmConstrucao/linkEmConstrucao";
 import { busca_foto } from "../../services/api";
 import './qualidade.css';
 
@@ -520,7 +521,7 @@ const Qualidade = () => {
                                         if (areaDetails[area.id]) {
                                             setView(area.id);
                                         } else {
-                                            alert('Página em construção para: ' + area.nome.replace(/\n/g, ' '));
+                                            navigate(linkEmConstrucao(area.nome.replace(/\n/g, ' ')));
                                         }
                                     }}
                                 >
