@@ -55,6 +55,13 @@
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
+/* index.css só aplica a fonte do Portal em h/p/span/button; div e b cairiam no `*` do login */
+.em-construcao-faixa,
+.em-construcao-selo,
+.em-construcao-texto b {
+    font-family: var(--font-main);
+}
+
 /* ====== CAIXA COM A FITA ====== */
 .em-construcao-caixa {
     margin-top: 32px;
@@ -209,8 +216,11 @@
 
 @media (max-width: 767px) {
     .em-construcao-faixa {
-        font-size: 1.05rem;
+        font-size: 1.1rem;
         letter-spacing: 1px;
+        padding: 14px 10px;
+        margin-top: 16px;
+        border-radius: 12px;
     }
 
     .em-construcao-conteudo {
