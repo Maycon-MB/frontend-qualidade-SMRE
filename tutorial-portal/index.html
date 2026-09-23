@@ -64,7 +64,7 @@
   /* ================= briefing ================= */
   .briefing { max-width: 1100px; margin: 28px auto 0; display: grid; gap: 14px; }
   .briefing h1 { margin: 0; color: var(--azul); font-weight: 900; font-size: clamp(1.35rem, 3vw, 1.75rem); text-wrap: balance; }
-  .briefing > p { margin: 0; color: var(--texto-suave); line-height: 1.6; max-width: 70ch; }
+  .briefing > p { margin: 0; color: var(--texto-suave); line-height: 1.6; }
   .opcoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
   .opcao {
     text-align: left; background: var(--branco); border: 2px solid transparent; border-radius: 14px;
@@ -392,7 +392,7 @@
     </button>
   </div>
   <div class="decisao">
-    <span>Escolheu? Responda com a letra para quem te enviou este link.</span>
+    <span>Escolheu? É só me dizer a letra da opção que você prefere.</span>
   </div>
 </section>
 
@@ -592,14 +592,12 @@
   const frame = document.getElementById('frame');
   const ICONE_PAUSA = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>';
   const ICONE_PLAY = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg>';
-  let opcaoAtual = 'a';
 
   function marcar(seletor, ativo) {
     document.querySelectorAll(seletor).forEach((b) => b.setAttribute('aria-pressed', String(ativo(b))));
   }
 
   function escolherOpcao(opcao) {
-    opcaoAtual = opcao;
     frame.classList.toggle('modo-a', opcao === 'a');
     frame.classList.toggle('modo-b', opcao === 'b');
     marcar('[data-opcao]', (b) => b.dataset.opcao === opcao);
