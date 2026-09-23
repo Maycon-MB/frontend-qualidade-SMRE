@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formatos do Tutorial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul: #006CB5;
+    --ciano: #00A6E4;
+    --laranja: #F5821F;
+    --laranja-escuro: #c9620a;
+    --fundo-portal: #f0f4f8;
+    --fundo-pagina: #e3e9f0;
+    --texto: #2b3440;
+    --texto-suave: #5f6d7c;
+    --azul-claro: #eef6ff;
+    --barra: #17202b;
+    --barra-borda: #2e3a48;
+    --verde: #07bc0c;
+    --branco: #ffffff;
+    --fonte: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--fundo-pagina);
+    color: var(--texto);
+    font-family: var(--fonte);
+    font-size: 15px;
+    padding-inline: 16px;
+    padding-block: 0 40px;
+  }
+  button { font-family: inherit; }
+  :focus-visible { outline: 3px solid var(--laranja); outline-offset: 2px; }
+
+  /* ================= barra de controle (não faz parte do design) ================= */
+  .ctl {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 20;
+    margin-inline: -16px;
+    padding: 10px 16px;
+    background: var(--barra);
+    color: #c9d3de;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px 18px;
+    font-size: 13px;
+  }
+  .ctl-nome { color: var(--branco); font-weight: 900; letter-spacing: .04em; margin-right: auto; }
+  .ctl-grupo { display: flex; align-items: center; gap: 8px; }
+  .seg { display: flex; border: 1px solid var(--barra-borda); border-radius: 9px; overflow: hidden; }
+  .seg button { background: transparent; color: #c9d3de; border: 0; padding: 7px 13px; cursor: pointer; font-size: 13px; }
+  .seg button + button { border-left: 1px solid var(--barra-borda); }
+  .seg button[aria-pressed="true"] { background: var(--laranja); color: var(--branco); font-weight: 700; }
+  @media (max-width: 560px) { .ctl-nome { width: 100%; text-align: center; margin: 0; } }
+
+  /* ================= briefing ================= */
+  .briefing { max-width: 1100px; margin: 28px auto 0; display: grid; gap: 14px; }
+  .briefing h1 { margin: 0; color: var(--azul); font-weight: 900; font-size: clamp(1.35rem, 3vw, 1.75rem); text-wrap: balance; }
+  .briefing > p { margin: 0; color: var(--texto-suave); line-height: 1.6; max-width: 70ch; }
+  .opcoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+  .opcao {
+    text-align: left; background: var(--branco); border: 2px solid transparent; border-radius: 14px;
+    padding: 14px 16px; cursor: pointer; display: grid; grid-template-columns: auto 1fr; gap: 4px 12px;
+    box-shadow: 0 4px 14px rgba(0, 60, 110, .08); color: var(--texto);
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .opcao:hover { transform: translateY(-2px); }
+  .opcao[aria-pressed="true"] { border-color: var(--laranja); }
+  .opcao-letra {
+    grid-row: span 2; width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center;
+    background: var(--azul-claro); color: var(--azul); font-weight: 900; font-size: 1.1rem;
+  }
+  .opcao[aria-pressed="true"] .opcao-letra { background: var(--laranja); color: var(--branco); }
+  .opcao strong { color: var(--azul); font-size: 1rem; }
+  .opcao span { color: var(--texto-suave); line-height: 1.5; font-size: .9rem; }
+  .decisao { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; color: var(--texto-suave); font-size: .9rem; }
+
+  /* ================= moldura do Portal ================= */
+  .frame {
+    container: frame / inline-size;
+    max-width: 1100px; margin: 22px auto 0; background: var(--fundo-portal); border-radius: 18px; overflow: hidden;
+    box-shadow: 0 18px 50px rgba(10, 40, 70, .18); transition: max-width .35s ease;
+  }
+  .frame.celular { max-width: 390px; border-radius: 28px; }
+
+  .p-nav {
+    background: linear-gradient(90deg, var(--azul) 0%, var(--ciano) 100%); color: var(--branco);
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 26px;
+  }
+  .p-marca { font-weight: 900; font-size: .95rem; letter-spacing: .05em; display: flex; align-items: center; }
+  .p-logo { height: 56px; width: auto; }
+  .p-div { width: 1px; height: 28px; background: rgba(255, 255, 255, .4); margin: 0 18px; }
+  .p-user { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+  .p-avatar {
+    width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; font-weight: 900;
+    background: rgba(255, 255, 255, .22); border: 2px solid rgba(255, 255, 255, .6);
+  }
+
+  .p-corpo { padding: 16px 26px 40px; }
+  .p-barra { display: flex; align-items: center; gap: 8px; }
+  .p-nav-btn {
+    width: 36px; height: 36px; border-radius: 10px; border: 1.5px solid rgba(0, 108, 181, .2); background: var(--branco);
+    color: var(--azul); display: grid; place-items: center;
+  }
+  .p-nav-btn svg { width: 17px; height: 17px; }
+  .p-barra-titulo { color: var(--azul); font-weight: 800; font-size: 1.3rem; margin-left: 8px; }
+
+  /* ================= artigo ================= */
+  .artigo {
+    max-width: 780px; margin: 24px auto 0; background: var(--branco); border-radius: 20px; padding: 36px 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .06), 0 0 0 1px rgba(0, 108, 181, .08);
+  }
+  .trilha { font-size: .8rem; color: var(--texto-suave); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .trilha b { color: var(--azul); }
+  .exemplo {
+    margin-left: auto; background: rgba(245, 130, 31, .12); color: var(--laranja-escuro); font-weight: 900; font-size: .68rem;
+    letter-spacing: .1em; padding: 4px 10px; border-radius: 20px;
+  }
+  .artigo h2 { margin: 14px 0 10px; color: var(--azul); font-weight: 900; font-size: 1.75rem; line-height: 1.2; text-wrap: balance; }
+  .intro { margin: 0; color: var(--texto-suave); line-height: 1.65; max-width: 62ch; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .meta span { background: var(--azul-claro); color: var(--azul); font-weight: 700; font-size: .78rem; padding: 6px 12px; border-radius: 20px; }
+
+  .passos { list-style: none; margin: 32px 0 0; padding: 0; display: grid; gap: 36px; }
+  .passo { display: grid; gap: 14px; }
+  .passo-texto { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; align-items: start; }
+  .passo-num {
+    grid-row: span 2; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
+    background: linear-gradient(135deg, var(--azul), var(--ciano)); color: var(--branco); font-weight: 900; font-size: 1.1rem;
+    box-shadow: 0 6px 16px rgba(0, 108, 181, .3);
+  }
+  .passo-acao { margin: 0; font-weight: 900; font-size: 1.1rem; color: var(--texto); line-height: 1.35; }
+  .passo-expl { margin: 0; color: var(--texto-suave); line-height: 1.6; }
+
+  .caixas { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 36px; }
+  .caixa { border-radius: 14px; padding: 16px 18px; display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; }
+  .caixa svg { width: 22px; height: 22px; grid-row: span 2; }
+  .caixa h3 { margin: 0; font-size: .95rem; font-weight: 900; letter-spacing: .02em; }
+  .caixa p { margin: 0; line-height: 1.55; font-size: .92rem; }
+  .caixa.dica { background: var(--azul-claro); color: #1f4f78; }
+  .caixa.dica svg, .caixa.dica h3 { color: var(--azul); }
+  .caixa.aviso { background: #fff3e8; color: #7a4210; }
+  .caixa.aviso svg, .caixa.aviso h3 { color: var(--laranja-escuro); }
+
+  .ajudou {
+    margin-top: 32px; padding-top: 22px; border-top: 1px solid #e3eaf2; display: flex; flex-wrap: wrap;
+    align-items: center; gap: 10px 14px; color: var(--texto-suave); font-weight: 700;
+  }
+  .ajudou button {
+    border: 1.5px solid rgba(0, 108, 181, .25); background: var(--branco); color: var(--azul); border-radius: 10px;
+    padding: 8px 18px; font-weight: 700; cursor: pointer;
+  }
+  .ajudou button:hover { background: var(--azul-claro); }
+  .ajudou button[aria-pressed="true"] { background: var(--azul); color: var(--branco); border-color: var(--azul); }
+
+  .p-rodape {
+    background: linear-gradient(90deg, #005a96 0%, #006CB5 60%, #0080cc 100%); color: var(--branco); padding: 14px 26px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .p-rodape-ic { width: 42px; height: 42px; border-radius: 12px; background: rgba(255, 255, 255, .15); display: grid; place-items: center; }
+  .p-rodape-ic svg { width: 22px; height: 22px; }
+  .p-rodape b { display: block; font-weight: 900; font-size: .85rem; letter-spacing: .08em; }
+  .p-rodape small { font-weight: 300; opacity: .8; }
+
+  /* ================= mini vídeos (uma mini tela por passo) ================= */
+  .cena {
+    container-type: inline-size; position: relative; width: 100%; max-width: 100%; aspect-ratio: 16 / 10;
+    border-radius: 14px; overflow: hidden; background: var(--fundo-portal);
+    border: 1px solid rgba(0, 108, 181, .14); box-shadow: 0 8px 24px rgba(0, 40, 80, .1);
+  }
+  .cena-in { position: absolute; inset: 0; font-size: 2.5cqw; transform-origin: var(--x1) var(--y1); }
+  .c-nav {
+    position: absolute; left: 0; right: 0; top: 0; height: 12%; padding: 0 3%;
+    background: linear-gradient(90deg, var(--azul), var(--ciano)); color: var(--branco);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .c-nav b { font-size: .62em; font-weight: 900; letter-spacing: .06em; }
+  .c-nav span { font-size: .6em; font-weight: 700; display: flex; align-items: center; gap: .5em; }
+  .c-nav i { width: 1.9em; height: 1.9em; border-radius: 50%; background: rgba(255, 255, 255, .3); display: inline-block; }
+
+  /* tela inicial: atalhos empilhados à esquerda, comunicados à direita */
+  .c-atalho {
+    position: absolute; left: 4%; width: 24%; height: 24%; background: var(--branco); border-radius: .8em;
+    box-shadow: 0 .3em .9em rgba(0, 0, 0, .12); color: var(--azul);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .35em;
+  }
+  .c-atalho svg { width: 2em; height: 2em; }
+  .c-atalho b { font-size: .5em; font-weight: 700; letter-spacing: .05em; text-align: center; color: inherit; }
+  .c-comunicados {
+    position: absolute; left: 31%; right: 4%; top: 17%; bottom: 5%; background: var(--branco); border-radius: .8em;
+    box-shadow: 0 .3em .9em rgba(0, 0, 0, .08); padding: 4% 3.5%; display: flex; flex-direction: column; gap: 5%;
+  }
+  .c-comunicados b { font-size: .6em; color: var(--azul); font-weight: 900; letter-spacing: .08em; }
+  .c-comunicados i { display: block; height: 16%; border-radius: .5em; background: #f3f7fb; border: 1px solid #e2ebf4; }
+
+  /* lista de contracheques */
+  .c-botoes { position: absolute; left: 4%; top: 16%; display: flex; gap: .5em; }
+  .c-botoes i {
+    width: 1.8em; height: 1.8em; border-radius: .45em; background: var(--branco); border: 1px solid rgba(0, 108, 181, .25);
+    display: grid; place-items: center; color: var(--azul);
+  }
+  .c-botoes svg { width: 1em; height: 1em; }
+  .c-tabela {
+    position: absolute; left: 4%; width: 92%; top: 30%; height: 45%; background: var(--branco); border-radius: .5em;
+    overflow: hidden; box-shadow: 0 .2em .8em rgba(0, 0, 0, .08);
+    display: grid; grid-template-columns: 9fr 9fr 22fr 16fr 20fr 12fr 12fr; grid-template-rows: 9fr 12fr 12fr 12fr;
+  }
+  .c-tabela > span { display: flex; align-items: center; padding-left: .6em; font-size: .52em; color: #333; }
+  .c-tabela > .th { background: #f7f9fb; font-weight: 900; color: #222; border-bottom: 1px solid #dde3ea; }
+  .c-tabela > .z { background: #f2f2f2; }
+  .c-env { width: 2.7em; height: 1.9em; border-radius: .4em; background: #0d6efd; color: var(--branco); display: grid; place-items: center; }
+  .c-env svg { width: 1.3em; height: 1.3em; }
+  .c-toast {
+    position: absolute; right: 3%; top: 15%; width: 36%; background: var(--branco); border-radius: .5em; overflow: hidden;
+    box-shadow: 0 .4em 1.4em rgba(0, 0, 0, .18); display: flex; align-items: center; gap: .6em; padding: .8em .9em 1em;
+  }
+  .c-toast i {
+    width: 1.3em; height: 1.3em; border-radius: 50%; background: var(--verde); color: var(--branco); display: grid;
+    place-items: center; flex-shrink: 0; font-style: normal;
+  }
+  .c-toast i svg { width: .8em; height: .8em; }
+  .c-toast span { font-size: .56em; color: #444; font-weight: 700; }
+  .c-toast-barra { position: absolute; left: 0; bottom: 0; height: .25em; width: 70%; background: var(--verde); }
+
+  /* caixa de e-mail genérica */
+  .c-mail-topo {
+    position: absolute; left: 0; right: 0; top: 0; height: 12%; background: #e9edf2; display: flex; align-items: center;
+    gap: 3%; padding: 0 3%;
+  }
+  .c-mail-topo b { font-size: .6em; color: #34404c; font-weight: 900; }
+  .c-mail-topo i { flex: 1; height: 45%; border-radius: 2em; background: var(--branco); }
+  .c-mail-lista {
+    position: absolute; left: 4%; right: 4%; top: 18%; height: 70%; background: var(--branco); border-radius: .5em;
+    box-shadow: 0 .2em .8em rgba(0, 0, 0, .08); display: grid; grid-template-rows: repeat(5, 1fr); overflow: hidden;
+  }
+  .c-mail {
+    display: grid; grid-template-columns: 1.2em 13em 1fr auto; align-items: center; gap: .6em; padding: 0 1em;
+    border-bottom: 1px solid #edf1f5; font-size: .52em; color: #6a7580;
+  }
+  .c-mail em { width: .7em; height: .7em; border-radius: 50%; }
+  .c-mail.novo { color: #1c2530; font-weight: 900; background: #f4f9ff; }
+  .c-mail.novo em { background: var(--azul); }
+
+  /* ---- movimento: cursor, clique e reações da tela ---- */
+  .cursor {
+    position: absolute; left: var(--x1); top: var(--y1); width: 1.7em; height: 1.7em; z-index: 5;
+    margin: -.2em 0 0 -.3em; filter: drop-shadow(0 .1em .15em rgba(0, 0, 0, .35));
+    animation: cursorAnda 5s ease-in-out infinite;
+  }
+  .clique {
+    position: absolute; left: var(--x1); top: var(--y1); width: 4em; height: 4em; border-radius: 50%; z-index: 4;
+    background: rgba(245, 130, 31, .45); transform: translate(-50%, -50%) scale(1); opacity: 0;
+    animation: cliqueOnda 5s ease-out infinite;
+  }
+  .anima-hover { background: linear-gradient(135deg, var(--azul), #9dc2dd); color: var(--branco); animation: hoverAtalho 5s infinite; }
+  .anima-marca {
+    position: absolute; background: rgba(245, 130, 31, .16); border: .12em solid rgba(245, 130, 31, .7); border-radius: .3em;
+    animation: marcaLinha 5s infinite;
+  }
+  .anima-aperta { animation: apertaBotao 5s infinite; }
+  .anima-toast { animation: toastEntra 5s ease-out infinite; }
+  .anima-toast .c-toast-barra { animation: toastBarra 5s linear infinite; }
+  .anima-chega { animation: emailChega 5s ease-out infinite; }
+  .pausar {
+    position: absolute; right: 2%; bottom: 3%; z-index: 6; width: 2.4em; height: 2.4em; min-width: 28px; min-height: 28px;
+    border-radius: 50%; border: 0; cursor: pointer; background: rgba(23, 32, 43, .7); color: var(--branco);
+    display: grid; place-items: center;
+  }
+  .pausar svg { width: 45%; height: 45%; }
+  .cena.pausada * { animation-play-state: paused !important; }
+
+  /* Opção B: a câmera aproxima no ponto do clique (--x1/--y1) e volta no fim do loop */
+  .modo-b .cena-in { animation: zoomAlvo 5s ease-in-out infinite; }
+
+  @keyframes cursorAnda {
+    0%, 8%   { left: var(--x0); top: var(--y0); opacity: 0; transform: scale(1); }
+    14%      { left: var(--x0); top: var(--y0); opacity: 1; }
+    42%      { left: var(--x1); top: var(--y1); transform: scale(1); }
+    47%      { transform: scale(.8); }
+    52%, 88% { left: var(--x1); top: var(--y1); opacity: 1; transform: scale(1); }
+    96%, 100% { left: var(--x1); top: var(--y1); opacity: 0; }
+  }
+  @keyframes cliqueOnda {
+    0%, 45%   { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    47%       { opacity: .9; }
+    68%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+  }
+  @keyframes hoverAtalho {
+    0%, 40%   { background: var(--branco); color: var(--azul); }
+    42%, 92%  { background: linear-gradient(135deg, var(--azul), #9dc2dd); color: var(--branco); }
+    96%, 100% { background: var(--branco); color: var(--azul); }
+  }
+  @keyframes marcaLinha {
+    0%, 44%   { opacity: 0; }
+    48%, 90%  { opacity: 1; }
+    96%, 100% { opacity: 0; }
+  }
+  @keyframes apertaBotao {
+    0%, 45%, 52%, 100% { transform: scale(1); }
+    47% { transform: scale(.85); filter: brightness(.8); }
+  }
+  @keyframes toastEntra {
+    0%, 22%   { transform: translateX(130%); opacity: 0; }
+    32%, 88%  { transform: translateX(0); opacity: 1; }
+    96%, 100% { transform: translateX(0); opacity: 0; }
+  }
+  @keyframes toastBarra {
+    0%, 32% { width: 100%; }
+    88%, 100% { width: 8%; }
+  }
+  @keyframes emailChega {
+    0%, 16%   { transform: translateY(-100%); opacity: 0; }
+    28%, 90%  { transform: translateY(0); opacity: 1; }
+    97%, 100% { transform: translateY(0); opacity: 0; }
+  }
+  @keyframes zoomAlvo {
+    0%, 28%   { transform: scale(1); }
+    44%, 88%  { transform: scale(1.9); }
+    97%, 100% { transform: scale(1); }
+  }
+
+  /* ================= celular (moldura estreita ou tela pequena) ================= */
+  @container frame (max-width: 620px) {
+    .p-nav { padding: 14px 16px; }
+    .p-marca { font-size: .74rem; }
+    .p-logo { height: 38px; }
+    .p-div { margin: 0 10px; }
+    .p-user span { display: none; }
+    .p-corpo { padding: 14px 14px 28px; }
+    .p-barra-titulo { font-size: 1.05rem; }
+    .artigo { padding: 22px 18px; border-radius: 16px; margin-top: 16px; }
+    .artigo h2 { font-size: 1.35rem; }
+    .passos { gap: 28px; }
+    .passo-num { width: 34px; height: 34px; font-size: 1rem; }
+    .passo-acao { font-size: 1rem; }
+    .p-rodape { padding: 12px 16px; }
+  }
+
+  /* Sem movimento: cada mini vídeo vira a foto do seu último quadro. */
+  @media (prefers-reduced-motion: reduce) {
+    .cena *, .modo-b .cena-in { animation: none !important; }
+    .clique, .pausar { display: none; }
+    .frame, .opcao { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="ctl" aria-label="Controles do mockup">
+  <span class="ctl-nome">FORMATOS DO TUTORIAL</span>
+  <div class="ctl-grupo">
+    <span>Opção:</span>
+    <div class="seg">
+      <button type="button" data-opcao="a" aria-pressed="true">A · Tela inteira</button>
+      <button type="button" data-opcao="b" aria-pressed="false">B · Com zoom</button>
+    </div>
+  </div>
+  <div class="ctl-grupo">
+    <span>Tela:</span>
+    <div class="seg">
+      <button type="button" data-tela="pc" aria-pressed="true">Computador</button>
+      <button type="button" data-tela="cel" aria-pressed="false">Celular</button>
+    </div>
+  </div>
+</header>
+
+<section class="briefing">
+  <h1>Como mostrar os mini vídeos do tutorial?</h1>
+  <p>
+    O Portal do Colaborador vai ganhar uma área <b>Como usar o Portal</b>, no estilo do wikiHow: cada tutorial é
+    dividido em passos curtos, e cada passo tem o seu próprio mini vídeo, em repetição. Abaixo está um tutorial de
+    exemplo. Compare as duas opções e veja também como fica no celular.
+  </p>
+  <div class="opcoes">
+    <button type="button" class="opcao" id="cartaoA" data-opcao="a" aria-pressed="true">
+      <span class="opcao-letra">A</span>
+      <strong>Tela inteira</strong>
+      <span>O mini vídeo mostra a tela toda do Portal enquanto a setinha vai até o lugar certo e clica.</span>
+    </button>
+    <button type="button" class="opcao" id="cartaoB" data-opcao="b" aria-pressed="false">
+      <span class="opcao-letra">B</span>
+      <strong>Com zoom</strong>
+      <span>O mesmo mini vídeo, mas a imagem aproxima no ponto do clique para deixar o detalhe bem visível.</span>
+    </button>
+  </div>
+  <div class="decisao">
+    <span>Escolheu? Responda com a letra para quem te enviou este link.</span>
+  </div>
+</section>
+
+<div class="frame modo-a" id="frame">
+  <div class="p-nav">
+    <span class="p-marca"><img src="logo.png" alt="Santa Mônica" class="p-logo"><i class="p-div"></i>PORTAL DO COLABORADOR</span>
+    <span class="p-user"><span>Olá, Maria!</span><span class="p-avatar">M</span></span>
+  </div>
+
+  <div class="p-corpo">
+    <div class="p-barra">
+      <span class="p-nav-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg></span>
+      <span class="p-nav-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+      <span class="p-barra-titulo">Como usar o Portal</span>
+    </div>
+
+    <article class="artigo">
+      <div class="trilha">
+        <span>Como usar o Portal</span><span aria-hidden="true">›</span><b>Contracheque</b>
+        <span class="exemplo">EXEMPLO</span>
+      </div>
+      <h2>Como receber seu contracheque por e-mail</h2>
+      <p class="intro">
+        Pelo Portal você pede o comprovante de qualquer mês e ele chega no seu e-mail. Veja como fazer, passo a passo.
+      </p>
+      <div class="meta"><span>5 passos</span><span>Menos de 1 minuto</span></div>
+
+      <ol class="passos">
+        <!-- Passo 1: 2º atalho da coluna (centro x 16%, y 56%) -->
+        <li class="passo">
+          <div class="cena" style="--x0: 70%; --y0: 88%; --x1: 16%; --y1: 56%;">
+            <div class="cena-in">
+              <div class="c-nav"><b>PORTAL DO COLABORADOR</b><span>Olá, Maria! <i></i></span></div>
+              <div class="c-atalho" style="top: 17%;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/></svg>
+                <b>ANIVERSARIANTES</b>
+              </div>
+              <div class="c-atalho anima-hover" style="top: 44%;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+                <b>CONTRACHEQUE</b>
+              </div>
+              <div class="c-atalho" style="top: 71%;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
+                <b>GESTÃO DA QUALIDADE</b>
+              </div>
+              <div class="c-comunicados"><b>COMUNICADOS</b><i></i><i></i><i></i><i></i></div>
+              <div class="clique"></div>
+              <svg class="cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v17l4.5-4.2 3 6.7 3-1.3-3-6.6H17Z" fill="#fff" stroke="#111" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            </div>
+            <button type="button" class="pausar" aria-label="Pausar mini vídeo" data-pausar></button>
+          </div>
+          <div class="passo-texto">
+            <span class="passo-num">1</span>
+            <p class="passo-acao">Clique em CONTRACHEQUE na tela inicial.</p>
+            <p class="passo-expl">O botão fica na coluna da esquerda, logo abaixo de Aniversariantes.</p>
+          </div>
+        </li>
+
+        <!-- Passo 2: colunas Mês/Ano da 1ª linha (centro do Mês: x 79,4%, y 45%) -->
+        <li class="passo">
+          <div class="cena" style="--x0: 45%; --y0: 85%; --x1: 79.4%; --y1: 45%;">
+            <div class="cena-in">
+              <div class="c-nav"><b>PORTAL DO COLABORADOR</b><span>Olá, Maria! <i></i></span></div>
+              <div class="c-botoes">
+                <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg></i>
+                <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></i>
+              </div>
+              <div class="c-tabela">
+                <span class="th">ID</span><span class="th">Ação</span><span class="th">Unidade</span><span class="th">Matrícula</span><span class="th">Doc</span><span class="th">Mês</span><span class="th">Ano</span>
+                <span>10231</span><span><i class="c-env"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></i></span><span>Unidade Centro</span><span>000123</span><span>Contracheque</span><span>08</span><span>2026</span>
+                <span class="z">9874</span><span class="z"><i class="c-env"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></i></span><span class="z">Unidade Centro</span><span class="z">000123</span><span class="z">Contracheque</span><span class="z">07</span><span class="z">2026</span>
+                <span>9520</span><span><i class="c-env"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></i></span><span>Unidade Centro</span><span>000123</span><span>Contracheque</span><span>06</span><span>2026</span>
+              </div>
+              <div class="anima-marca" style="left: 4%; top: 39%; width: 92%; height: 12%;"></div>
+              <div class="clique"></div>
+              <svg class="cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v17l4.5-4.2 3 6.7 3-1.3-3-6.6H17Z" fill="#fff" stroke="#111" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            </div>
+            <button type="button" class="pausar" aria-label="Pausar mini vídeo" data-pausar></button>
+          </div>
+          <div class="passo-texto">
+            <span class="passo-num">2</span>
+            <p class="passo-acao">Encontre a linha do mês que você quer.</p>
+            <p class="passo-expl">Cada linha é um comprovante. O mês e o ano ficam nas duas últimas colunas.</p>
+          </div>
+        </li>
+
+        <!-- Passo 3: envelope da 1ª linha (x 16,4%, y 45%) -->
+        <li class="passo">
+          <div class="cena" style="--x0: 55%; --y0: 88%; --x1: 16.4%; --y1: 45%;">
+            <div class="cena-in">
+              <div class="c-nav"><b>PORTAL DO COLABORADOR</b><span>Olá, Maria! <i></i></span></div>
+              <div class="c-botoes">
+                <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg></i>
+                <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></i>
+              </div>
+              <div class="c-tabela">
+                <span class="th">ID</span><span class="th">Ação</span><span class="th">Unidade</span><span class="th">Matrícula</span><span class="th">Doc</span><span class="th">Mês</span><span class="th">Ano</span>
+                <span>10231</span><span><i class="c-env anima-aperta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></i></span><span>Unidade Centro</span><span>000123</span><span>Contracheque</span><span>08</span><span>2026</span>
+                <span class="z">9874</span><span class="z"><i class="c-env"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></i></span><span class="z">Unidade Centro</span><span class="z">000123</span><span class="z">Contracheque</span><span class="z">07</span><span class="z">2026</span>
+                <span>9520</span><span><i class="c-env"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></i></span><span>Unidade Centro</span><span>000123</span><span>Contracheque</span><span>06</span><span>2026</span>
+              </div>
+              <div class="clique"></div>
+              <svg class="cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v17l4.5-4.2 3 6.7 3-1.3-3-6.6H17Z" fill="#fff" stroke="#111" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            </div>
+            <button type="button" class="pausar" aria-label="Pausar mini vídeo" data-pausar></button>
+          </div>
+          <div class="passo-texto">
+            <span class="passo-num">3</span>
+            <p class="passo-acao">Clique no envelope dessa linha.</p>
+            <p class="passo-expl">É o botão azul da coluna Ação.</p>
+          </div>
+        </li>
+
+        <!-- Passo 4: aviso no canto (centro do aviso: x 79%, y 21%); sem cursor -->
+        <li class="passo">
+          <div class="cena" style="--x1: 79%; --y1: 21%;">
+            <div class="cena-in">
+              <div class="c-nav"><b>PORTAL DO COLABORADOR</b><span>Olá, Maria! <i></i></span></div>
+              <div class="c-botoes">
+                <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg></i>
+                <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></i>
+              </div>
+              <div class="c-tabela">
+                <span class="th">ID</span><span class="th">Ação</span><span class="th">Unidade</span><span class="th">Matrícula</span><span class="th">Doc</span><span class="th">Mês</span><span class="th">Ano</span>
+                <span>10231</span><span><i class="c-env"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></i></span><span>Unidade Centro</span><span>000123</span><span>Contracheque</span><span>08</span><span>2026</span>
+                <span class="z">9874</span><span class="z"><i class="c-env"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></i></span><span class="z">Unidade Centro</span><span class="z">000123</span><span class="z">Contracheque</span><span class="z">07</span><span class="z">2026</span>
+                <span>9520</span><span><i class="c-env"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></i></span><span>Unidade Centro</span><span>000123</span><span>Contracheque</span><span>06</span><span>2026</span>
+              </div>
+              <div class="c-toast anima-toast">
+                <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>
+                <span>Comprovante enviado.</span>
+                <span class="c-toast-barra"></span>
+              </div>
+            </div>
+            <button type="button" class="pausar" aria-label="Pausar mini vídeo" data-pausar></button>
+          </div>
+          <div class="passo-texto">
+            <span class="passo-num">4</span>
+            <p class="passo-acao">Confira o aviso “Comprovante enviado.”</p>
+            <p class="passo-expl">Ele aparece no canto da tela e some sozinho em poucos segundos. Pronto: o pedido foi feito.</p>
+          </div>
+        </li>
+
+        <!-- Passo 5: novo e-mail no topo da caixa de entrada (x 40%, y 25%) -->
+        <li class="passo">
+          <div class="cena" style="--x0: 75%; --y0: 90%; --x1: 40%; --y1: 25%;">
+            <div class="cena-in">
+              <div class="c-mail-topo"><b>Caixa de entrada</b><i></i></div>
+              <div class="c-mail-lista">
+                <div class="c-mail novo anima-chega"><em></em><span>Portal do Colaborador</span><span>Seu comprovante de 08/2026</span><span>agora</span></div>
+                <div class="c-mail"><em></em><span>Comunicação Interna</span><span>Agenda da semana</span><span>09:12</span></div>
+                <div class="c-mail"><em></em><span>Coordenação</span><span>Reunião de planejamento</span><span>ontem</span></div>
+                <div class="c-mail"><em></em><span>Portal do Colaborador</span><span>Seu comprovante de 07/2026</span><span>ago.</span></div>
+                <div class="c-mail"><em></em><span>Comunicação Interna</span><span>Aniversariantes do mês</span><span>ago.</span></div>
+              </div>
+              <div class="clique"></div>
+              <svg class="cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v17l4.5-4.2 3 6.7 3-1.3-3-6.6H17Z" fill="#fff" stroke="#111" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            </div>
+            <button type="button" class="pausar" aria-label="Pausar mini vídeo" data-pausar></button>
+          </div>
+          <div class="passo-texto">
+            <span class="passo-num">5</span>
+            <p class="passo-acao">Abra o seu e-mail.</p>
+            <p class="passo-expl">A mensagem do Portal chega no e-mail do seu cadastro, com o comprovante do mês escolhido.</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="caixas">
+        <div class="caixa dica">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+          <h3>Dica</h3>
+          <p>Não chegou? Procure também na caixa de spam ou lixo eletrônico.</p>
+        </div>
+        <div class="caixa aviso">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          <h3>Atenção</h3>
+          <p>O comprovante vai para o e-mail do seu cadastro. Se ele estiver desatualizado, procure o setor responsável pelo seu cadastro.</p>
+        </div>
+      </div>
+
+      <div class="ajudou" id="ajudou">
+        <span>Este tutorial ajudou?</span>
+        <button type="button" aria-pressed="false">Sim</button>
+        <button type="button" aria-pressed="false">Não</button>
+      </div>
+    </article>
+  </div>
+
+  <div class="p-rodape">
+    <span class="p-rodape-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+    <span><b>OUVIDORIA</b><small>Canal de escuta ativa, transparente e acessível</small></span>
+  </div>
+</div>
+
+<script>
+  const frame = document.getElementById('frame');
+  const ICONE_PAUSA = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>';
+  const ICONE_PLAY = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg>';
+
+  function marcar(seletor, ativo) {
+    document.querySelectorAll(seletor).forEach((b) => b.setAttribute('aria-pressed', String(ativo(b))));
+  }
+
+  function escolherOpcao(opcao) {
+    frame.classList.toggle('modo-a', opcao === 'a');
+    frame.classList.toggle('modo-b', opcao === 'b');
+    marcar('[data-opcao]', (b) => b.dataset.opcao === opcao);
+  }
+
+  document.querySelectorAll('[data-opcao]').forEach((b) => b.addEventListener('click', () => escolherOpcao(b.dataset.opcao)));
+
+  document.querySelectorAll('[data-tela]').forEach((b) => b.addEventListener('click', () => {
+    frame.classList.toggle('celular', b.dataset.tela === 'cel');
+    marcar('[data-tela]', (x) => x === b);
+  }));
+
+  document.querySelectorAll('[data-pausar]').forEach((b) => {
+    b.innerHTML = ICONE_PAUSA;
+    b.addEventListener('click', () => {
+      const pausada = b.closest('.cena').classList.toggle('pausada');
+      b.innerHTML = pausada ? ICONE_PLAY : ICONE_PAUSA;
+      b.setAttribute('aria-label', pausada ? 'Continuar mini vídeo' : 'Pausar mini vídeo');
+    });
+  });
+
+  document.querySelectorAll('#ajudou button').forEach((b) => b.addEventListener('click', () => {
+    marcar('#ajudou button', (x) => x === b);
+  }));
+
+</script>
+</body>
+</html>
