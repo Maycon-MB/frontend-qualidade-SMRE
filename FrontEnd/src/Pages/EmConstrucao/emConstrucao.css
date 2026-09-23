@@ -1,0 +1,248 @@
+.EmConstrucao {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #f0f4f8;
+}
+
+.em-construcao-body {
+    flex: 1;
+    padding-bottom: 40px;
+}
+
+/* ====== BARRA VOLTAR / INÍCIO ====== */
+.em-construcao-nav-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 0 0;
+}
+
+.em-construcao-nav-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: 1.5px solid rgba(0, 108, 181, 0.2);
+    background: #ffffff;
+    color: #006CB5;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
+}
+
+.em-construcao-nav-btn:hover {
+    background: #eef6ff;
+    border-color: #006CB5;
+    transform: translateY(-2px);
+}
+
+/* ====== FAIXA COM O NOME DA PÁGINA ====== */
+.em-construcao-faixa {
+    background: linear-gradient(90deg, #006CB5 0%, #00A6E4 100%);
+    color: #ffffff;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    padding: 18px 16px;
+    border-radius: 16px;
+    margin-top: 25px;
+    box-shadow: 0 10px 35px rgba(0, 108, 181, 0.35);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* ====== CAIXA COM A FITA ====== */
+.em-construcao-caixa {
+    margin-top: 32px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 108, 181, 0.08);
+    animation: emConstrucaoSobe 0.5s ease both;
+}
+
+/* background-size = diagonal de uma listra (36px / sen 45°) para o loop não dar salto */
+.em-construcao-fita {
+    height: 14px;
+    background: repeating-linear-gradient(-45deg, #F5821F 0 18px, #ffffff 18px 36px);
+    background-size: 51px 14px;
+    animation: emConstrucaoFita 1.6s linear infinite;
+}
+
+.em-construcao-conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 44px 32px 40px;
+}
+
+.em-construcao-icone {
+    position: relative;
+    flex-shrink: 0;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: #eef6ff;
+    color: #006CB5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.em-construcao-icone::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 2px dashed rgba(0, 108, 181, 0.25);
+    animation: emConstrucaoGira 18s linear infinite;
+}
+
+.em-construcao-icone svg {
+    width: 72px;
+    height: 72px;
+}
+
+.em-construcao-selo {
+    display: inline-block;
+    background: rgba(245, 130, 31, 0.12);
+    color: #d96a0b;
+    font-weight: 900;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    padding: 7px 14px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+}
+
+.em-construcao-texto h1 {
+    color: #006CB5;
+    font-weight: 900;
+    font-size: 1.6rem;
+    margin: 0 0 10px;
+}
+
+.em-construcao-texto p {
+    color: #6c7a89;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 420px;
+}
+
+.em-construcao-texto p b {
+    color: #006CB5;
+}
+
+/* ====== BOTÕES ====== */
+.em-construcao-botoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.em-construcao-btn-voltar,
+.em-construcao-btn-inicio {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.em-construcao-btn-voltar {
+    border: 1.5px solid rgba(0, 108, 181, 0.25);
+    background: #ffffff;
+    color: #006CB5;
+    padding: 11px 22px;
+    transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.em-construcao-btn-voltar:hover {
+    background: #eef6ff;
+    border-color: #006CB5;
+}
+
+.em-construcao-btn-inicio {
+    border: none;
+    color: #ffffff;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    padding: 12px 24px;
+    background: linear-gradient(90deg, #F5821F, #ff9e43);
+    box-shadow: 0 6px 20px rgba(245, 130, 31, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.em-construcao-btn-inicio:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(245, 130, 31, 0.5);
+}
+
+.em-construcao-nav-btn:focus-visible,
+.em-construcao-btn-voltar:focus-visible,
+.em-construcao-btn-inicio:focus-visible {
+    outline: 3px solid #F5821F;
+    outline-offset: 2px;
+}
+
+@keyframes emConstrucaoSobe {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes emConstrucaoFita {
+    to { background-position: 51px 0; }
+}
+
+@keyframes emConstrucaoGira {
+    to { transform: rotate(360deg); }
+}
+
+@media (max-width: 767px) {
+    .em-construcao-faixa {
+        font-size: 1.05rem;
+        letter-spacing: 1px;
+    }
+
+    .em-construcao-conteudo {
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px 20px;
+        text-align: center;
+    }
+
+    .em-construcao-icone {
+        width: 110px;
+        height: 110px;
+    }
+
+    .em-construcao-icone svg {
+        width: 54px;
+        height: 54px;
+    }
+
+    .em-construcao-texto h1 {
+        font-size: 1.3rem;
+    }
+
+    .em-construcao-botoes {
+        flex-direction: column;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .em-construcao-caixa,
+    .em-construcao-fita,
+    .em-construcao-icone::after {
+        animation: none;
+    }
+}

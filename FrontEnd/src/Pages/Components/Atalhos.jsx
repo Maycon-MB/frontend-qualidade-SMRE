@@ -2,15 +2,16 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PartyPopper, HeartPulse, FileText, Palmtree, Receipt, BadgeCheck } from 'lucide-react';
 import { emProducao } from '../../config/fase';
+import { linkEmConstrucao } from '../EmConstrucao/linkEmConstrucao';
 import './Atalhos.css';
 
 const botoes = [
     { id: 1, nome: 'ANIVERSARIANTES', Icon: PartyPopper, link: '/aniversariantes' },
-    { id: 2, nome: 'BENEFÍCIOS', Icon: HeartPulse, link: '#', ocultoEmProducao: true },
+    { id: 2, nome: 'BENEFÍCIOS', Icon: HeartPulse, link: linkEmConstrucao('Benefícios'), ocultoEmProducao: true },
     { id: 3, nome: 'CONTRACHEQUE', Icon: FileText, link: '/contraCheque' },
-    { id: 4, nome: 'FÉRIAS', Icon: Palmtree, link: '#', ocultoEmProducao: true },
+    { id: 4, nome: 'FÉRIAS', Icon: Palmtree, link: linkEmConstrucao('Férias'), ocultoEmProducao: true },
     { id: 5, nome: 'GESTÃO DA QUALIDADE', Icon: BadgeCheck, link: '/qualidade' },
-    { id: 6, nome: 'INFORME DE RENDIMENTOS', Icon: Receipt, link: '/', ocultoEmProducao: true },
+    { id: 6, nome: 'INFORME DE RENDIMENTOS', Icon: Receipt, link: linkEmConstrucao('Informe de Rendimentos'), ocultoEmProducao: true },
 ];
 
 export const contarAtalhosVisiveis = () =>
