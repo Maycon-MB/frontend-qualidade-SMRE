@@ -8,6 +8,21 @@ import { linkEmConstrucao } from "../EmConstrucao/linkEmConstrucao";
 import { busca_foto } from "../../services/api";
 import './qualidade.css';
 
+// Abre em nova aba, como o PDF do documento, para não tirar a pessoa da área aberta.
+function BotaoFluxoProcesso({ codigo }) {
+    return (
+        <Button
+            as="a"
+            href={`${process.env.PUBLIC_URL}/#${linkEmConstrucao(`Fluxo do processo ${codigo}`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-visualizar-doc btn-fluxo-processo"
+        >
+            FLUXO DO PROCESSO <i className="fa-solid fa-diagram-project"></i>
+        </Button>
+    );
+}
+
 const areas = [
     { id: 'comercial', nome: 'COMERCIAL', tipo: 'PROCESSOS DE NEGÓCIO', color: '#4ea8de' },
     { id: 'dgp', nome: 'DGP', tipo: 'PROCESSOS DE NEGÓCIO', color: '#4ea8de' },
@@ -111,6 +126,7 @@ const areaDetails = {
                         <Button className="btn-visualizar-doc">
                             VISUALIZAR DOCUMENTO <i className="fa-solid fa-angles-right"></i>
                         </Button>
+                        <BotaoFluxoProcesso codigo="PE.01-1.2.1" />
                         <div style={{ clear: 'both' }}></div>
                     </>
                 ),
@@ -163,6 +179,7 @@ const areaDetails = {
                         >
                             VISUALIZAR DOCUMENTO <i className="fa-solid fa-angles-right"></i>
                         </Button>
+                        <BotaoFluxoProcesso codigo="PE.02-0.2" />
                         <div style={{ clear: 'both' }}></div>
                     </>
                 ),
@@ -184,6 +201,7 @@ const areaDetails = {
                         >
                             VISUALIZAR DOCUMENTO <i className="fa-solid fa-angles-right"></i>
                         </Button>
+                        <BotaoFluxoProcesso codigo="PE.02-0.3" />
                         <div style={{ clear: 'both' }}></div>
                     </>
                 ),
@@ -239,6 +257,7 @@ const areaDetails = {
                         >
                             VISUALIZAR DOCUMENTO <i className="fa-solid fa-angles-right"></i>
                         </Button>
+                        <BotaoFluxoProcesso codigo="PS.06-0.1" />
                         <div style={{ clear: 'both' }}></div>
                     </>
                 ),
@@ -258,6 +277,7 @@ const areaDetails = {
                         >
                             VISUALIZAR DOCUMENTO <i className="fa-solid fa-angles-right"></i>
                         </Button>
+                        <BotaoFluxoProcesso codigo="PS.06-0.2" />
                         <div style={{ clear: 'both' }}></div>
                     </>
                 ),
