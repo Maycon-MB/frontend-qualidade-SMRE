@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { PartyPopper, HeartPulse, FileText, Palmtree, Receipt, BadgeCheck, Phone } from 'lucide-react';
+import { PartyPopper, HeartPulse, FileText, Palmtree, Receipt, BadgeCheck, Phone, MonitorCheck } from 'lucide-react';
 import { emProducao } from '../../config/fase';
 import { linkEmConstrucao } from '../EmConstrucao/linkEmConstrucao';
 import './menu.css';
@@ -22,6 +22,7 @@ function Menu({ foto, nome }) {
         { id: 5, nome: 'GESTÃO DA QUALIDADE', Icon: BadgeCheck, link: '/qualidade' },
         { id: 6, nome: 'INFORME DE RENDIMENTOS', Icon: Receipt, link: linkEmConstrucao('Informe de Rendimentos'), ocultoEmProducao: true },
         { id: 7, nome: 'RAMAIS', Icon: Phone, link: '/ramais' },
+        { id: 8, nome: 'SISTEMA MONITORA', Icon: MonitorCheck, link: 'https://monitora.smrede.net.br/', externo: true },
     ].filter((botao) => !(emProducao && botao.ocultoEmProducao));
 
     return (
@@ -60,8 +61,13 @@ function Menu({ foto, nome }) {
                                 className="custom-dropdown"
                             >
                                 {/* Botões do Menu */}
-                                {botoes.map(({ id, nome, Icon, link }) => (
-                                    <NavDropdown.Item key={id} as={Link} to={link}>
+                                {botoes.map(({ id, nome, Icon, link, externo }) => (
+                                    <NavDropdown.Item
+                                        key={id}
+                                        {...(externo
+                                            ? { href: link, target: '_blank', rel: 'noopener noreferrer' }
+                                            : { as: Link, to: link })}
+                                    >
                                         <Icon size={15} strokeWidth={1.8} style={{ marginRight: '0.5rem', verticalAlign: 'middle', color: '#006CB5' }} />
                                         {nome}
                                     </NavDropdown.Item>
