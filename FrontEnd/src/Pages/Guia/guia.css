@@ -1,0 +1,458 @@
+.GuiaPortal {
+    --azul: #006CB5;
+    --ciano: #00A6E4;
+    --laranja: #F5821F;
+    --fundo-portal: #f0f4f8;
+    --texto: #2b3440;
+    --texto-suave: #5f6d7c;
+    --azul-claro: #eef6ff;
+    --verde: #07bc0c;
+    --branco: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #f0f4f8;
+}
+
+.guia-body {
+    flex: 1;
+    padding-bottom: 40px;
+}
+
+/* O `* { font-family }` global do login vence a herança; fixa a fonte do Portal no Guia */
+.guia-body *:not([class*="fa-"]) {
+    font-family: var(--font-main);
+}
+
+.guia-nav-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 0 0;
+}
+
+.guia-nav-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: 1.5px solid rgba(0, 108, 181, 0.2);
+    background: #ffffff;
+    color: #006CB5;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
+}
+
+.guia-nav-btn:hover {
+    background: #eef6ff;
+    border-color: #006CB5;
+    transform: translateY(-2px);
+}
+
+.guia-nav-btn:focus-visible {
+    outline: 3px solid #F5821F;
+    outline-offset: 2px;
+}
+
+.guia-nav-titulo {
+    color: #006CB5;
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: 0.3px;
+    margin-left: 8px;
+}
+
+.guia-intro {
+    max-width: 860px;
+    margin: 22px auto 0;
+    color: var(--texto-suave);
+    line-height: 1.6;
+}
+
+/* ================= acordeão dos temas (visual de .accordion-item-custom da Qualidade) ================= */
+.GuiaPortal .acordeao { max-width: 860px; margin: 18px auto 0; display: grid; gap: 16px; }
+.GuiaPortal .acc-item {
+    background: var(--branco); border: 1px solid rgba(0, 108, 181, .12); border-radius: 18px; overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 108, 181, .06); transition: box-shadow .3s ease, border-color .3s ease;
+}
+.GuiaPortal .acc-item:hover { box-shadow: 0 14px 35px rgba(0, 108, 181, .15); border-color: rgba(0, 108, 181, .3); }
+.GuiaPortal .acc-cab {
+    width: 100%; border: 0; background: var(--branco); cursor: pointer; text-align: left; padding: 18px 22px;
+    display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 4px 16px; color: var(--azul);
+}
+.GuiaPortal .acc-cab[aria-expanded="true"] { background: linear-gradient(90deg, rgba(0, 108, 181, .06) 0%, rgba(0, 166, 228, .04) 100%); }
+.GuiaPortal .acc-ic {
+    grid-row: span 2; width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; color: var(--branco);
+    background: linear-gradient(135deg, var(--azul), var(--ciano)); box-shadow: 0 6px 16px rgba(0, 108, 181, .28);
+}
+.GuiaPortal .acc-ic svg { width: 24px; height: 24px; }
+.GuiaPortal .acc-titulo { font-weight: 900; font-size: 1.08rem; letter-spacing: .02em; }
+.GuiaPortal .acc-sub { grid-column: 2; color: var(--texto-suave); font-size: .88rem; }
+.GuiaPortal .acc-qtd {
+    grid-row: 1 / span 2; grid-column: 3; background: var(--azul-claro); color: var(--azul); font-weight: 700; font-size: .75rem;
+    padding: 5px 11px; border-radius: 20px; white-space: nowrap;
+}
+.GuiaPortal .acc-seta { grid-row: 1 / span 2; grid-column: 4; width: 22px; height: 22px; transition: transform .3s ease; }
+.GuiaPortal .acc-cab[aria-expanded="true"] .acc-seta { transform: rotate(180deg); }
+.GuiaPortal .acc-corpo { background: #fafcfd; padding: 22px 24px 26px; border-top: 1px solid rgba(0, 108, 181, .08); }
+.GuiaPortal .funcao + .funcao { margin-top: 22px; }
+.GuiaPortal .funcao h4 { margin: 0 0 10px; color: var(--azul); font-size: .9rem; font-weight: 900; letter-spacing: .06em; }
+
+/* passos: cada um abre sozinho, com o seu mini vídeo */
+.GuiaPortal .passos { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.GuiaPortal .passo-item {
+    background: var(--branco); border: 1px solid rgba(0, 108, 181, .12); border-radius: 14px; overflow: hidden;
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+.GuiaPortal .passo-item:hover { border-color: rgba(0, 108, 181, .3); box-shadow: 0 6px 18px rgba(0, 108, 181, .08); }
+.GuiaPortal .passo-cab {
+    width: 100%; border: 0; background: var(--branco); cursor: pointer; text-align: left; padding: 12px 16px;
+    display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; color: var(--texto);
+}
+.GuiaPortal .passo-cab[aria-expanded="true"] { background: linear-gradient(90deg, rgba(0, 108, 181, .06) 0%, rgba(0, 166, 228, .04) 100%); }
+.GuiaPortal .passo-num {
+    width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center;
+    background: linear-gradient(135deg, var(--azul), var(--ciano)); color: var(--branco); font-weight: 900; font-size: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 108, 181, .28);
+}
+.GuiaPortal .passo-acao { font-weight: 900; font-size: 1rem; line-height: 1.35; }
+.GuiaPortal .passo-seta { width: 20px; height: 20px; color: var(--azul); transition: transform .3s ease; }
+.GuiaPortal .passo-cab[aria-expanded="true"] .passo-seta { transform: rotate(180deg); }
+.GuiaPortal .passo-corpo { padding: 4px 16px 18px; display: grid; gap: 12px; }
+.GuiaPortal .passo-expl { margin: 0; color: var(--texto-suave); line-height: 1.6; }
+
+/* ================= mini vídeos: 1em = 2,5% da largura e 4% da altura da cena ================= */
+.GuiaPortal .cena {
+    container-type: inline-size; position: relative; width: 100%; max-width: 100%; aspect-ratio: 16 / 10;
+    border-radius: 14px; overflow: hidden; background: var(--fundo-portal);
+    border: 1px solid rgba(0, 108, 181, .14); box-shadow: 0 8px 24px rgba(0, 40, 80, .1);
+}
+.GuiaPortal .cena-in { position: absolute; inset: 0; font-size: 2.5cqw; color: #333; }
+.GuiaPortal .tela { position: absolute; inset: 0; background: var(--fundo-portal); }
+.GuiaPortal .c-nav {
+    position: absolute; left: 0; right: 0; top: 0; height: 12%; padding: 0 3%; z-index: 3;
+    background: linear-gradient(90deg, var(--azul), var(--ciano)); color: var(--branco);
+    display: flex; align-items: center; justify-content: space-between;
+}
+.GuiaPortal .c-logo { width: 9%; height: 80%; object-fit: contain; }
+.GuiaPortal .c-nav-dir { display: flex; align-items: center; gap: .5em; font-size: .6em; font-weight: 700; }
+.GuiaPortal .c-av {
+    width: 1.9em; height: 1.9em; border-radius: 50%; background: var(--branco); color: var(--azul); font-style: normal;
+    display: grid; place-items: center; font-weight: 900; font-size: 1em; object-fit: cover;
+}
+.GuiaPortal .c-pontos { width: 2.2em; height: 2.2em; }
+
+.GuiaPortal .c-atalho {
+    position: absolute; width: 17.5%; height: 37.5%; background: var(--branco); border-radius: .8em;
+    box-shadow: 0 .3em .9em rgba(0, 0, 0, .12); color: var(--azul);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .4em;
+}
+.GuiaPortal .c-atalho svg { width: 2.2em; height: 2.2em; }
+.GuiaPortal .c-atalho b { font-size: .46em; font-weight: 700; letter-spacing: .05em; text-align: center; padding: 0 .4em; }
+
+.GuiaPortal .c-comunicados {
+    position: absolute; left: 45%; right: 4%; top: 17%; bottom: 5%; background: var(--branco); border-radius: .8em;
+    overflow: hidden; box-shadow: 0 .3em .9em rgba(0, 0, 0, .08);
+}
+.GuiaPortal .c-com-cab {
+    position: absolute; left: 0; right: 0; top: 0; height: 9%; display: flex; align-items: center; gap: .5em; padding: 0 4%;
+    background: linear-gradient(90deg, #005fa3, var(--azul) 55%, var(--ciano)); color: var(--branco);
+    font-size: .5em; font-weight: 900; letter-spacing: .08em;
+}
+.GuiaPortal .c-com-cab svg { width: 1.3em; height: 1.3em; }
+.GuiaPortal .c-com-item {
+    position: absolute; left: 0; right: 0; height: 11.5%; padding: 0 4%; border-bottom: 1px solid #e8eef5;
+    display: flex; flex-direction: column; justify-content: center; gap: .2em;
+}
+.GuiaPortal .c-com-item b { font-size: .46em; color: #1c2530; }
+.GuiaPortal .c-com-item small { font-size: .38em; color: #7a8591; }
+.GuiaPortal .c-com-aberto { position: absolute; left: 45%; right: 4%; top: 24%; bottom: 5%; z-index: 4; border-radius: 0 0 .8em .8em; overflow: hidden; background: #f5f9ff; }
+.GuiaPortal .c-com-aberto .c-com-item { position: relative; height: 12.5%; background: #0060a8; border: 0; }
+.GuiaPortal .c-com-aberto .c-com-item b, .GuiaPortal .c-com-aberto .c-com-item small { color: var(--branco); }
+.GuiaPortal .c-banner {
+    margin: 5% 5% 0; height: 22%; border-radius: .3em; background: linear-gradient(120deg, #3b8fe0, #7fc0f5);
+    color: var(--branco); display: flex; align-items: center; padding: 0 5%; font-size: .5em; letter-spacing: .5em; font-weight: 300;
+}
+.GuiaPortal .c-com-texto { margin: 4% 10% 0; display: grid; gap: .45em; }
+.GuiaPortal .c-com-texto strong { font-size: .5em; color: var(--azul); text-align: center; }
+.GuiaPortal .linha { display: block; height: .5em; border-radius: .3em; background: #dce6f0; }
+
+.GuiaPortal .c-botoes { position: absolute; left: 4%; top: 16%; display: flex; gap: .5em; }
+.GuiaPortal .c-botoes i {
+    width: 1.8em; height: 1.8em; border-radius: .45em; background: var(--branco); border: 1px solid rgba(0, 108, 181, .25);
+    display: grid; place-items: center; color: var(--azul);
+}
+.GuiaPortal .c-botoes svg { width: 1em; height: 1em; }
+.GuiaPortal .c-titulo { position: absolute; left: 16%; top: 16%; height: 7.2%; display: flex; align-items: center; color: var(--azul); font-weight: 900; font-size: .7em; }
+
+.GuiaPortal .c-busca {
+    position: absolute; left: 4%; right: 4%; top: 25%; height: 6%; background: var(--branco); border: 1px solid #d5e2ee;
+    border-radius: .5em; display: flex; align-items: center; gap: .5em; padding: 0 1.5%; color: #6b7785; font-size: .42em;
+}
+.GuiaPortal .c-busca svg { width: 1.3em; height: 1.3em; flex-shrink: 0; }
+.GuiaPortal .c-busca .c-digitado { color: #1c2530; font-weight: 700; }
+.GuiaPortal .c-abas { position: absolute; left: 4%; right: 4%; display: flex; gap: 1%; }
+.GuiaPortal .c-abas span {
+    width: 26%; height: 3.2cqw; display: grid; place-items: center; font-size: .42em; font-weight: 700; color: var(--azul);
+    background: rgba(255, 255, 255, .85); border-radius: .8em .8em 0 0; border: 1px solid rgba(0, 108, 181, .18); border-bottom: 0;
+}
+.GuiaPortal .c-abas span.on { background: linear-gradient(135deg, var(--azul), var(--ciano)); color: var(--branco); border-color: transparent; }
+.GuiaPortal .c-abas.centro { justify-content: center; }
+.GuiaPortal .c-abas.centro span { width: 16%; }
+
+.GuiaPortal .c-lista {
+    position: absolute; left: 4%; right: 4%; background: var(--branco); border-radius: 0 0 .5em .5em; overflow: hidden;
+    box-shadow: 0 .2em .8em rgba(0, 0, 0, .08); display: flex; flex-direction: column;
+}
+.GuiaPortal .c-lista .lin { flex: 1; display: grid; align-items: center; padding: 0 1.2%; font-size: .42em; color: #333; }
+.GuiaPortal .c-lista .lin:nth-child(odd):not(.cab) { background: #f2f2f2; }
+.GuiaPortal .c-lista .lin.cab {
+    background: linear-gradient(90deg, var(--azul), var(--ciano)); color: var(--branco); font-weight: 900; font-size: .38em;
+    letter-spacing: .05em;
+}
+.GuiaPortal .c-lista .lin b { font-weight: 900; }
+.GuiaPortal .c-lista .azul { color: var(--azul); font-weight: 700; }
+
+.GuiaPortal .c-filtro {
+    position: absolute; top: 25%; height: 7%; background: var(--branco); border: 1px solid #d5e2ee; border-radius: .5em;
+    display: flex; align-items: center; gap: .5em; padding: 0 1.2%; color: var(--azul); font-size: .42em; font-weight: 700;
+}
+.GuiaPortal .c-filtro.cinza { color: #6b7785; font-weight: 400; }
+.GuiaPortal .c-filtro svg { width: 1.3em; height: 1.3em; flex-shrink: 0; }
+.GuiaPortal .c-filtro .fim { margin-left: auto; }
+.GuiaPortal .c-menu {
+    position: absolute; z-index: 4; background: var(--branco); border-radius: .6em; box-shadow: 0 .5em 1.5em rgba(0, 0, 0, .18);
+    padding: 1% 1.2%; font-size: .42em;
+}
+.GuiaPortal .c-menu-cab { color: #6b7785; font-weight: 900; font-size: .85em; letter-spacing: .08em; padding: .6em .5em; border-bottom: 1px solid #e8eef5; display: flex; justify-content: space-between; }
+.GuiaPortal .c-meses { display: grid; grid-template-columns: 1fr 1fr; gap: .15em .6em; padding-top: .4em; }
+.GuiaPortal .c-meses span { padding: .55em .7em; font-weight: 700; color: #1c2530; border-radius: .5em; }
+.GuiaPortal .c-meses span.on { background: var(--azul); color: var(--branco); }
+.GuiaPortal .c-marca-lin { display: flex; align-items: center; gap: .6em; padding: .45em .5em; color: var(--azul); font-weight: 700; }
+.GuiaPortal .c-marca-lin i { width: 1.1em; height: 1.1em; border-radius: .25em; background: #1a6fc1; display: grid; place-items: center; color: var(--branco); font-style: normal; font-size: .8em; }
+.GuiaPortal .c-marca-lin em { margin-left: auto; font-style: normal; background: #e3eef9; border-radius: 1em; padding: .1em .6em; color: #50627a; font-size: .85em; }
+.GuiaPortal .c-menu-rodape { display: flex; gap: .6em; padding-top: .6em; border-top: 1px solid #e8eef5; margin-top: .3em; }
+.GuiaPortal .c-menu-rodape span { flex: 1; text-align: center; padding: .55em; border-radius: .5em; font-weight: 700; }
+.GuiaPortal .c-menu-rodape .limpar { border: 1px solid var(--laranja); color: var(--laranja); }
+.GuiaPortal .c-menu-rodape .todas { background: #9cc6ea; color: var(--branco); }
+
+.GuiaPortal .c-faixa {
+    position: absolute; left: 4%; right: 4%; top: 27%; height: 10%; border-radius: .6em; color: var(--branco);
+    background: linear-gradient(90deg, var(--azul), var(--ciano)); display: grid; place-items: center;
+    font-size: .56em; font-weight: 900; letter-spacing: .12em; box-shadow: 0 .3em 1em rgba(0, 108, 181, .3);
+}
+.GuiaPortal .c-painel {
+    position: absolute; left: 4%; right: 4%; background: var(--branco); border-radius: .6em;
+    box-shadow: 0 .2em .8em rgba(0, 0, 0, .08); padding: 3% 4%; display: flex; flex-direction: column; gap: 7%;
+}
+.GuiaPortal .c-doc-cab {
+    position: absolute; left: 8%; right: 8%; top: 57%; height: 6%; border: 1px solid #dbe6f1; border-radius: .6em .6em 0 0;
+    background: #f5f9fd; display: flex; align-items: center; justify-content: space-between; padding: 0 2%;
+    color: var(--azul); font-size: .46em; font-weight: 700;
+}
+.GuiaPortal .c-doc-cab svg { width: 1.4em; height: 1.4em; }
+.GuiaPortal .c-doc-corpo { position: absolute; left: 8%; right: 8%; top: 63%; height: 26%; border: 1px solid #dbe6f1; border-top: 0; border-radius: 0 0 .6em .6em; padding: 2% 2.5%; display: grid; align-content: start; gap: .5em; }
+.GuiaPortal .c-btn-doc {
+    position: absolute; left: 68%; width: 22%; height: 5.5%; border-radius: 2em; color: var(--branco); font-weight: 900;
+    background: linear-gradient(90deg, var(--laranja), #ff9e43); display: grid; place-items: center; font-size: .38em; letter-spacing: .04em;
+    box-shadow: 0 .3em .8em rgba(245, 130, 31, .35);
+}
+.GuiaPortal .c-area {
+    position: absolute; width: 21.5%; height: 29%; background: var(--branco); border-radius: .7em; color: var(--azul);
+    box-shadow: 0 .3em .9em rgba(0, 0, 0, .1); display: flex; flex-direction: column; justify-content: space-between;
+    align-items: center; padding: 6% 3% 4%;
+}
+.GuiaPortal .c-area b { font-size: .46em; font-weight: 400; text-align: center; letter-spacing: .04em; color: inherit; }
+.GuiaPortal .c-area span { width: 100%; font-size: .32em; color: var(--branco); font-weight: 900; text-align: center; padding: .6em 0; border-radius: 2em; }
+
+.GuiaPortal .c-drop {
+    position: absolute; right: 2.5%; top: 12.5%; width: 34%; background: var(--branco); border-radius: .5em; z-index: 4;
+    box-shadow: 0 .5em 1.5em rgba(0, 0, 0, .2); padding: 1.25cqw 0;
+}
+.GuiaPortal .c-drop div { height: 4cqw; display: flex; align-items: center; gap: .7em; padding: 0 1.1em; font-size: .46em; font-weight: 700; color: #333; }
+.GuiaPortal .c-drop div::before { content: ''; width: .9em; height: .9em; border-radius: .25em; border: .18em solid var(--azul); }
+.GuiaPortal .c-drop div.guia { background: var(--azul-claro); color: var(--azul); }
+
+.GuiaPortal .c-env { width: 2.7em; height: 1.9em; border-radius: .4em; background: #0d6efd; color: var(--branco); display: grid; place-items: center; }
+.GuiaPortal .c-env svg { width: 1.3em; height: 1.3em; }
+.GuiaPortal .c-toast {
+    position: absolute; right: 3%; top: 15%; width: 36%; background: var(--branco); border-radius: .5em; overflow: hidden; z-index: 4;
+    box-shadow: 0 .4em 1.4em rgba(0, 0, 0, .18); display: flex; align-items: center; gap: .6em; padding: .8em .9em 1em;
+}
+.GuiaPortal .c-toast i { width: 1.3em; height: 1.3em; border-radius: 50%; background: var(--verde); color: var(--branco); display: grid; place-items: center; flex-shrink: 0; font-style: normal; }
+.GuiaPortal .c-toast i svg { width: .8em; height: .8em; }
+.GuiaPortal .c-toast span { font-size: .56em; color: #444; font-weight: 700; }
+.GuiaPortal .c-toast::after { content: ''; position: absolute; left: 0; bottom: 0; height: .25em; width: 70%; background: var(--verde); }
+
+.GuiaPortal .c-janela {
+    position: absolute; left: 26%; right: 3%; top: 14%; bottom: 5%; z-index: 4; background: var(--branco); border-radius: .6em;
+    overflow: hidden; box-shadow: 0 .8em 2.4em rgba(0, 0, 0, .3); display: flex; flex-direction: column;
+}
+.GuiaPortal .c-abas-nav { height: 12%; background: #dfe3e8; display: flex; align-items: flex-end; gap: .4em; padding: 0 2%; }
+.GuiaPortal .c-abas-nav span { font-size: .4em; padding: .7em 1.4em; border-radius: .7em .7em 0 0; color: #555; max-width: 45%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.GuiaPortal .c-abas-nav span.on { background: var(--branco); color: #1c2530; font-weight: 700; }
+.GuiaPortal .c-endereco { height: 10%; display: flex; align-items: center; padding: 0 3%; border-bottom: 1px solid #e3e7ec; }
+.GuiaPortal .c-endereco span { flex: 1; background: #f1f3f4; border-radius: 2em; padding: .5em 1.2em; font-size: .38em; color: #555; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.GuiaPortal .c-janela-corpo { flex: 1; display: grid; place-items: center; background: #f7f8fa; }
+.GuiaPortal .c-pdf { width: 46%; height: 88%; background: var(--branco); box-shadow: 0 .2em .8em rgba(0, 0, 0, .12); padding: 5% 6%; display: grid; align-content: start; gap: .5em; }
+.GuiaPortal .c-pdf strong { font-size: .44em; color: var(--azul); }
+.GuiaPortal .c-monitora { display: grid; justify-items: center; gap: .6em; color: var(--azul); }
+.GuiaPortal .c-monitora svg { width: 3.2em; height: 3.2em; }
+.GuiaPortal .c-monitora b { font-size: .7em; letter-spacing: .1em; }
+
+/* rodapé azul dentro da cena (tema Conhecendo o Portal) */
+.GuiaPortal .c-rodape { position: absolute; left: 0; right: 0; top: 50%; bottom: 0; background: linear-gradient(90deg, #005a96, #006CB5 60%, #0080cc); color: var(--branco); }
+.GuiaPortal .c-rodape-ic { position: absolute; left: 3%; top: 16%; width: 4.5%; height: 22%; border-radius: .5em; background: rgba(255, 255, 255, .15); display: grid; place-items: center; }
+.GuiaPortal .c-rodape-ic svg { width: 1.3em; height: 1.3em; }
+.GuiaPortal .c-rodape-txt { position: absolute; left: 9.5%; top: 17%; display: grid; gap: .35em; }
+.GuiaPortal .c-rodape-txt b { font-size: .5em; letter-spacing: .1em; }
+.GuiaPortal .c-rodape-txt small { font-size: .36em; opacity: .85; }
+.GuiaPortal .c-rodape-copy { position: absolute; left: 3%; right: 3%; top: 62%; border-top: 1px solid rgba(255, 255, 255, .2); padding-top: 3%; text-align: center; font-size: .34em; opacity: .75; }
+
+/* navegador do computador (tema Primeiro Acesso) */
+.GuiaPortal .c-guias { position: absolute; left: 0; right: 0; top: 0; height: 7%; background: #dfe3e8; }
+.GuiaPortal .c-guia { position: absolute; left: 2%; top: 20%; bottom: 0; width: 24%; background: var(--branco); border-radius: .5em .5em 0 0; display: flex; align-items: center; gap: .5em; padding: 0 1.2%; font-size: .38em; color: #1c2530; }
+.GuiaPortal .c-guia i { width: 1.2em; height: 1.2em; border-radius: .25em; background: linear-gradient(135deg, var(--azul), var(--laranja)); }
+.GuiaPortal .c-barra-end { position: absolute; left: 0; right: 0; top: 7%; height: 9%; background: var(--branco); border-bottom: 1px solid #e3e7ec; }
+.GuiaPortal .c-barra-end .icones { position: absolute; left: 1.5%; top: 0; bottom: 0; display: flex; align-items: center; gap: .9em; color: #5f6368; }
+.GuiaPortal .c-barra-end .icones svg { width: 1em; height: 1em; }
+.GuiaPortal .c-url { position: absolute; left: 11%; right: 8%; top: 17%; bottom: 17%; border-radius: 2em; background: #f1f3f4; display: flex; align-items: center; gap: .5em; padding: 0 1.5%; font-size: .4em; color: #3c4043; }
+.GuiaPortal .c-url svg { width: 1.1em; height: 1.1em; }
+.GuiaPortal .c-estrela { position: absolute; left: 87.95%; top: 9.5%; width: 2.5%; height: 4%; color: #5f6368; }
+.GuiaPortal .c-estrela.cheia { color: #1a73e8; z-index: 4; }
+.GuiaPortal .c-popup {
+    position: absolute; left: 62%; right: 3%; top: 17%; z-index: 4; background: var(--branco); border-radius: .5em;
+    box-shadow: 0 .5em 1.6em rgba(0, 0, 0, .22); padding: 2% 3%; display: grid; align-content: start; gap: .5em; font-size: .4em; color: #3c4043;
+}
+.GuiaPortal .c-popup strong { font-size: 1.15em; color: #1c2530; }
+.GuiaPortal .c-popup .campo { border: 1px solid #dadce0; border-radius: .4em; padding: .45em .7em; }
+.GuiaPortal .c-popup .botoes { display: flex; justify-content: flex-end; gap: .6em; }
+.GuiaPortal .c-popup .botoes span { padding: .45em 1em; border-radius: 2em; border: 1px solid #dadce0; color: #1a73e8; font-weight: 700; }
+.GuiaPortal .c-popup .botoes span.azul { background: #1a73e8; color: var(--branco); border-color: #1a73e8; }
+.GuiaPortal .c-mini-nav { position: absolute; left: 0; right: 0; top: 16%; height: 9%; background: linear-gradient(90deg, var(--azul), var(--ciano)); color: var(--branco); display: flex; align-items: center; justify-content: space-between; padding: 0 3%; font-size: .44em; font-weight: 900; letter-spacing: .06em; }
+
+/* celular (tema Primeiro Acesso): coordenadas internas em % do aparelho */
+.GuiaPortal .fone { position: absolute; left: 35%; top: 4%; width: 30%; height: 92%; border-radius: 1.4em; border: .3em solid #1b2430; background: var(--branco); overflow: hidden; z-index: 1; }
+.GuiaPortal .f-status { position: absolute; left: 0; right: 0; top: 0; height: 4%; display: flex; justify-content: space-between; align-items: center; padding: 0 7%; font-size: .3em; font-weight: 700; color: #1c2530; }
+.GuiaPortal .f-chrome { position: absolute; left: 0; right: 0; top: 4%; height: 8%; background: var(--branco); border-bottom: 1px solid #e3e7ec; }
+.GuiaPortal .f-url { position: absolute; left: 4%; right: 20%; top: 18%; bottom: 18%; border-radius: 2em; background: #f1f3f4; display: flex; align-items: center; padding: 0 5%; font-size: .28em; color: #3c4043; white-space: nowrap; overflow: hidden; }
+.GuiaPortal .f-pontos { position: absolute; left: 84%; width: 12%; top: 10%; height: 80%; color: #3c4043; }
+.GuiaPortal .f-portal { position: absolute; left: 0; right: 0; top: 12%; height: 7%; background: linear-gradient(90deg, var(--azul), var(--ciano)); display: flex; align-items: center; justify-content: space-between; padding: 0 5%; color: var(--branco); font-size: .28em; font-weight: 900; }
+.GuiaPortal .f-portal img { width: 2em; height: 2em; border-radius: 50%; background: var(--branco); object-fit: cover; }
+.GuiaPortal .f-atalho { position: absolute; width: 42%; height: 17%; background: var(--branco); border-radius: .5em; box-shadow: 0 .2em .6em rgba(0, 0, 0, .12); display: grid; place-items: center; align-content: center; gap: .3em; color: var(--azul); }
+.GuiaPortal .f-atalho svg { width: 1.3em; height: 1.3em; }
+.GuiaPortal .f-atalho b { font-size: .24em; font-weight: 700; }
+.GuiaPortal .f-com { position: absolute; left: 5%; right: 5%; top: 60%; bottom: 3%; background: var(--branco); border-radius: .5em; overflow: hidden; box-shadow: 0 .2em .6em rgba(0, 0, 0, .08); display: grid; align-content: start; gap: .5em; }
+.GuiaPortal .f-com b { background: linear-gradient(90deg, #005fa3, var(--ciano)); color: var(--branco); font-size: .26em; padding: .9em 1em; letter-spacing: .06em; }
+.GuiaPortal .f-com .linha { margin: 0 6%; height: .35em; }
+.GuiaPortal .f-menu { position: absolute; left: 36%; right: 3%; top: 5%; z-index: 4; background: var(--branco); border-radius: .4em; box-shadow: 0 .4em 1.2em rgba(0, 0, 0, .25); padding: 1.5% 0; }
+.GuiaPortal .f-menu div { height: 4.31cqw; display: flex; align-items: center; padding: 0 9%; font-size: .3em; color: #1c2530; }
+.GuiaPortal .f-menu div.alvo { font-weight: 900; }
+.GuiaPortal .f-inicio { position: absolute; inset: 0; background: linear-gradient(160deg, #173a63, #3c6ea8 55%, #7aa6d6); }
+.GuiaPortal .f-app { position: absolute; width: 16%; display: grid; justify-items: center; gap: .35em; }
+.GuiaPortal .f-app i { width: 100%; aspect-ratio: 1; border-radius: 26%; display: block; }
+.GuiaPortal .f-app b { font-size: .24em; color: var(--branco); font-weight: 700; white-space: nowrap; }
+.GuiaPortal .f-app.portal i { background: linear-gradient(135deg, var(--azul), var(--ciano)); display: grid; place-items: center; }
+.GuiaPortal .f-app.portal img { width: 78%; }
+
+/* ---- movimento: cursor, clique e reações da tela ---- */
+.GuiaPortal .cursor {
+    position: absolute; left: var(--x1); top: var(--y1); width: 1.7em; height: 1.7em; z-index: 6;
+    margin: -.2em 0 0 -.3em; filter: drop-shadow(0 .1em .15em rgba(0, 0, 0, .35));
+    animation: guiaCursorAnda 5s ease-in-out infinite;
+}
+.GuiaPortal .clique {
+    position: absolute; left: var(--x1); top: var(--y1); width: 4em; height: 4em; border-radius: 50%; z-index: 5;
+    background: rgba(245, 130, 31, .45); transform: translate(-50%, -50%) scale(1); opacity: 0;
+    animation: guiaCliqueOnda 5s ease-out infinite;
+}
+.GuiaPortal .antes { opacity: 0; animation: guiaTelaSai 5s infinite; }
+.GuiaPortal .depois { animation: guiaTelaEntra 5s infinite; }
+.GuiaPortal .surge { animation: guiaSurge 5s ease-out infinite; }
+.GuiaPortal .surge.tarde { animation-name: guiaSurgeTarde; }
+.GuiaPortal .anima-hover { background: linear-gradient(135deg, var(--azul), #9dc2dd); color: var(--branco); animation: guiaHoverAtalho 5s infinite; }
+.GuiaPortal .anima-aperta { animation: guiaAperta 5s infinite; }
+.GuiaPortal .anima-marca { position: absolute; z-index: 4; background: rgba(245, 130, 31, .16); border: .12em solid rgba(245, 130, 31, .7); border-radius: .3em; animation: guiaSurge 5s infinite; }
+.GuiaPortal .destaque { position: absolute; z-index: 4; border: .18em solid var(--laranja); border-radius: .7em; animation: guiaDestaca 5s infinite; }
+.GuiaPortal .destaque.tarde { animation-name: guiaDestacaTarde; }
+.GuiaPortal .c-digitado { display: inline-block; overflow: hidden; white-space: nowrap; vertical-align: bottom; width: 13ch; animation: guiaDigita 5s steps(13, end) infinite; }
+.GuiaPortal .pausar {
+    position: absolute; right: 2%; bottom: 3%; z-index: 7; width: 2.4em; height: 2.4em; min-width: 28px; min-height: 28px;
+    border-radius: 50%; border: 0; cursor: pointer; background: rgba(23, 32, 43, .7); color: var(--branco); display: grid; place-items: center;
+}
+.GuiaPortal .pausar svg { width: 45%; height: 45%; }
+.GuiaPortal .cena.pausada * { animation-play-state: paused !important; }
+
+@keyframes guiaCursorAnda {
+    0%, 8%   { left: var(--x0); top: var(--y0); opacity: 0; transform: scale(1); }
+    14%      { left: var(--x0); top: var(--y0); opacity: 1; }
+    42%      { left: var(--x1); top: var(--y1); transform: scale(1); }
+    47%      { transform: scale(.8); }
+    52%, 88% { left: var(--x1); top: var(--y1); opacity: 1; transform: scale(1); }
+    96%, 100% { left: var(--x1); top: var(--y1); opacity: 0; }
+}
+@keyframes guiaCliqueOnda {
+    0%, 45%   { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    47%       { opacity: .9; }
+    68%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+}
+@keyframes guiaTelaSai { 0%, 46% { opacity: 1; } 52%, 90% { opacity: 0; } 96%, 100% { opacity: 1; } }
+@keyframes guiaTelaEntra { 0%, 46% { opacity: 0; } 52%, 90% { opacity: 1; } 96%, 100% { opacity: 0; } }
+@keyframes guiaSurge {
+    0%, 46%   { opacity: 0; transform: translateY(-.5em); }
+    52%, 90%  { opacity: 1; transform: translateY(0); }
+    96%, 100% { opacity: 0; }
+}
+@keyframes guiaSurgeTarde {
+    0%, 70%   { opacity: 0; transform: translateY(-.5em); }
+    76%, 90%  { opacity: 1; transform: translateY(0); }
+    96%, 100% { opacity: 0; }
+}
+@keyframes guiaHoverAtalho {
+    0%, 40%   { background: var(--branco); color: var(--azul); }
+    42%, 92%  { background: linear-gradient(135deg, var(--azul), #9dc2dd); color: var(--branco); }
+    96%, 100% { background: var(--branco); color: var(--azul); }
+}
+@keyframes guiaAperta { 0%, 45%, 52%, 100% { transform: scale(1); } 47% { transform: scale(.85); filter: brightness(.8); } }
+@keyframes guiaDestaca {
+    0%, 42%  { opacity: 0; box-shadow: 0 0 0 0 rgba(245, 130, 31, .55); }
+    48%      { opacity: 1; box-shadow: 0 0 0 0 rgba(245, 130, 31, .55); }
+    62%      { box-shadow: 0 0 0 .8em rgba(245, 130, 31, 0); }
+    63%      { box-shadow: 0 0 0 0 rgba(245, 130, 31, .55); }
+    78%      { box-shadow: 0 0 0 .8em rgba(245, 130, 31, 0); }
+    90%      { opacity: 1; }
+    96%, 100% { opacity: 0; }
+}
+@keyframes guiaDestacaTarde {
+    0%, 54%  { opacity: 0; box-shadow: 0 0 0 0 rgba(245, 130, 31, .55); }
+    58%      { opacity: 1; box-shadow: 0 0 0 0 rgba(245, 130, 31, .55); }
+    72%      { box-shadow: 0 0 0 .8em rgba(245, 130, 31, 0); }
+    90%      { opacity: 1; }
+    96%, 100% { opacity: 0; }
+}
+@keyframes guiaDigita { 0%, 52% { width: 0; } 70%, 100% { width: 13ch; } }
+
+/* ================= celular ================= */
+@media (max-width: 767px) {
+    .GuiaPortal .guia-nav-titulo { font-size: 1.05rem; }
+    .GuiaPortal .acc-cab { padding: 14px 14px; gap: 2px 12px; grid-template-columns: auto 1fr auto; }
+    .GuiaPortal .acc-qtd { display: none; }
+    .GuiaPortal .acc-seta { grid-column: 3; }
+    .GuiaPortal .acc-ic { width: 40px; height: 40px; border-radius: 12px; }
+    .GuiaPortal .acc-titulo { font-size: 1rem; }
+    .GuiaPortal .acc-corpo { padding: 16px 12px 20px; }
+    .GuiaPortal .passo-cab { padding: 10px 12px; gap: 10px; }
+    .GuiaPortal .passo-num { width: 30px; height: 30px; font-size: .92rem; }
+    .GuiaPortal .passo-acao { font-size: .95rem; }
+    .GuiaPortal .passo-corpo { padding: 4px 12px 16px; }
+}
+
+/* Sem movimento: cada mini vídeo vira a foto do seu último quadro. */
+@media (prefers-reduced-motion: reduce) {
+    .GuiaPortal .cena * { animation: none !important; }
+    .GuiaPortal .clique, .GuiaPortal .pausar { display: none; }
+    .GuiaPortal .acc-item, .GuiaPortal .acc-seta, .GuiaPortal .passo-item, .GuiaPortal .passo-seta { transition: none; }
+}
