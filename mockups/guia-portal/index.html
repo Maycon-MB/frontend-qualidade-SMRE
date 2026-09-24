@@ -71,7 +71,7 @@
   .p-user { display: flex; align-items: center; gap: 14px; font-weight: 700; }
   .p-avatar {
     width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-weight: 900; font-size: 1.2rem;
-    background: var(--branco); color: var(--azul);
+    background: var(--branco); color: var(--azul); object-fit: cover;
   }
   .p-pontos { width: 26px; height: 26px; }
   .p-corpo { padding: 16px 26px 40px; }
@@ -82,7 +82,18 @@
   }
   .p-nav-btn svg { width: 17px; height: 17px; }
   .p-barra-titulo { color: var(--azul); font-weight: 800; font-size: 1.3rem; margin-left: 8px; }
-  .p-intro { max-width: 860px; margin: 22px auto 0; color: var(--texto-suave); line-height: 1.6; }
+  .p-anfitriao { max-width: 860px; margin: 18px auto 0; display: flex; align-items: flex-end; gap: 18px; }
+  .p-anfitriao img { height: 170px; width: auto; flex-shrink: 0; filter: drop-shadow(0 8px 12px rgba(0, 40, 80, .15)); }
+  .p-balao {
+    position: relative; margin-bottom: 28px; background: var(--branco); border: 1px solid rgba(0, 108, 181, .12);
+    border-radius: 18px; padding: 16px 20px; box-shadow: 0 8px 24px rgba(0, 108, 181, .08); display: grid; gap: 4px;
+    color: var(--texto-suave); line-height: 1.55;
+  }
+  .p-balao strong { color: var(--azul); font-size: 1.05rem; }
+  .p-balao::before {
+    content: ''; position: absolute; left: -9px; bottom: 26px; width: 16px; height: 16px; background: var(--branco);
+    border-left: 1px solid rgba(0, 108, 181, .12); border-bottom: 1px solid rgba(0, 108, 181, .12); transform: rotate(45deg);
+  }
 
   /* ================= acordeão dos temas (visual de .accordion-item-custom da Qualidade) ================= */
   .acordeao { max-width: 860px; margin: 18px auto 0; display: grid; gap: 16px; }
@@ -164,7 +175,7 @@
   .c-nav-dir { display: flex; align-items: center; gap: .5em; font-size: .6em; font-weight: 700; }
   .c-av {
     width: 1.9em; height: 1.9em; border-radius: 50%; background: var(--branco); color: var(--azul); font-style: normal;
-    display: grid; place-items: center; font-weight: 900; font-size: 1em;
+    display: grid; place-items: center; font-weight: 900; font-size: 1em; object-fit: cover;
   }
   .c-pontos { width: 2.2em; height: 2.2em; }
 
@@ -364,7 +375,7 @@
   .f-url { position: absolute; left: 4%; right: 20%; top: 18%; bottom: 18%; border-radius: 2em; background: #f1f3f4; display: flex; align-items: center; padding: 0 5%; font-size: .28em; color: #3c4043; white-space: nowrap; overflow: hidden; }
   .f-pontos { position: absolute; left: 84%; width: 12%; top: 10%; height: 80%; color: #3c4043; }
   .f-portal { position: absolute; left: 0; right: 0; top: 12%; height: 7%; background: linear-gradient(90deg, var(--azul), var(--ciano)); display: flex; align-items: center; justify-content: space-between; padding: 0 5%; color: var(--branco); font-size: .28em; font-weight: 900; }
-  .f-portal i { width: 2em; height: 2em; border-radius: 50%; background: var(--branco); color: var(--azul); display: grid; place-items: center; font-style: normal; }
+  .f-portal img { width: 2em; height: 2em; border-radius: 50%; background: var(--branco); object-fit: cover; }
   .f-atalho { position: absolute; width: 42%; height: 17%; background: var(--branco); border-radius: .5em; box-shadow: 0 .2em .6em rgba(0, 0, 0, .12); display: grid; place-items: center; align-content: center; gap: .3em; color: var(--azul); }
   .f-atalho svg { width: 1.3em; height: 1.3em; }
   .f-atalho b { font-size: .24em; font-weight: 700; }
@@ -468,6 +479,9 @@
     .p-avatar { width: 36px; height: 36px; font-size: 1rem; }
     .p-corpo { padding: 14px 12px 40px; }
     .p-barra-titulo { font-size: 1.05rem; }
+    .p-anfitriao { gap: 12px; }
+    .p-anfitriao img { height: 120px; }
+    .p-balao { margin-bottom: 14px; padding: 12px 14px; font-size: .92rem; }
     .acc-cab { padding: 14px 14px; gap: 2px 12px; grid-template-columns: auto 1fr auto; }
     .acc-qtd { display: none; }
     .acc-seta { grid-column: 3; }
@@ -504,13 +518,13 @@
 
 <section class="briefing">
   <h1>Guia do Portal: cada passo abre só quando você clica</h1>
-  <p>O Guia abre pelo item <b>Guia do Portal</b> no menu dos três pontinhos e reúne os temas em acordeão. Dentro de cada tema, os passos aparecem em lista; a pessoa clica só no passo que quer ver e o mini vídeo dele se abre. Todos os passos já estão com mini vídeo. O que achou? É só me dizer o que ajustar.</p>
+  <p>O Guia abre pelo item <b>Guia do Portal</b> no menu dos três pontinhos e reúne os temas em acordeão. Dentro de cada tema, os passos aparecem em lista; a pessoa clica só no passo que quer ver e o mini vídeo dele se abre. Todos os passos já estão com mini vídeo, e o Leozinho apresenta o Guia e aparece como a pessoa logada. O que achou? É só me dizer o que ajustar.</p>
 </section>
 
 <div class="frame" id="frame">
   <div class="p-nav">
     <span class="p-marca"><img src="logo.png" alt="Santa Mônica" class="p-logo"><i class="p-div"></i>PORTAL DO COLABORADOR</span>
-    <span class="p-user"><span>Olá, Mônica!</span><span class="p-avatar">M</span><svg class="p-pontos" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></span>
+    <span class="p-user"><span>Olá, Leozinho!</span><img class="p-avatar" src="leozinho-avatar.png" alt="Leozinho"><svg class="p-pontos" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></span>
   </div>
 
   <div class="p-corpo">
@@ -519,7 +533,10 @@
       <span class="p-nav-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
       <span class="p-barra-titulo">Guia do Portal</span>
     </div>
-    <p class="p-intro">Aprenda a usar o Portal em poucos minutos. Abra um tema e clique no passo que você quer ver.</p>
+    <div class="p-anfitriao">
+      <img src="leozinho.png" alt="Leozinho, mascote da Santa Mônica">
+      <div class="p-balao"><strong>Oi! Eu sou o Leozinho.</strong><span>Vou te mostrar, passo a passo, como usar o Portal. Abra um tema e clique no passo que você quer ver.</span></div>
+    </div>
 
     <div class="acordeao">
 
@@ -544,7 +561,7 @@
                   </div>
                   <svg class="c-estrela" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                   <svg class="c-estrela cheia surge" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                  <div class="c-mini-nav"><span>PORTAL DO COLABORADOR</span><span>Olá, Mônica!</span></div>
+                  <div class="c-mini-nav"><span>PORTAL DO COLABORADOR</span><span>Olá, Leozinho!</span></div>
                   <div class="c-atalho" style="left: 4%; top: 30%; width: 17%; height: 30%;"><b>ANIVERSARIANTES</b></div>
                   <div class="c-atalho" style="left: 24%; top: 30%; width: 17%; height: 30%;"><b>CONTRACHEQUE</b></div>
                   <div class="c-atalho" style="left: 4%; top: 64%; width: 17%; height: 30%;"><b>GESTÃO DA QUALIDADE</b></div>
@@ -595,9 +612,9 @@
             <li class="passo-item" data-passo="1" data-acao="No topo ficam a sua saudação e a sua foto.">
               <div class="cena" data-sem-clique style="--x0: 50%; --y0: 70%; --x1: 91.5%; --y1: 6%;">
                 <div class="cena-in"><div class="tela" data-tela="home"></div><div class="c-nav"></div>
-                  <div class="destaque" style="left: 72.5%; top: 1.5%; width: 21.5%; height: 9%;"></div></div>
+                  <div class="destaque" style="left: 70%; top: 1.5%; width: 24%; height: 9%;"></div></div>
               </div>
-              <p class="passo-expl">O “Olá, Mônica!” confirma que você entrou com a sua conta.</p>
+              <p class="passo-expl">O “Olá, Leozinho!” confirma que você entrou com a sua conta.</p>
             </li>
             <li class="passo-item" data-passo="2" data-acao="À esquerda estão os atalhos.">
               <div class="cena" data-sem-clique style="--x0: 70%; --y0: 85%; --x1: 23%; --y1: 56%;">
@@ -831,7 +848,7 @@
 <!-- ================= telas-modelo das cenas (nomes e números são fictícios) ================= -->
 <template id="tpl-nav">
   <img class="c-logo" src="logo.png" alt="">
-  <span class="c-nav-dir">Olá, Mônica! <i class="c-av">M</i><svg class="c-pontos" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg></span>
+  <span class="c-nav-dir">Olá, Leozinho! <img class="c-av" src="leozinho-avatar.png" alt=""><svg class="c-pontos" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg></span>
 </template>
 
 <template id="tpl-home">
@@ -969,7 +986,7 @@
 <template id="tpl-fone-portal">
   <div class="f-status"><span>9:41</span><span>▮▮▮ ◔</span></div>
   <div class="f-chrome"><span class="f-url">🔒 maycon-mb.github.io/front…</span><svg class="f-pontos" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></div>
-  <div class="f-portal"><span>PORTAL DO COLABORADOR</span><i>M</i></div>
+  <div class="f-portal"><span>PORTAL DO COLABORADOR</span><img src="leozinho-avatar.png" alt=""></div>
   <div class="f-atalho" style="left: 5%; top: 21%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/></svg><b>ANIVERSARIANTES</b></div>
   <div class="f-atalho" style="left: 53%; top: 21%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><b>CONTRACHEQUE</b></div>
   <div class="f-atalho" style="left: 5%; top: 40%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg><b>QUALIDADE</b></div>
