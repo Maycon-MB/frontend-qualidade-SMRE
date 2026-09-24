@@ -37,6 +37,8 @@ const TELEFONES_UNIDADES = {
 
 const telefoneDaUnidade = (setor) => TELEFONES_UNIDADES[normalizar(setor).replace(/^und\.\s*/, '')];
 
+const nomeSetor = (setor) => String(setor ?? '').replace(/^UND\.\s*/i, '');
+
 function RamalLinks({ valor }) {
     const numeros = String(valor).split('/').map((n) => n.trim()).filter(Boolean);
     return (
@@ -70,7 +72,7 @@ function TabelaRamais({ itens, mostrarUnidade, modoUnidades }) {
                     <th>{modoUnidades ? 'Gestor de unidade' : 'Responsável'}</th>
                     {mostrarUnidade && <th>Unidade</th>}
                     <th>Ramal</th>
-                    {modoUnidades && <th>Telefone fixo</th>}
+                    {modoUnidades && <th>Telefone</th>}
                 </tr>
             </thead>
             <tbody>
@@ -78,9 +80,9 @@ function TabelaRamais({ itens, mostrarUnidade, modoUnidades }) {
                     const telefone = modoUnidades ? telefoneDaUnidade(item.Setor) : null;
                     return (
                         <tr key={i}>
-                            <td className="ramais-td-setor">{item.Setor}</td>
+                            <td className="ramais-td-setor">{nomeSetor(item.Setor)}</td>
                             <td>{item.Responsável || '—'}</td>
-                            {mostrarUnidade && <td>{item.Unidade}</td>}
+                            {mostrarUnidade && <td>{ROTULOS_ABA[item.Unidade] ?? item.Unidade}</td>}
                             <td><RamalLinks valor={item.Ramal} /></td>
                             {modoUnidades && (
                                 <td>{telefone ? <span className="ramais-numero">{telefone}</span> : '—'}</td>
