@@ -279,6 +279,12 @@
     box-shadow: 0 10px 25px rgba(245, 130, 31, 0.5);
 }
 
+/* clear: right empilha abaixo do Visualizar documento, que também flutua à direita */
+.btn-fluxo-processo {
+    clear: right;
+    margin-top: 12px;
+}
+
 /* ====== TRILHA (BREADCRUMB) ====== */
 .qualidade-breadcrumb {
     display: flex;
