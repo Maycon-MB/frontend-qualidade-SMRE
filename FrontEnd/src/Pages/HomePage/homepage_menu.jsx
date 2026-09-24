@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { PartyPopper, HeartPulse, FileText, Palmtree, Receipt, BadgeCheck, Phone, MonitorCheck } from 'lucide-react';
+import { PartyPopper, HeartPulse, FileText, Palmtree, Receipt, BadgeCheck, Phone, MonitorCheck, BookOpen } from 'lucide-react';
 import { emProducao } from '../../config/fase';
 import { linkEmConstrucao } from '../EmConstrucao/linkEmConstrucao';
 import './menu.css';
@@ -20,6 +20,7 @@ function Menu({ foto, nome }) {
         { id: 3, nome: 'CONTRACHEQUE', Icon: FileText, link: '/contraCheque' },
         { id: 4, nome: 'FÉRIAS', Icon: Palmtree, link: linkEmConstrucao('Férias'), ocultoEmProducao: true },
         { id: 5, nome: 'GESTÃO DA QUALIDADE', Icon: BadgeCheck, link: '/qualidade' },
+        { id: 9, nome: 'GUIA DO PORTAL', Icon: BookOpen, link: '/guia' },
         { id: 6, nome: 'INFORME DE RENDIMENTOS', Icon: Receipt, link: linkEmConstrucao('Informe de Rendimentos'), ocultoEmProducao: true },
         { id: 7, nome: 'RAMAIS', Icon: Phone, link: '/ramais' },
         { id: 8, nome: 'SISTEMA MONITORA', Icon: MonitorCheck, link: 'https://monitora.smrede.net.br/', externo: true },

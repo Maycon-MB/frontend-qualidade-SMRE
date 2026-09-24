@@ -24,6 +24,7 @@ import ContraCheque from "./Pages/HomePage/contra_cheque.jsx";
 import Ramais from "./Pages/Ramais/ramais.jsx";
 import Aniversariantes from "./Pages/Aniversariantes/aniversariantes.jsx";
 import EmConstrucao from "./Pages/EmConstrucao/emConstrucao.jsx";
+import Guia from "./Pages/Guia/guia.jsx";
 import { emProducao } from "./config/fase";
 
 import { ToastContainer } from "react-toastify";
@@ -63,6 +64,7 @@ const AppContent = () => {
                 <Route exact path="/ramais" element={<Private><Ramais /></Private>} />
                 <Route exact path="/aniversariantes" element={<Private><Aniversariantes /></Private>} />
                 <Route exact path="/emConstrucao" element={<Private><EmConstrucao /></Private>} />
+                <Route exact path="/guia" element={<Private><Guia /></Private>} />
 
             </Routes>
             <ToastContainer />
