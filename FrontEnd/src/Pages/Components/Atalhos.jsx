@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { PartyPopper, HeartPulse, FileText, Palmtree, Receipt, BadgeCheck } from 'lucide-react';
+import { PartyPopper, HeartPulse, FileText, Palmtree, Receipt, BadgeCheck, MonitorCheck } from 'lucide-react';
 import { emProducao } from '../../config/fase';
 import { linkEmConstrucao } from '../EmConstrucao/linkEmConstrucao';
 import './Atalhos.css';
@@ -12,6 +12,7 @@ const botoes = [
     { id: 4, nome: 'FÉRIAS', Icon: Palmtree, link: linkEmConstrucao('Férias'), ocultoEmProducao: true },
     { id: 5, nome: 'GESTÃO DA QUALIDADE', Icon: BadgeCheck, link: '/qualidade' },
     { id: 6, nome: 'INFORME DE RENDIMENTOS', Icon: Receipt, link: linkEmConstrucao('Informe de Rendimentos'), ocultoEmProducao: true },
+    { id: 7, nome: 'SISTEMA MONITORA', Icon: MonitorCheck, link: 'https://monitora.smrede.net.br/', externo: true },
 ];
 
 export const contarAtalhosVisiveis = () =>
@@ -32,23 +33,27 @@ const AtalhoItem = ({ botao }) => {
     const [isHovered, setIsHovered] = useState(false);
     const { Icon } = botao;
 
-    return (
-        <Link to={botao.link} className="text-decoration-none atalho-grid-item">
-            <div
-                className={`atalho-card-simples ${isHovered ? 'is-hover' : ''}`}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-            >
-                <div className="atalho-body">
-                    <Icon
-                        size={52}
-                        strokeWidth={1.5}
-                        className="atalho-lucide-icon"
-                    />
-                    <div className="atalho-nome">{botao.nome}</div>
-                </div>
+    const conteudo = (
+        <div
+            className={`atalho-card-simples ${isHovered ? 'is-hover' : ''}`}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            <div className="atalho-body">
+                <Icon
+                    size={52}
+                    strokeWidth={1.5}
+                    className="atalho-lucide-icon"
+                />
+                <div className="atalho-nome">{botao.nome}</div>
             </div>
-        </Link>
+        </div>
+    );
+
+    return (
+        botao.externo
+            ? <a href={botao.link} target="_blank" rel="noopener noreferrer" className="text-decoration-none atalho-grid-item">{conteudo}</a>
+            : <Link to={botao.link} className="text-decoration-none atalho-grid-item">{conteudo}</Link>
     );
 };
 
