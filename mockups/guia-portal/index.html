@@ -82,18 +82,7 @@
   }
   .p-nav-btn svg { width: 17px; height: 17px; }
   .p-barra-titulo { color: var(--azul); font-weight: 800; font-size: 1.3rem; margin-left: 8px; }
-  .p-anfitriao { max-width: 860px; margin: 18px auto 0; display: flex; align-items: flex-end; gap: 18px; }
-  .p-anfitriao img { height: 170px; width: auto; flex-shrink: 0; filter: drop-shadow(0 8px 12px rgba(0, 40, 80, .15)); }
-  .p-balao {
-    position: relative; margin-bottom: 28px; background: var(--branco); border: 1px solid rgba(0, 108, 181, .12);
-    border-radius: 18px; padding: 16px 20px; box-shadow: 0 8px 24px rgba(0, 108, 181, .08); display: grid; gap: 4px;
-    color: var(--texto-suave); line-height: 1.55;
-  }
-  .p-balao strong { color: var(--azul); font-size: 1.05rem; }
-  .p-balao::before {
-    content: ''; position: absolute; left: -9px; bottom: 26px; width: 16px; height: 16px; background: var(--branco);
-    border-left: 1px solid rgba(0, 108, 181, .12); border-bottom: 1px solid rgba(0, 108, 181, .12); transform: rotate(45deg);
-  }
+  .p-intro { max-width: 860px; margin: 22px auto 0; color: var(--texto-suave); line-height: 1.6; }
 
   /* ================= acordeão dos temas (visual de .accordion-item-custom da Qualidade) ================= */
   .acordeao { max-width: 860px; margin: 18px auto 0; display: grid; gap: 16px; }
@@ -479,9 +468,6 @@
     .p-avatar { width: 36px; height: 36px; font-size: 1rem; }
     .p-corpo { padding: 14px 12px 40px; }
     .p-barra-titulo { font-size: 1.05rem; }
-    .p-anfitriao { gap: 12px; }
-    .p-anfitriao img { height: 120px; }
-    .p-balao { margin-bottom: 14px; padding: 12px 14px; font-size: .92rem; }
     .acc-cab { padding: 14px 14px; gap: 2px 12px; grid-template-columns: auto 1fr auto; }
     .acc-qtd { display: none; }
     .acc-seta { grid-column: 3; }
@@ -518,7 +504,7 @@
 
 <section class="briefing">
   <h1>Guia do Portal: cada passo abre só quando você clica</h1>
-  <p>O Guia abre pelo item <b>Guia do Portal</b> no menu dos três pontinhos e reúne os temas em acordeão. Dentro de cada tema, os passos aparecem em lista; a pessoa clica só no passo que quer ver e o mini vídeo dele se abre. Todos os passos já estão com mini vídeo, e o Leozinho apresenta o Guia e aparece como a pessoa logada. O que achou? É só me dizer o que ajustar.</p>
+  <p>O Guia abre pelo item <b>Guia do Portal</b> no menu dos três pontinhos e reúne os temas em acordeão. Dentro de cada tema, os passos aparecem em lista; a pessoa clica só no passo que quer ver e o mini vídeo dele se abre. Todos os passos já estão com mini vídeo, e o Leozinho aparece como a pessoa logada. O que achou? É só me dizer o que ajustar.</p>
 </section>
 
 <div class="frame" id="frame">
@@ -533,10 +519,7 @@
       <span class="p-nav-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
       <span class="p-barra-titulo">Guia do Portal</span>
     </div>
-    <div class="p-anfitriao">
-      <img src="leozinho.png" alt="Leozinho, mascote da Santa Mônica">
-      <div class="p-balao"><strong>Oi! Eu sou o Leozinho.</strong><span>Vou te mostrar, passo a passo, como usar o Portal. Abra um tema e clique no passo que você quer ver.</span></div>
-    </div>
+    <p class="p-intro">Aprenda a usar o Portal em poucos minutos. Abra um tema e clique no passo que você quer ver.</p>
 
     <div class="acordeao">
 
