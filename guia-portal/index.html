@@ -19,10 +19,12 @@
     --azul-claro: #eef6ff;
     --barra: #17202b;
     --barra-borda: #2e3a48;
+    --verde: #07bc0c;
     --branco: #ffffff;
     --fonte: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
   * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
   body {
     margin: 0;
     background: var(--fundo-pagina);
@@ -49,11 +51,9 @@
   .seg button[aria-pressed="true"] { background: var(--laranja); color: var(--branco); font-weight: 700; }
   @media (max-width: 560px) { .ctl-nome { width: 100%; text-align: center; margin: 0; } }
 
-  /* ================= briefing ================= */
   .briefing { max-width: 1100px; margin: 28px auto 0; display: grid; gap: 14px; }
   .briefing h1 { margin: 0; color: var(--azul); font-weight: 900; font-size: clamp(1.35rem, 3vw, 1.75rem); text-wrap: balance; }
-  .briefing > p { margin: 0; color: var(--texto-suave); line-height: 1.6; }
-  .decisao { color: var(--texto-suave); font-size: .9rem; }
+  .briefing p { margin: 0; color: var(--texto-suave); line-height: 1.6; }
 
   /* ================= moldura do Portal ================= */
   .frame {
@@ -68,11 +68,12 @@
   .p-marca { font-weight: 900; font-size: .95rem; letter-spacing: .05em; display: flex; align-items: center; }
   .p-logo { height: 56px; width: auto; }
   .p-div { width: 1px; height: 28px; background: rgba(255, 255, 255, .4); margin: 0 18px; }
-  .p-user { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+  .p-user { display: flex; align-items: center; gap: 14px; font-weight: 700; }
   .p-avatar {
-    width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; font-weight: 900;
-    background: rgba(255, 255, 255, .22); border: 2px solid rgba(255, 255, 255, .6);
+    width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-weight: 900; font-size: 1.2rem;
+    background: var(--branco); color: var(--azul);
   }
+  .p-pontos { width: 26px; height: 26px; }
   .p-corpo { padding: 16px 26px 40px; }
   .p-barra { display: flex; align-items: center; gap: 8px; }
   .p-nav-btn {
@@ -83,11 +84,11 @@
   .p-barra-titulo { color: var(--azul); font-weight: 800; font-size: 1.3rem; margin-left: 8px; }
   .p-intro { max-width: 860px; margin: 22px auto 0; color: var(--texto-suave); line-height: 1.6; }
 
-  /* ================= acordeão (mesmo visual de .accordion-item-custom da Qualidade) ================= */
+  /* ================= acordeão dos temas (visual de .accordion-item-custom da Qualidade) ================= */
   .acordeao { max-width: 860px; margin: 18px auto 0; display: grid; gap: 16px; }
   .acc-item {
     background: var(--branco); border: 1px solid rgba(0, 108, 181, .12); border-radius: 18px; overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 108, 181, .06); transition: box-shadow .3s ease, transform .3s ease, border-color .3s ease;
+    box-shadow: 0 4px 20px rgba(0, 108, 181, .06); transition: box-shadow .3s ease, border-color .3s ease;
   }
   .acc-item:hover { box-shadow: 0 14px 35px rgba(0, 108, 181, .15); border-color: rgba(0, 108, 181, .3); }
   .acc-cab {
@@ -108,7 +109,9 @@
   }
   .acc-seta { grid-row: 1 / span 2; grid-column: 4; width: 22px; height: 22px; transition: transform .3s ease; }
   .acc-cab[aria-expanded="true"] .acc-seta { transform: rotate(180deg); }
-  .acc-corpo { background: #fafcfd; padding: 24px 26px 28px; border-top: 1px solid rgba(0, 108, 181, .08); }
+  .acc-corpo { background: #fafcfd; padding: 22px 24px 26px; border-top: 1px solid rgba(0, 108, 181, .08); }
+  .funcao + .funcao { margin-top: 22px; }
+  .funcao h4 { margin: 0 0 10px; color: var(--azul); font-size: .9rem; font-weight: 900; letter-spacing: .06em; }
 
   /* passos: cada um abre sozinho, com o seu mini vídeo */
   .passos { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
@@ -133,33 +136,24 @@
   .passo-corpo { padding: 4px 16px 18px; display: grid; gap: 12px; }
   .passo-expl { margin: 0; color: var(--texto-suave); line-height: 1.6; }
 
-  /* espaço do vídeo nos temas que ainda não têm mini vídeo no mockup */
-  .video-previa {
-    aspect-ratio: 16 / 10; max-width: 100%; border-radius: 14px; border: 2px dashed rgba(0, 108, 181, .25);
-    background: #f3f7fb; display: grid; place-content: center; justify-items: center; gap: 10px;
-    color: var(--texto-suave); font-weight: 700; font-size: .85rem; text-align: center; padding: 12px;
-  }
-  .video-previa svg { width: 42px; height: 42px; color: var(--azul); opacity: .6; }
-
-  .funcao + .funcao { margin-top: 22px; }
-  .funcao h4 { margin: 0 0 12px; color: var(--azul); font-size: .95rem; font-weight: 900; letter-spacing: .04em; }
-
-  .p-rodape {
-    background: linear-gradient(90deg, #005a96 0%, #006CB5 60%, #0080cc 100%); color: var(--branco); padding: 14px 26px;
-    display: flex; align-items: center; gap: 14px;
-  }
+  .p-rodape { background: linear-gradient(90deg, #005a96 0%, #006CB5 60%, #0080cc 100%); color: var(--branco); padding: 14px 26px 12px; }
+  .p-rodape-marca { display: flex; align-items: center; gap: 14px; }
   .p-rodape-ic { width: 42px; height: 42px; border-radius: 12px; background: rgba(255, 255, 255, .15); display: grid; place-items: center; }
   .p-rodape-ic svg { width: 22px; height: 22px; }
   .p-rodape b { display: block; font-weight: 900; font-size: .85rem; letter-spacing: .08em; }
   .p-rodape small { font-weight: 300; opacity: .8; }
+  .p-rodape-copy {
+    border-top: 1px solid rgba(255, 255, 255, .18); margin-top: 12px; padding-top: 10px; text-align: center;
+    font-size: .72rem; opacity: .75;
+  }
 
-  /* ================= mini vídeos ================= */
+  /* ================= mini vídeos: 1em = 2,5% da largura e 4% da altura da cena ================= */
   .cena {
     container-type: inline-size; position: relative; width: 100%; max-width: 100%; aspect-ratio: 16 / 10;
     border-radius: 14px; overflow: hidden; background: var(--fundo-portal);
     border: 1px solid rgba(0, 108, 181, .14); box-shadow: 0 8px 24px rgba(0, 40, 80, .1);
   }
-  .cena-in { position: absolute; inset: 0; font-size: 2.5cqw; }
+  .cena-in { position: absolute; inset: 0; font-size: 2.5cqw; color: #333; }
   .tela { position: absolute; inset: 0; background: var(--fundo-portal); }
   .c-nav {
     position: absolute; left: 0; right: 0; top: 0; height: 12%; padding: 0 3%; z-index: 3;
@@ -168,7 +162,10 @@
   }
   .c-logo { width: 9%; height: 80%; object-fit: contain; }
   .c-nav-dir { display: flex; align-items: center; gap: .5em; font-size: .6em; font-weight: 700; }
-  .c-av { width: 1.9em; height: 1.9em; border-radius: 50%; background: rgba(255, 255, 255, .3); display: inline-block; }
+  .c-av {
+    width: 1.9em; height: 1.9em; border-radius: 50%; background: var(--branco); color: var(--azul); font-style: normal;
+    display: grid; place-items: center; font-weight: 900; font-size: 1em;
+  }
   .c-pontos { width: 2.2em; height: 2.2em; }
 
   .c-atalho {
@@ -178,15 +175,33 @@
   }
   .c-atalho svg { width: 2.2em; height: 2.2em; }
   .c-atalho b { font-size: .46em; font-weight: 700; letter-spacing: .05em; text-align: center; padding: 0 .4em; }
+
   .c-comunicados {
-    position: absolute; left: 45%; right: 4%; top: 17%; bottom: 5%; background: var(--branco); border-radius: .8em; overflow: hidden;
-    box-shadow: 0 .3em .9em rgba(0, 0, 0, .08); display: flex; flex-direction: column;
+    position: absolute; left: 45%; right: 4%; top: 17%; bottom: 5%; background: var(--branco); border-radius: .8em;
+    overflow: hidden; box-shadow: 0 .3em .9em rgba(0, 0, 0, .08);
   }
-  .c-comunicados b {
-    font-size: .56em; color: var(--branco); font-weight: 900; letter-spacing: .08em; padding: 1em 1.2em;
-    background: linear-gradient(90deg, #005fa3, var(--azul));
+  .c-com-cab {
+    position: absolute; left: 0; right: 0; top: 0; height: 9%; display: flex; align-items: center; gap: .5em; padding: 0 4%;
+    background: linear-gradient(90deg, #005fa3, var(--azul) 55%, var(--ciano)); color: var(--branco);
+    font-size: .5em; font-weight: 900; letter-spacing: .08em;
   }
-  .c-comunicados i { display: block; height: 13%; margin: 3% 4% 0; border-radius: .4em; background: #f3f7fb; border: 1px solid #e2ebf4; }
+  .c-com-cab svg { width: 1.3em; height: 1.3em; }
+  .c-com-item {
+    position: absolute; left: 0; right: 0; height: 11.5%; padding: 0 4%; border-bottom: 1px solid #e8eef5;
+    display: flex; flex-direction: column; justify-content: center; gap: .2em;
+  }
+  .c-com-item b { font-size: .46em; color: #1c2530; }
+  .c-com-item small { font-size: .38em; color: #7a8591; }
+  .c-com-aberto { position: absolute; left: 45%; right: 4%; top: 24%; bottom: 5%; z-index: 4; border-radius: 0 0 .8em .8em; overflow: hidden; background: #f5f9ff; }
+  .c-com-aberto .c-com-item { position: relative; height: 12.5%; background: #0060a8; border: 0; }
+  .c-com-aberto .c-com-item b, .c-com-aberto .c-com-item small { color: var(--branco); }
+  .c-banner {
+    margin: 5% 5% 0; height: 22%; border-radius: .3em; background: linear-gradient(120deg, #3b8fe0, #7fc0f5);
+    color: var(--branco); display: flex; align-items: center; padding: 0 5%; font-size: .5em; letter-spacing: .5em; font-weight: 300;
+  }
+  .c-com-texto { margin: 4% 10% 0; display: grid; gap: .45em; }
+  .c-com-texto strong { font-size: .5em; color: var(--azul); text-align: center; }
+  .linha { display: block; height: .5em; border-radius: .3em; background: #dce6f0; }
 
   .c-botoes { position: absolute; left: 4%; top: 16%; display: flex; gap: .5em; }
   .c-botoes i {
@@ -195,39 +210,178 @@
   }
   .c-botoes svg { width: 1em; height: 1em; }
   .c-titulo { position: absolute; left: 16%; top: 16%; height: 7.2%; display: flex; align-items: center; color: var(--azul); font-weight: 900; font-size: .7em; }
-  .c-abas { position: absolute; left: 4%; right: 4%; display: flex; gap: .4em; }
+
+  .c-busca {
+    position: absolute; left: 4%; right: 4%; top: 25%; height: 6%; background: var(--branco); border: 1px solid #d5e2ee;
+    border-radius: .5em; display: flex; align-items: center; gap: .5em; padding: 0 1.5%; color: #6b7785; font-size: .42em;
+  }
+  .c-busca svg { width: 1.3em; height: 1.3em; flex-shrink: 0; }
+  .c-busca .c-digitado { color: #1c2530; font-weight: 700; }
+  .c-abas { position: absolute; left: 4%; right: 4%; display: flex; gap: 1%; }
   .c-abas span {
-    font-size: .46em; font-weight: 700; color: var(--azul); background: rgba(255, 255, 255, .8); padding: .7em 1.2em;
-    border-radius: .7em .7em 0 0; border: 1px solid rgba(0, 108, 181, .18); border-bottom: 0;
+    width: 26%; height: 3.2cqw; display: grid; place-items: center; font-size: .42em; font-weight: 700; color: var(--azul);
+    background: rgba(255, 255, 255, .85); border-radius: .8em .8em 0 0; border: 1px solid rgba(0, 108, 181, .18); border-bottom: 0;
   }
   .c-abas span.on { background: linear-gradient(135deg, var(--azul), var(--ciano)); color: var(--branco); border-color: transparent; }
-  .c-painel {
-    position: absolute; left: 4%; right: 4%; background: var(--branco); border-radius: 0 .6em .6em .6em;
-    box-shadow: 0 .2em .8em rgba(0, 0, 0, .08); padding: 3% 4%; display: flex; flex-direction: column; gap: 7%;
+  .c-abas.centro { justify-content: center; }
+  .c-abas.centro span { width: 16%; }
+
+  .c-lista {
+    position: absolute; left: 4%; right: 4%; background: var(--branco); border-radius: 0 0 .5em .5em; overflow: hidden;
+    box-shadow: 0 .2em .8em rgba(0, 0, 0, .08); display: flex; flex-direction: column;
   }
-  .c-painel i { display: block; height: .55em; border-radius: .3em; background: #e8eef5; }
+  .c-lista .lin { flex: 1; display: grid; align-items: center; padding: 0 1.2%; font-size: .42em; color: #333; }
+  .c-lista .lin:nth-child(odd):not(.cab) { background: #f2f2f2; }
+  .c-lista .lin.cab {
+    background: linear-gradient(90deg, var(--azul), var(--ciano)); color: var(--branco); font-weight: 900; font-size: .38em;
+    letter-spacing: .05em;
+  }
+  .c-lista .lin b { font-weight: 900; }
+  .c-lista .azul { color: var(--azul); font-weight: 700; }
+
+  .c-filtro {
+    position: absolute; top: 25%; height: 7%; background: var(--branco); border: 1px solid #d5e2ee; border-radius: .5em;
+    display: flex; align-items: center; gap: .5em; padding: 0 1.2%; color: var(--azul); font-size: .42em; font-weight: 700;
+  }
+  .c-filtro.cinza { color: #6b7785; font-weight: 400; }
+  .c-filtro svg { width: 1.3em; height: 1.3em; flex-shrink: 0; }
+  .c-filtro .fim { margin-left: auto; }
+  .c-menu {
+    position: absolute; z-index: 4; background: var(--branco); border-radius: .6em; box-shadow: 0 .5em 1.5em rgba(0, 0, 0, .18);
+    padding: 1% 1.2%; font-size: .42em;
+  }
+  .c-menu-cab { color: #6b7785; font-weight: 900; font-size: .85em; letter-spacing: .08em; padding: .6em .5em; border-bottom: 1px solid #e8eef5; display: flex; justify-content: space-between; }
+  .c-meses { display: grid; grid-template-columns: 1fr 1fr; gap: .15em .6em; padding-top: .4em; }
+  .c-meses span { padding: .55em .7em; font-weight: 700; color: #1c2530; border-radius: .5em; }
+  .c-meses span.on { background: var(--azul); color: var(--branco); }
+  .c-marca-lin { display: flex; align-items: center; gap: .6em; padding: .45em .5em; color: var(--azul); font-weight: 700; }
+  .c-marca-lin i { width: 1.1em; height: 1.1em; border-radius: .25em; background: #1a6fc1; display: grid; place-items: center; color: var(--branco); font-style: normal; font-size: .8em; }
+  .c-marca-lin em { margin-left: auto; font-style: normal; background: #e3eef9; border-radius: 1em; padding: .1em .6em; color: #50627a; font-size: .85em; }
+  .c-menu-rodape { display: flex; gap: .6em; padding-top: .6em; border-top: 1px solid #e8eef5; margin-top: .3em; }
+  .c-menu-rodape span { flex: 1; text-align: center; padding: .55em; border-radius: .5em; font-weight: 700; }
+  .c-menu-rodape .limpar { border: 1px solid var(--laranja); color: var(--laranja); }
+  .c-menu-rodape .todas { background: #9cc6ea; color: var(--branco); }
+
   .c-faixa {
     position: absolute; left: 4%; right: 4%; top: 27%; height: 10%; border-radius: .6em; color: var(--branco);
     background: linear-gradient(90deg, var(--azul), var(--ciano)); display: grid; place-items: center;
     font-size: .56em; font-weight: 900; letter-spacing: .12em; box-shadow: 0 .3em 1em rgba(0, 108, 181, .3);
   }
+  .c-painel {
+    position: absolute; left: 4%; right: 4%; background: var(--branco); border-radius: .6em;
+    box-shadow: 0 .2em .8em rgba(0, 0, 0, .08); padding: 3% 4%; display: flex; flex-direction: column; gap: 7%;
+  }
+  .c-doc-cab {
+    position: absolute; left: 8%; right: 8%; top: 57%; height: 6%; border: 1px solid #dbe6f1; border-radius: .6em .6em 0 0;
+    background: #f5f9fd; display: flex; align-items: center; justify-content: space-between; padding: 0 2%;
+    color: var(--azul); font-size: .46em; font-weight: 700;
+  }
+  .c-doc-cab svg { width: 1.4em; height: 1.4em; }
+  .c-doc-corpo { position: absolute; left: 8%; right: 8%; top: 63%; height: 26%; border: 1px solid #dbe6f1; border-top: 0; border-radius: 0 0 .6em .6em; padding: 2% 2.5%; display: grid; align-content: start; gap: .5em; }
+  .c-btn-doc {
+    position: absolute; left: 68%; width: 22%; height: 5.5%; border-radius: 2em; color: var(--branco); font-weight: 900;
+    background: linear-gradient(90deg, var(--laranja), #ff9e43); display: grid; place-items: center; font-size: .38em; letter-spacing: .04em;
+    box-shadow: 0 .3em .8em rgba(245, 130, 31, .35);
+  }
   .c-area {
-    position: absolute; width: 21.5%; height: 29%; background: var(--branco); border-radius: .7em;
+    position: absolute; width: 21.5%; height: 29%; background: var(--branco); border-radius: .7em; color: var(--azul);
     box-shadow: 0 .3em .9em rgba(0, 0, 0, .1); display: flex; flex-direction: column; justify-content: space-between;
     align-items: center; padding: 6% 3% 4%;
   }
-  .c-area b { font-size: .46em; color: var(--azul); font-weight: 400; text-align: center; letter-spacing: .04em; }
+  .c-area b { font-size: .46em; font-weight: 400; text-align: center; letter-spacing: .04em; color: inherit; }
   .c-area span { width: 100%; font-size: .32em; color: var(--branco); font-weight: 900; text-align: center; padding: .6em 0; border-radius: 2em; }
 
   .c-drop {
     position: absolute; right: 2.5%; top: 12.5%; width: 34%; background: var(--branco); border-radius: .5em; z-index: 4;
-    box-shadow: 0 .5em 1.5em rgba(0, 0, 0, .2); padding: .5em 0;
+    box-shadow: 0 .5em 1.5em rgba(0, 0, 0, .2); padding: 1.25cqw 0;
   }
-  .c-drop div { display: flex; align-items: center; gap: .7em; padding: .55em 1.1em; font-size: .46em; font-weight: 700; color: #333; }
+  .c-drop div { height: 4cqw; display: flex; align-items: center; gap: .7em; padding: 0 1.1em; font-size: .46em; font-weight: 700; color: #333; }
   .c-drop div::before { content: ''; width: .9em; height: .9em; border-radius: .25em; border: .18em solid var(--azul); }
   .c-drop div.guia { background: var(--azul-claro); color: var(--azul); }
 
-  /* ---- movimento ---- */
+  .c-env { width: 2.7em; height: 1.9em; border-radius: .4em; background: #0d6efd; color: var(--branco); display: grid; place-items: center; }
+  .c-env svg { width: 1.3em; height: 1.3em; }
+  .c-toast {
+    position: absolute; right: 3%; top: 15%; width: 36%; background: var(--branco); border-radius: .5em; overflow: hidden; z-index: 4;
+    box-shadow: 0 .4em 1.4em rgba(0, 0, 0, .18); display: flex; align-items: center; gap: .6em; padding: .8em .9em 1em;
+  }
+  .c-toast i { width: 1.3em; height: 1.3em; border-radius: 50%; background: var(--verde); color: var(--branco); display: grid; place-items: center; flex-shrink: 0; font-style: normal; }
+  .c-toast i svg { width: .8em; height: .8em; }
+  .c-toast span { font-size: .56em; color: #444; font-weight: 700; }
+  .c-toast::after { content: ''; position: absolute; left: 0; bottom: 0; height: .25em; width: 70%; background: var(--verde); }
+
+  .c-janela {
+    position: absolute; left: 26%; right: 3%; top: 14%; bottom: 5%; z-index: 4; background: var(--branco); border-radius: .6em;
+    overflow: hidden; box-shadow: 0 .8em 2.4em rgba(0, 0, 0, .3); display: flex; flex-direction: column;
+  }
+  .c-abas-nav { height: 12%; background: #dfe3e8; display: flex; align-items: flex-end; gap: .4em; padding: 0 2%; }
+  .c-abas-nav span { font-size: .4em; padding: .7em 1.4em; border-radius: .7em .7em 0 0; color: #555; max-width: 45%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .c-abas-nav span.on { background: var(--branco); color: #1c2530; font-weight: 700; }
+  .c-endereco { height: 10%; display: flex; align-items: center; padding: 0 3%; border-bottom: 1px solid #e3e7ec; }
+  .c-endereco span { flex: 1; background: #f1f3f4; border-radius: 2em; padding: .5em 1.2em; font-size: .38em; color: #555; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .c-janela-corpo { flex: 1; display: grid; place-items: center; background: #f7f8fa; }
+  .c-pdf { width: 46%; height: 88%; background: var(--branco); box-shadow: 0 .2em .8em rgba(0, 0, 0, .12); padding: 5% 6%; display: grid; align-content: start; gap: .5em; }
+  .c-pdf strong { font-size: .44em; color: var(--azul); }
+  .c-monitora { display: grid; justify-items: center; gap: .6em; color: var(--azul); }
+  .c-monitora svg { width: 3.2em; height: 3.2em; }
+  .c-monitora b { font-size: .7em; letter-spacing: .1em; }
+
+  /* rodapé azul dentro da cena (tema Conhecendo o Portal) */
+  .c-rodape { position: absolute; left: 0; right: 0; top: 50%; bottom: 0; background: linear-gradient(90deg, #005a96, #006CB5 60%, #0080cc); color: var(--branco); }
+  .c-rodape-ic { position: absolute; left: 3%; top: 16%; width: 4.5%; height: 22%; border-radius: .5em; background: rgba(255, 255, 255, .15); display: grid; place-items: center; }
+  .c-rodape-ic svg { width: 1.3em; height: 1.3em; }
+  .c-rodape-txt { position: absolute; left: 9.5%; top: 17%; display: grid; gap: .35em; }
+  .c-rodape-txt b { font-size: .5em; letter-spacing: .1em; }
+  .c-rodape-txt small { font-size: .36em; opacity: .85; }
+  .c-rodape-copy { position: absolute; left: 3%; right: 3%; top: 62%; border-top: 1px solid rgba(255, 255, 255, .2); padding-top: 3%; text-align: center; font-size: .34em; opacity: .75; }
+
+  /* navegador do computador (tema Primeiro Acesso) */
+  .c-guias { position: absolute; left: 0; right: 0; top: 0; height: 7%; background: #dfe3e8; }
+  .c-guia { position: absolute; left: 2%; top: 20%; bottom: 0; width: 24%; background: var(--branco); border-radius: .5em .5em 0 0; display: flex; align-items: center; gap: .5em; padding: 0 1.2%; font-size: .38em; color: #1c2530; }
+  .c-guia i { width: 1.2em; height: 1.2em; border-radius: .25em; background: linear-gradient(135deg, var(--azul), var(--laranja)); }
+  .c-barra-end { position: absolute; left: 0; right: 0; top: 7%; height: 9%; background: var(--branco); border-bottom: 1px solid #e3e7ec; }
+  .c-barra-end .icones { position: absolute; left: 1.5%; top: 0; bottom: 0; display: flex; align-items: center; gap: .9em; color: #5f6368; }
+  .c-barra-end .icones svg { width: 1em; height: 1em; }
+  .c-url { position: absolute; left: 11%; right: 8%; top: 17%; bottom: 17%; border-radius: 2em; background: #f1f3f4; display: flex; align-items: center; gap: .5em; padding: 0 1.5%; font-size: .4em; color: #3c4043; }
+  .c-url svg { width: 1.1em; height: 1.1em; }
+  .c-estrela { position: absolute; left: 87.95%; top: 9.5%; width: 2.5%; height: 4%; color: #5f6368; }
+  .c-estrela.cheia { color: #1a73e8; z-index: 4; }
+  .c-popup {
+    position: absolute; left: 62%; right: 3%; top: 17%; z-index: 4; background: var(--branco); border-radius: .5em;
+    box-shadow: 0 .5em 1.6em rgba(0, 0, 0, .22); padding: 2% 3%; display: grid; align-content: start; gap: .5em; font-size: .4em; color: #3c4043;
+  }
+  .c-popup strong { font-size: 1.15em; color: #1c2530; }
+  .c-popup .campo { border: 1px solid #dadce0; border-radius: .4em; padding: .45em .7em; }
+  .c-popup .botoes { display: flex; justify-content: flex-end; gap: .6em; }
+  .c-popup .botoes span { padding: .45em 1em; border-radius: 2em; border: 1px solid #dadce0; color: #1a73e8; font-weight: 700; }
+  .c-popup .botoes span.azul { background: #1a73e8; color: var(--branco); border-color: #1a73e8; }
+  .c-mini-nav { position: absolute; left: 0; right: 0; top: 16%; height: 9%; background: linear-gradient(90deg, var(--azul), var(--ciano)); color: var(--branco); display: flex; align-items: center; justify-content: space-between; padding: 0 3%; font-size: .44em; font-weight: 900; letter-spacing: .06em; }
+
+  /* celular (tema Primeiro Acesso): coordenadas internas em % do aparelho */
+  .fone { position: absolute; left: 35%; top: 4%; width: 30%; height: 92%; border-radius: 1.4em; border: .3em solid #1b2430; background: var(--branco); overflow: hidden; z-index: 1; }
+  .f-status { position: absolute; left: 0; right: 0; top: 0; height: 4%; display: flex; justify-content: space-between; align-items: center; padding: 0 7%; font-size: .3em; font-weight: 700; color: #1c2530; }
+  .f-chrome { position: absolute; left: 0; right: 0; top: 4%; height: 8%; background: var(--branco); border-bottom: 1px solid #e3e7ec; }
+  .f-url { position: absolute; left: 4%; right: 20%; top: 18%; bottom: 18%; border-radius: 2em; background: #f1f3f4; display: flex; align-items: center; padding: 0 5%; font-size: .28em; color: #3c4043; white-space: nowrap; overflow: hidden; }
+  .f-pontos { position: absolute; left: 84%; width: 12%; top: 10%; height: 80%; color: #3c4043; }
+  .f-portal { position: absolute; left: 0; right: 0; top: 12%; height: 7%; background: linear-gradient(90deg, var(--azul), var(--ciano)); display: flex; align-items: center; justify-content: space-between; padding: 0 5%; color: var(--branco); font-size: .28em; font-weight: 900; }
+  .f-portal i { width: 2em; height: 2em; border-radius: 50%; background: var(--branco); color: var(--azul); display: grid; place-items: center; font-style: normal; }
+  .f-atalho { position: absolute; width: 42%; height: 17%; background: var(--branco); border-radius: .5em; box-shadow: 0 .2em .6em rgba(0, 0, 0, .12); display: grid; place-items: center; align-content: center; gap: .3em; color: var(--azul); }
+  .f-atalho svg { width: 1.3em; height: 1.3em; }
+  .f-atalho b { font-size: .24em; font-weight: 700; }
+  .f-com { position: absolute; left: 5%; right: 5%; top: 60%; bottom: 3%; background: var(--branco); border-radius: .5em; overflow: hidden; box-shadow: 0 .2em .6em rgba(0, 0, 0, .08); display: grid; align-content: start; gap: .5em; }
+  .f-com b { background: linear-gradient(90deg, #005fa3, var(--ciano)); color: var(--branco); font-size: .26em; padding: .9em 1em; letter-spacing: .06em; }
+  .f-com .linha { margin: 0 6%; height: .35em; }
+  .f-menu { position: absolute; left: 36%; right: 3%; top: 5%; z-index: 4; background: var(--branco); border-radius: .4em; box-shadow: 0 .4em 1.2em rgba(0, 0, 0, .25); padding: 1.5% 0; }
+  .f-menu div { height: 4.31cqw; display: flex; align-items: center; padding: 0 9%; font-size: .3em; color: #1c2530; }
+  .f-menu div.alvo { font-weight: 900; }
+  .f-inicio { position: absolute; inset: 0; background: linear-gradient(160deg, #173a63, #3c6ea8 55%, #7aa6d6); }
+  .f-app { position: absolute; width: 16%; display: grid; justify-items: center; gap: .35em; }
+  .f-app i { width: 100%; aspect-ratio: 1; border-radius: 26%; display: block; }
+  .f-app b { font-size: .24em; color: var(--branco); font-weight: 700; white-space: nowrap; }
+  .f-app.portal i { background: linear-gradient(135deg, var(--azul), var(--ciano)); display: grid; place-items: center; }
+  .f-app.portal img { width: 78%; }
+
+  /* ---- movimento: cursor, clique e reações da tela ---- */
   .cursor {
     position: absolute; left: var(--x1); top: var(--y1); width: 1.7em; height: 1.7em; z-index: 6;
     margin: -.2em 0 0 -.3em; filter: drop-shadow(0 .1em .15em rgba(0, 0, 0, .35));
@@ -240,11 +394,17 @@
   }
   .antes { opacity: 0; animation: telaSai 5s infinite; }
   .depois { animation: telaEntra 5s infinite; }
-  .c-drop { animation: menuAbre 5s ease-out infinite; }
+  .surge { animation: surge 5s ease-out infinite; }
+  .surge.tarde { animation-name: surgeTarde; }
+  .anima-hover { background: linear-gradient(135deg, var(--azul), #9dc2dd); color: var(--branco); animation: hoverAtalho 5s infinite; }
+  .anima-aperta { animation: aperta 5s infinite; }
+  .anima-marca { position: absolute; z-index: 4; background: rgba(245, 130, 31, .16); border: .12em solid rgba(245, 130, 31, .7); border-radius: .3em; animation: surge 5s infinite; }
+  .destaque { position: absolute; z-index: 4; border: .18em solid var(--laranja); border-radius: .7em; animation: destaca 5s infinite; }
+  .destaque.tarde { animation-name: destacaTarde; }
+  .c-digitado { display: inline-block; overflow: hidden; white-space: nowrap; vertical-align: bottom; width: 13ch; animation: digita 5s steps(13, end) infinite; }
   .pausar {
     position: absolute; right: 2%; bottom: 3%; z-index: 7; width: 2.4em; height: 2.4em; min-width: 28px; min-height: 28px;
-    border-radius: 50%; border: 0; cursor: pointer; background: rgba(23, 32, 43, .7); color: var(--branco);
-    display: grid; place-items: center;
+    border-radius: 50%; border: 0; cursor: pointer; background: rgba(23, 32, 43, .7); color: var(--branco); display: grid; place-items: center;
   }
   .pausar svg { width: 45%; height: 45%; }
   .cena.pausada * { animation-play-state: paused !important; }
@@ -262,21 +422,41 @@
     47%       { opacity: .9; }
     68%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
   }
-  @keyframes telaSai {
-    0%, 46%   { opacity: 1; }
-    52%, 90%  { opacity: 0; }
-    96%, 100% { opacity: 1; }
-  }
-  @keyframes telaEntra {
-    0%, 46%   { opacity: 0; }
-    52%, 90%  { opacity: 1; }
-    96%, 100% { opacity: 0; }
-  }
-  @keyframes menuAbre {
+  @keyframes telaSai { 0%, 46% { opacity: 1; } 52%, 90% { opacity: 0; } 96%, 100% { opacity: 1; } }
+  @keyframes telaEntra { 0%, 46% { opacity: 0; } 52%, 90% { opacity: 1; } 96%, 100% { opacity: 0; } }
+  @keyframes surge {
     0%, 46%   { opacity: 0; transform: translateY(-.5em); }
     52%, 90%  { opacity: 1; transform: translateY(0); }
     96%, 100% { opacity: 0; }
   }
+  @keyframes surgeTarde {
+    0%, 70%   { opacity: 0; transform: translateY(-.5em); }
+    76%, 90%  { opacity: 1; transform: translateY(0); }
+    96%, 100% { opacity: 0; }
+  }
+  @keyframes hoverAtalho {
+    0%, 40%   { background: var(--branco); color: var(--azul); }
+    42%, 92%  { background: linear-gradient(135deg, var(--azul), #9dc2dd); color: var(--branco); }
+    96%, 100% { background: var(--branco); color: var(--azul); }
+  }
+  @keyframes aperta { 0%, 45%, 52%, 100% { transform: scale(1); } 47% { transform: scale(.85); filter: brightness(.8); } }
+  @keyframes destaca {
+    0%, 42%  { opacity: 0; box-shadow: 0 0 0 0 rgba(245, 130, 31, .55); }
+    48%      { opacity: 1; box-shadow: 0 0 0 0 rgba(245, 130, 31, .55); }
+    62%      { box-shadow: 0 0 0 .8em rgba(245, 130, 31, 0); }
+    63%      { box-shadow: 0 0 0 0 rgba(245, 130, 31, .55); }
+    78%      { box-shadow: 0 0 0 .8em rgba(245, 130, 31, 0); }
+    90%      { opacity: 1; }
+    96%, 100% { opacity: 0; }
+  }
+  @keyframes destacaTarde {
+    0%, 54%  { opacity: 0; box-shadow: 0 0 0 0 rgba(245, 130, 31, .55); }
+    58%      { opacity: 1; box-shadow: 0 0 0 0 rgba(245, 130, 31, .55); }
+    72%      { box-shadow: 0 0 0 .8em rgba(245, 130, 31, 0); }
+    90%      { opacity: 1; }
+    96%, 100% { opacity: 0; }
+  }
+  @keyframes digita { 0%, 52% { width: 0; } 70%, 100% { width: 13ch; } }
 
   /* ================= celular ================= */
   @container frame (max-width: 620px) {
@@ -284,20 +464,21 @@
     .p-marca { font-size: .74rem; }
     .p-logo { height: 38px; }
     .p-div { margin: 0 10px; }
-    .p-user span { display: none; }
-    .p-corpo { padding: 14px 12px 28px; }
+    .p-user > span:first-child { display: none; }
+    .p-avatar { width: 36px; height: 36px; font-size: 1rem; }
+    .p-corpo { padding: 14px 12px 40px; }
     .p-barra-titulo { font-size: 1.05rem; }
     .acc-cab { padding: 14px 14px; gap: 2px 12px; grid-template-columns: auto 1fr auto; }
     .acc-qtd { display: none; }
     .acc-seta { grid-column: 3; }
     .acc-ic { width: 40px; height: 40px; border-radius: 12px; }
     .acc-titulo { font-size: 1rem; }
-    .acc-corpo { padding: 18px 14px 22px; }
+    .acc-corpo { padding: 16px 12px 20px; }
     .passo-cab { padding: 10px 12px; gap: 10px; }
     .passo-num { width: 30px; height: 30px; font-size: .92rem; }
     .passo-acao { font-size: .95rem; }
     .passo-corpo { padding: 4px 12px 16px; }
-    .p-rodape { padding: 12px 16px; }
+    .p-rodape { padding: 12px 16px 10px; }
   }
 
   /* Sem movimento: cada mini vídeo vira a foto do seu último quadro. */
@@ -315,24 +496,21 @@
   <div class="ctl-grupo">
     <span>Tela:</span>
     <div class="seg">
-      <button type="button" data-tela="pc" aria-pressed="true">Computador</button>
-      <button type="button" data-tela="cel" aria-pressed="false">Celular</button>
+      <button type="button" data-modo="pc" aria-pressed="true">Computador</button>
+      <button type="button" data-modo="cel" aria-pressed="false">Celular</button>
     </div>
   </div>
 </header>
 
 <section class="briefing">
   <h1>Guia do Portal: cada passo abre só quando você clica</h1>
-  <p>
-    O Guia do Portal abre pelo menu do topo e reúne os temas em acordeão: Primeiro Acesso, Conhecendo o Portal, Como Navegar e Principais Funcionalidades. Dentro de cada tema, os passos aparecem em lista; a pessoa clica só no passo que quer ver e o mini vídeo dele se abre. O tema <b>Como Navegar</b> já está com os mini vídeos funcionando; nos outros, o espaço do vídeo mostra onde ele vai entrar.
-  </p>
-  <p class="decisao">O que achou? É só me dizer o que ajustar.</p>
+  <p>O Guia abre pelo item <b>Guia do Portal</b> no menu dos três pontinhos e reúne os temas em acordeão. Dentro de cada tema, os passos aparecem em lista; a pessoa clica só no passo que quer ver e o mini vídeo dele se abre. Todos os passos já estão com mini vídeo. O que achou? É só me dizer o que ajustar.</p>
 </section>
 
 <div class="frame" id="frame">
   <div class="p-nav">
     <span class="p-marca"><img src="logo.png" alt="Santa Mônica" class="p-logo"><i class="p-div"></i>PORTAL DO COLABORADOR</span>
-    <span class="p-user"><span>Olá, Mônica!</span><span class="p-avatar">M</span></span>
+    <span class="p-user"><span>Olá, Mônica!</span><span class="p-avatar">M</span><svg class="p-pontos" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></span>
   </div>
 
   <div class="p-corpo">
@@ -341,32 +519,69 @@
       <span class="p-nav-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
       <span class="p-barra-titulo">Guia do Portal</span>
     </div>
-    <p class="p-intro">Aprenda a usar o Portal em poucos minutos. Abra um tema e acompanhe os mini vídeos de cada passo.</p>
+    <p class="p-intro">Aprenda a usar o Portal em poucos minutos. Abra um tema e clique no passo que você quer ver.</p>
 
-    <div class="acordeao" id="acordeao">
+    <div class="acordeao">
 
-      <!-- ===== 1. Primeiro Acesso ===== -->
+      <!-- ================= 1. PRIMEIRO ACESSO ================= -->
       <div class="acc-item">
-        <button type="button" class="acc-cab" aria-expanded="false">
+        <button type="button" class="acc-cab" aria-expanded="true">
           <span class="acc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
           <span class="acc-titulo">Primeiro Acesso</span>
           <span class="acc-sub">Deixe o Portal sempre à mão</span>
           <span class="acc-qtd">3 passos</span>
           <svg class="acc-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
         </button>
-        <div class="acc-corpo" hidden>
+        <div class="acc-corpo">
           <ol class="passos">
-            <li class="passo-item"><button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">1</span><span class="passo-acao">No computador, clique na estrela da barra de endereço.</span><svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="passo-corpo" hidden><div class="video-previa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4Z"/></svg>Mini vídeo deste passo entra na versão final</div><p class="passo-expl">O Portal fica salvo nos favoritos do navegador.</p></div></li>
-            <li class="passo-item"><button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">2</span><span class="passo-acao">No celular, abra o menu do navegador.</span><svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="passo-corpo" hidden><div class="video-previa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4Z"/></svg>Mini vídeo deste passo entra na versão final</div><p class="passo-expl">No Chrome, são os três pontinhos no canto superior direito.</p></div></li>
-            <li class="passo-item"><button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">3</span><span class="passo-acao">Toque em “Adicionar à tela inicial”.</span><svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="passo-corpo" hidden><div class="video-previa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4Z"/></svg>Mini vídeo deste passo entra na versão final</div><p class="passo-expl">O ícone do Portal aparece junto com os seus aplicativos.</p></div></li>
+            <li class="passo-item" data-passo="1" data-acao="No computador, clique na estrela da barra de endereço.">
+              <div class="cena" style="--x0: 50%; --y0: 70%; --x1: 89.2%; --y1: 11.5%;">
+                <div class="cena-in">
+                  <div class="c-guias"><span class="c-guia"><i></i>Portal do Colaborador</span></div>
+                  <div class="c-barra-end">
+                    <span class="icones"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></span>
+                    <span class="c-url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>maycon-mb.github.io/frontend-qualidade-SMRE</span>
+                  </div>
+                  <svg class="c-estrela" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  <svg class="c-estrela cheia surge" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  <div class="c-mini-nav"><span>PORTAL DO COLABORADOR</span><span>Olá, Mônica!</span></div>
+                  <div class="c-atalho" style="left: 4%; top: 30%; width: 17%; height: 30%;"><b>ANIVERSARIANTES</b></div>
+                  <div class="c-atalho" style="left: 24%; top: 30%; width: 17%; height: 30%;"><b>CONTRACHEQUE</b></div>
+                  <div class="c-atalho" style="left: 4%; top: 64%; width: 17%; height: 30%;"><b>GESTÃO DA QUALIDADE</b></div>
+                  <div class="c-atalho" style="left: 24%; top: 64%; width: 17%; height: 30%;"><b>SISTEMA MONITORA</b></div>
+                  <div class="c-comunicados" style="top: 30%;"><b class="c-com-cab" style="height: 12%;">ÚLTIMOS COMUNICADOS</b></div>
+                  <div class="c-popup surge"><strong>Favorito adicionado</strong><span>Nome</span><span class="campo">Portal do Colaborador</span><span>Pasta</span><span class="campo">Barra de favoritos</span><span class="botoes"><span>Remover</span><span class="azul">Concluído</span></span></div>
+                </div>
+              </div>
+              <p class="passo-expl">O Portal fica salvo nos favoritos do navegador e abre com um clique.</p>
+            </li>
+            <li class="passo-item" data-passo="2" data-acao="No celular, abra o menu do navegador.">
+              <div class="cena" style="--x0: 50%; --y0: 80%; --x1: 62%; --y1: 11.4%;">
+                <div class="cena-in">
+                  <div class="fone"><div class="tela" data-tela="fone-portal"></div>
+                    <div class="f-menu surge"><div>Nova guia</div><div>Nova guia anônima</div><div>Favoritos</div><div>Histórico</div><div>Downloads</div><div>Compartilhar…</div><div class="alvo">Adicionar à tela inicial</div><div>Configurações</div></div>
+                  </div>
+                </div>
+              </div>
+              <p class="passo-expl">No Chrome, são os três pontinhos no canto superior direito, ao lado do endereço.</p>
+            </li>
+            <li class="passo-item" data-passo="3" data-acao="Toque em “Adicionar à tela inicial”.">
+              <div class="cena" style="--x0: 45%; --y0: 85%; --x1: 54.5%; --y1: 54.2%;">
+                <div class="cena-in">
+                  <div class="fone">
+                    <div class="tela antes" data-tela="fone-portal"><div class="f-menu"><div>Nova guia</div><div>Nova guia anônima</div><div>Favoritos</div><div>Histórico</div><div>Downloads</div><div>Compartilhar…</div><div class="alvo">Adicionar à tela inicial</div><div>Configurações</div></div></div>
+                    <div class="tela depois" data-tela="fone-inicio"></div>
+                    <div class="destaque tarde" style="left: 25%; top: 26.5%; width: 25%; height: 16%;"></div>
+                  </div>
+                </div>
+              </div>
+              <p class="passo-expl">O ícone do Portal aparece junto com os seus aplicativos, pronto para abrir.</p>
+            </li>
           </ol>
         </div>
       </div>
 
-      <!-- ===== 2. Conhecendo o Portal ===== -->
+      <!-- ================= 2. CONHECENDO O PORTAL ================= -->
       <div class="acc-item">
         <button type="button" class="acc-cab" aria-expanded="false">
           <span class="acc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg></span>
@@ -377,80 +592,83 @@
         </button>
         <div class="acc-corpo" hidden>
           <ol class="passos">
-            <li class="passo-item"><button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">1</span><span class="passo-acao">No topo ficam a sua saudação e a sua foto.</span><svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="passo-corpo" hidden><div class="video-previa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4Z"/></svg>Mini vídeo deste passo entra na versão final</div><p class="passo-expl">O “Olá, Mônica!” confirma que você entrou com a sua conta.</p></div></li>
-            <li class="passo-item"><button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">2</span><span class="passo-acao">À esquerda estão os atalhos.</span><svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="passo-corpo" hidden><div class="video-previa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4Z"/></svg>Mini vídeo deste passo entra na versão final</div><p class="passo-expl">Cada quadrado leva a uma área do Portal.</p></div></li>
-            <li class="passo-item"><button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">3</span><span class="passo-acao">À direita, os Últimos Comunicados.</span><svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="passo-corpo" hidden><div class="video-previa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4Z"/></svg>Mini vídeo deste passo entra na versão final</div><p class="passo-expl">Clique no título para ler o comunicado completo.</p></div></li>
-            <li class="passo-item"><button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">4</span><span class="passo-acao">No rodapé, a Ouvidoria.</span><svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="passo-corpo" hidden><div class="video-previa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4Z"/></svg>Mini vídeo deste passo entra na versão final</div><p class="passo-expl">O canal de escuta da rede, aberto a todos.</p></div></li>
+            <li class="passo-item" data-passo="1" data-acao="No topo ficam a sua saudação e a sua foto.">
+              <div class="cena" data-sem-clique style="--x0: 50%; --y0: 70%; --x1: 91.5%; --y1: 6%;">
+                <div class="cena-in"><div class="tela" data-tela="home"></div><div class="c-nav"></div>
+                  <div class="destaque" style="left: 72.5%; top: 1.5%; width: 21.5%; height: 9%;"></div></div>
+              </div>
+              <p class="passo-expl">O “Olá, Mônica!” confirma que você entrou com a sua conta.</p>
+            </li>
+            <li class="passo-item" data-passo="2" data-acao="À esquerda estão os atalhos.">
+              <div class="cena" data-sem-clique style="--x0: 70%; --y0: 85%; --x1: 23%; --y1: 56%;">
+                <div class="cena-in"><div class="tela" data-tela="home"></div><div class="c-nav"></div>
+                  <div class="destaque" style="left: 2.5%; top: 15.5%; width: 41.5%; height: 81%;"></div></div>
+              </div>
+              <p class="passo-expl">Cada quadrado leva a uma área do Portal: Aniversariantes, Contracheque, Gestão da Qualidade e Sistema Monitora.</p>
+            </li>
+            <li class="passo-item" data-passo="3" data-acao="À direita, os Últimos Comunicados.">
+              <div class="cena" style="--x0: 30%; --y0: 85%; --x1: 62%; --y1: 28.5%;">
+                <div class="cena-in"><div class="tela" data-tela="home"></div><div class="c-nav"></div>
+                  <div class="c-com-aberto surge">
+                    <div class="c-com-item"><b>Comunicação | Agenda da semana</b><small>22/09/2026</small></div>
+                    <div class="c-banner">COMUNICADO</div>
+                    <div class="c-com-texto"><strong>Agenda da semana</strong><i class="linha"></i><i class="linha"></i><i class="linha" style="width: 70%;"></i></div>
+                  </div></div>
+              </div>
+              <p class="passo-expl">Clique no título para ler o comunicado completo. Clique de novo para fechar.</p>
+            </li>
+            <li class="passo-item" data-passo="4" data-acao="No rodapé, a Ouvidoria.">
+              <div class="cena" data-sem-clique style="--x0: 60%; --y0: 30%; --x1: 12%; --y1: 66%;">
+                <div class="cena-in"><div class="tela" data-tela="home-rodape"></div><div class="c-nav"></div>
+                  <div class="destaque" style="left: 2%; top: 55%; width: 38%; height: 21%;"></div></div>
+              </div>
+              <p class="passo-expl">No fim de todas as páginas fica a Ouvidoria SMREDE, o canal de escuta da rede, aberto a todos.</p>
+            </li>
           </ol>
         </div>
       </div>
 
-      <!-- ===== 3. Como Navegar (com mini vídeos) ===== -->
+      <!-- ================= 3. COMO NAVEGAR ================= -->
       <div class="acc-item">
-        <button type="button" class="acc-cab" aria-expanded="true">
+        <button type="button" class="acc-cab" aria-expanded="false">
           <span class="acc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span>
           <span class="acc-titulo">Como Navegar</span>
           <span class="acc-sub">Ande pelo Portal sem se perder</span>
           <span class="acc-qtd">4 passos</span>
           <svg class="acc-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
         </button>
-        <div class="acc-corpo">
+        <div class="acc-corpo" hidden>
           <ol class="passos">
-            <li class="passo-item"><button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">1</span><span class="passo-acao">Clique no logo para voltar à tela inicial.</span><svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="passo-corpo" hidden><div class="cena" style="--x0: 60%; --y0: 80%; --x1: 7.5%; --y1: 6%;">
-                <div class="cena-in">
-                  <div class="c-nav"><img class="c-logo" src="logo.png" alt=""><span class="c-nav-dir">Olá, Mônica! <i class="c-av"></i><svg class="c-pontos" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg></span></div>
-                  <div class="tela antes" data-tela="ramais"></div>
-                  <div class="tela depois" data-tela="home"></div>
-                  <div class="clique"></div>
-                  <svg class="cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v17l4.5-4.2 3 6.7 3-1.3-3-6.6H17Z" fill="#fff" stroke="#111" stroke-width="1.4" stroke-linejoin="round"/></svg>
-                </div>
-                <button type="button" class="pausar" aria-label="Pausar mini vídeo" data-pausar></button>
-              </div><p class="passo-expl">Funciona em qualquer página do Portal.</p></div></li>
-            <li class="passo-item"><button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">2</span><span class="passo-acao">Abra o menu nos três pontinhos.</span><svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="passo-corpo" hidden><div class="cena" style="--x0: 55%; --y0: 85%; --x1: 95.4%; --y1: 6%;">
-                <div class="cena-in">
-                  <div class="c-nav"><img class="c-logo" src="logo.png" alt=""><span class="c-nav-dir">Olá, Mônica! <i class="c-av"></i><svg class="c-pontos" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg></span></div>
-                  <div class="tela" data-tela="home"></div>
-                  <div class="c-drop">
-                    <div>ANIVERSARIANTES</div><div>CONTRACHEQUE</div><div>GESTÃO DA QUALIDADE</div>
-                    <div class="guia">GUIA DO PORTAL</div><div>RAMAIS</div><div>SISTEMA MONITORA</div>
-                  </div>
-                  <div class="clique"></div>
-                  <svg class="cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v17l4.5-4.2 3 6.7 3-1.3-3-6.6H17Z" fill="#fff" stroke="#111" stroke-width="1.4" stroke-linejoin="round"/></svg>
-                </div>
-                <button type="button" class="pausar" aria-label="Pausar mini vídeo" data-pausar></button>
-              </div><p class="passo-expl">Ele fica no canto superior direito e lista todas as áreas do Portal.</p></div></li>
-            <li class="passo-item"><button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">3</span><span class="passo-acao">Use a seta para voltar à página anterior.</span><svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="passo-corpo" hidden><div class="cena" style="--x0: 60%; --y0: 85%; --x1: 6.25%; --y1: 19.6%;">
-                <div class="cena-in">
-                  <div class="c-nav"><img class="c-logo" src="logo.png" alt=""><span class="c-nav-dir">Olá, Mônica! <i class="c-av"></i><svg class="c-pontos" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg></span></div>
-                  <div class="tela antes" data-tela="area"></div>
-                  <div class="tela depois" data-tela="grade"></div>
-                  <div class="clique"></div>
-                  <svg class="cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v17l4.5-4.2 3 6.7 3-1.3-3-6.6H17Z" fill="#fff" stroke="#111" stroke-width="1.4" stroke-linejoin="round"/></svg>
-                </div>
-                <button type="button" class="pausar" aria-label="Pausar mini vídeo" data-pausar></button>
-              </div><p class="passo-expl">Ela aparece logo abaixo do topo, em todas as páginas internas.</p></div></li>
-            <li class="passo-item"><button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">4</span><span class="passo-acao">Use a casinha para ir direto ao início.</span><svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="passo-corpo" hidden><div class="cena" style="--x0: 65%; --y0: 85%; --x1: 12%; --y1: 19.6%;">
-                <div class="cena-in">
-                  <div class="c-nav"><img class="c-logo" src="logo.png" alt=""><span class="c-nav-dir">Olá, Mônica! <i class="c-av"></i><svg class="c-pontos" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg></span></div>
-                  <div class="tela antes" data-tela="area"></div>
-                  <div class="tela depois" data-tela="home"></div>
-                  <div class="clique"></div>
-                  <svg class="cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v17l4.5-4.2 3 6.7 3-1.3-3-6.6H17Z" fill="#fff" stroke="#111" stroke-width="1.4" stroke-linejoin="round"/></svg>
-                </div>
-                <button type="button" class="pausar" aria-label="Pausar mini vídeo" data-pausar></button>
-              </div><p class="passo-expl">Ela fica ao lado da seta.</p></div></li>
+            <li class="passo-item" data-passo="1" data-acao="Clique no logo para voltar à tela inicial.">
+              <div class="cena" style="--x0: 60%; --y0: 80%; --x1: 7.5%; --y1: 6%;">
+                <div class="cena-in"><div class="tela antes" data-tela="ramais"></div><div class="tela depois" data-tela="home"></div><div class="c-nav"></div></div>
+              </div>
+              <p class="passo-expl">Funciona em qualquer página do Portal.</p>
+            </li>
+            <li class="passo-item" data-passo="2" data-acao="Abra o menu nos três pontinhos.">
+              <div class="cena" style="--x0: 55%; --y0: 85%; --x1: 95.35%; --y1: 6%;">
+                <div class="cena-in"><div class="tela" data-tela="home"></div><div class="c-nav"></div>
+                  <div class="c-drop surge"><div>ANIVERSARIANTES</div><div>CONTRACHEQUE</div><div>GESTÃO DA QUALIDADE</div><div class="guia">GUIA DO PORTAL</div><div>RAMAIS</div><div>SISTEMA MONITORA</div></div></div>
+              </div>
+              <p class="passo-expl">Ele fica no canto superior direito e lista todas as áreas do Portal, inclusive este Guia.</p>
+            </li>
+            <li class="passo-item" data-passo="3" data-acao="Use a seta para voltar à página anterior.">
+              <div class="cena" style="--x0: 60%; --y0: 85%; --x1: 6.25%; --y1: 19.6%;">
+                <div class="cena-in"><div class="tela antes" data-tela="area"></div><div class="tela depois" data-tela="grade"></div><div class="c-nav"></div></div>
+              </div>
+              <p class="passo-expl">Ela aparece logo abaixo do topo, em todas as páginas internas.</p>
+            </li>
+            <li class="passo-item" data-passo="4" data-acao="Use a casinha para ir direto ao início.">
+              <div class="cena" style="--x0: 65%; --y0: 85%; --x1: 12%; --y1: 19.6%;">
+                <div class="cena-in"><div class="tela antes" data-tela="area"></div><div class="tela depois" data-tela="home"></div><div class="c-nav"></div></div>
+              </div>
+              <p class="passo-expl">Ela fica ao lado da seta.</p>
+            </li>
           </ol>
         </div>
+      </div>
 
-      <!-- ===== 4. Principais Funcionalidades ===== -->
+      <!-- ================= 4. PRINCIPAIS FUNCIONALIDADES ================= -->
       <div class="acc-item">
         <button type="button" class="acc-cab" aria-expanded="false">
           <span class="acc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg></span>
@@ -463,53 +681,137 @@
           <div class="funcao">
             <h4>CONTRACHEQUE</h4>
             <ol class="passos">
-            <li class="passo-item"><button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">1</span><span class="passo-acao">Clique em CONTRACHEQUE na tela inicial.</span><svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="passo-corpo" hidden><div class="video-previa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4Z"/></svg>Mini vídeo deste passo entra na versão final</div><p class="passo-expl">Abre a lista com os seus comprovantes.</p></div></li>
-            <li class="passo-item"><button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">2</span><span class="passo-acao">Encontre a linha do mês que você quer.</span><svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="passo-corpo" hidden><div class="video-previa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4Z"/></svg>Mini vídeo deste passo entra na versão final</div><p class="passo-expl">O mês e o ano ficam nas duas últimas colunas.</p></div></li>
-            <li class="passo-item"><button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">3</span><span class="passo-acao">Clique no envelope dessa linha.</span><svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="passo-corpo" hidden><div class="video-previa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4Z"/></svg>Mini vídeo deste passo entra na versão final</div><p class="passo-expl">O comprovante é enviado para o seu e-mail cadastrado.</p></div></li>
-          </ol>
+              <li class="passo-item" data-passo="1" data-acao="Clique em CONTRACHEQUE na tela inicial.">
+                <div class="cena" style="--x0: 70%; --y0: 85%; --x1: 33.25%; --y1: 35.75%;">
+                  <div class="cena-in"><div class="tela antes" data-tela="home" data-hover=".c-atalho:nth-child(2)"></div><div class="tela depois" data-tela="contracheque"></div><div class="c-nav"></div></div>
+                </div>
+                <p class="passo-expl">Abre a lista com os seus comprovantes.</p>
+              </li>
+              <li class="passo-item" data-passo="2" data-acao="Encontre a linha do mês que você quer.">
+                <div class="cena" style="--x0: 45%; --y0: 88%; --x1: 79.4%; --y1: 45%;">
+                  <div class="cena-in"><div class="tela" data-tela="contracheque"></div><div class="c-nav"></div>
+                    <div class="anima-marca" style="left: 4%; top: 39%; width: 92%; height: 12%;"></div></div>
+                </div>
+                <p class="passo-expl">Cada linha é um comprovante. O mês e o ano ficam nas duas últimas colunas.</p>
+              </li>
+              <li class="passo-item" data-passo="3" data-acao="Clique no envelope dessa linha.">
+                <div class="cena" style="--x0: 55%; --y0: 88%; --x1: 16.4%; --y1: 45%;">
+                  <div class="cena-in"><div class="tela" data-tela="contracheque" data-aperta=".c-env"></div><div class="c-nav"></div>
+                    <div class="c-toast surge"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i><span>Comprovante enviado.</span></div></div>
+                </div>
+                <p class="passo-expl">O comprovante é enviado para o seu e-mail cadastrado e aparece o aviso “Comprovante enviado.”</p>
+              </li>
+            </ol>
           </div>
+
           <div class="funcao">
             <h4>ANIVERSARIANTES</h4>
             <ol class="passos">
-            <li class="passo-item"><button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">1</span><span class="passo-acao">Clique em ANIVERSARIANTES na tela inicial.</span><svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="passo-corpo" hidden><div class="video-previa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4Z"/></svg>Mini vídeo deste passo entra na versão final</div><p class="passo-expl">A lista abre no mês atual.</p></div></li>
-            <li class="passo-item"><button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">2</span><span class="passo-acao">Escolha o mês.</span><svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="passo-corpo" hidden><div class="video-previa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4Z"/></svg>Mini vídeo deste passo entra na versão final</div><p class="passo-expl">Os meses aparecem em duas colunas.</p></div></li>
-            <li class="passo-item"><button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">3</span><span class="passo-acao">Filtre pela sua unidade.</span><svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="passo-corpo" hidden><div class="video-previa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4Z"/></svg>Mini vídeo deste passo entra na versão final</div><p class="passo-expl">Marque uma ou mais unidades na caixa de seleção.</p></div></li>
-          </ol>
+              <li class="passo-item" data-passo="1" data-acao="Clique em ANIVERSARIANTES na tela inicial.">
+                <div class="cena" style="--x0: 60%; --y0: 88%; --x1: 12.75%; --y1: 35.75%;">
+                  <div class="cena-in"><div class="tela antes" data-tela="home" data-hover=".c-atalho:nth-child(1)"></div><div class="tela depois" data-tela="aniversariantes"></div><div class="c-nav"></div></div>
+                </div>
+                <p class="passo-expl">A lista abre no mês atual, com todas as unidades.</p>
+              </li>
+              <li class="passo-item" data-passo="2" data-acao="Escolha o mês.">
+                <div class="cena" style="--x0: 50%; --y0: 80%; --x1: 90.5%; --y1: 28.5%;">
+                  <div class="cena-in"><div class="tela" data-tela="aniversariantes"></div><div class="c-nav"></div>
+                    <div class="c-menu surge" style="left: 76%; right: 4%; top: 33%;">
+                      <div class="c-menu-cab">MÊS</div>
+                      <div class="c-meses"><span>Janeiro</span><span>Fevereiro</span><span>Março</span><span>Abril</span><span>Maio</span><span>Junho</span><span>Julho</span><span>Agosto</span><span class="on">Setembro</span><span>Outubro</span><span>Novembro</span><span>Dezembro</span></div>
+                    </div></div>
+                </div>
+                <p class="passo-expl">Clique no botão do mês e escolha outro. Os meses aparecem em duas colunas.</p>
+              </li>
+              <li class="passo-item" data-passo="3" data-acao="Filtre pela sua unidade.">
+                <div class="cena" style="--x0: 45%; --y0: 85%; --x1: 74.75%; --y1: 28.5%;">
+                  <div class="cena-in"><div class="tela" data-tela="aniversariantes"></div><div class="c-nav"></div>
+                    <div class="c-menu surge" style="left: 65%; width: 23%; top: 33%;">
+                      <div class="c-menu-cab"><span>UNIDADES</span><span>16 DE 16</span></div>
+                      <div class="c-marca-lin"><i>✓</i>Todas as unidades<em>131</em></div>
+                      <div class="c-marca-lin"><i>✓</i>Central Administrativa<em>10</em></div>
+                      <div class="c-marca-lin"><i>✓</i>Barra<em>4</em></div>
+                      <div class="c-marca-lin"><i>✓</i>Bento Ribeiro<em>10</em></div>
+                      <div class="c-marca-lin"><i>✓</i>Campo Grande<em>8</em></div>
+                      <div class="c-marca-lin"><i>✓</i>Cascadura<em>9</em></div>
+                      <div class="c-menu-rodape"><span class="limpar">Limpar</span><span class="todas">Marcar todas</span></div>
+                    </div></div>
+                </div>
+                <p class="passo-expl">Clique em “Todas as unidades” e deixe marcadas só as que você quer ver.</p>
+              </li>
+            </ol>
           </div>
+
           <div class="funcao">
             <h4>RAMAIS</h4>
             <ol class="passos">
-            <li class="passo-item"><button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">1</span><span class="passo-acao">Abra RAMAIS no menu dos três pontinhos.</span><svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="passo-corpo" hidden><div class="video-previa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4Z"/></svg>Mini vídeo deste passo entra na versão final</div><p class="passo-expl">A primeira aba é a Central Administrativa.</p></div></li>
-            <li class="passo-item"><button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">2</span><span class="passo-acao">Escolha a aba da unidade.</span><svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="passo-corpo" hidden><div class="video-previa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4Z"/></svg>Mini vídeo deste passo entra na versão final</div><p class="passo-expl">A aba Unidades traz o gestor e o telefone de cada escola.</p></div></li>
-            <li class="passo-item"><button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">3</span><span class="passo-acao">Ou digite na busca.</span><svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="passo-corpo" hidden><div class="video-previa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4Z"/></svg>Mini vídeo deste passo entra na versão final</div><p class="passo-expl">Vale o setor, o nome do responsável ou o número do ramal.</p></div></li>
-          </ol>
+              <li class="passo-item" data-passo="1" data-acao="Abra RAMAIS no menu dos três pontinhos.">
+                <div class="cena" style="--x0: 50%; --y0: 85%; --x1: 72%; --y1: 43.3%;">
+                  <div class="cena-in">
+                    <div class="tela antes" data-tela="home"><div class="c-drop"><div>ANIVERSARIANTES</div><div>CONTRACHEQUE</div><div>GESTÃO DA QUALIDADE</div><div>GUIA DO PORTAL</div><div class="guia">RAMAIS</div><div>SISTEMA MONITORA</div></div></div>
+                    <div class="tela depois" data-tela="ramais"></div><div class="c-nav"></div></div>
+                </div>
+                <p class="passo-expl">A página abre na aba Central Administrativa.</p>
+              </li>
+              <li class="passo-item" data-passo="2" data-acao="Escolha a aba da unidade.">
+                <div class="cena" style="--x0: 50%; --y0: 85%; --x1: 40.8%; --y1: 36%;">
+                  <div class="cena-in"><div class="tela antes" data-tela="ramais"></div><div class="tela depois" data-tela="ramais-unidades"></div><div class="c-nav"></div></div>
+                </div>
+                <p class="passo-expl">A aba Unidades traz o gestor, o ramal e o telefone de cada escola.</p>
+              </li>
+              <li class="passo-item" data-passo="3" data-acao="Ou digite na busca.">
+                <div class="cena" style="--x0: 55%; --y0: 80%; --x1: 20%; --y1: 28%;">
+                  <div class="cena-in"><div class="tela antes" data-tela="ramais"></div><div class="tela depois" data-tela="ramais-busca"></div><div class="c-nav"></div></div>
+                </div>
+                <p class="passo-expl">Vale o setor, o nome do responsável ou o número do ramal. A busca procura em todas as abas.</p>
+              </li>
+            </ol>
           </div>
+
           <div class="funcao">
             <h4>GESTÃO DA QUALIDADE</h4>
             <ol class="passos">
-            <li class="passo-item"><button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">1</span><span class="passo-acao">Clique em GESTÃO DA QUALIDADE na tela inicial.</span><svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="passo-corpo" hidden><div class="video-previa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4Z"/></svg>Mini vídeo deste passo entra na versão final</div><p class="passo-expl">Aparecem os quadros de todas as áreas.</p></div></li>
-            <li class="passo-item"><button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">2</span><span class="passo-acao">Escolha a área.</span><svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="passo-corpo" hidden><div class="video-previa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4Z"/></svg>Mini vídeo deste passo entra na versão final</div><p class="passo-expl">Cada área tem Objetivo, Documentos e Organograma.</p></div></li>
-            <li class="passo-item"><button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">3</span><span class="passo-acao">Na aba Documentos, clique em Visualizar documento.</span><svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="passo-corpo" hidden><div class="video-previa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4Z"/></svg>Mini vídeo deste passo entra na versão final</div><p class="passo-expl">O documento abre numa nova aba.</p></div></li>
-          </ol>
+              <li class="passo-item" data-passo="1" data-acao="Clique em GESTÃO DA QUALIDADE na tela inicial.">
+                <div class="cena" style="--x0: 60%; --y0: 50%; --x1: 12.75%; --y1: 76.25%;">
+                  <div class="cena-in"><div class="tela antes" data-tela="home" data-hover=".c-atalho:nth-child(3)"></div><div class="tela depois" data-tela="grade"></div><div class="c-nav"></div></div>
+                </div>
+                <p class="passo-expl">Aparecem os quadros de todas as áreas da rede.</p>
+              </li>
+              <li class="passo-item" data-passo="2" data-acao="Escolha a área.">
+                <div class="cena" style="--x0: 40%; --y0: 50%; --x1: 61.75%; --y1: 77.5%;">
+                  <div class="cena-in"><div class="tela antes" data-tela="grade" data-hover=".c-area:nth-of-type(9)"></div><div class="tela depois" data-tela="area"></div><div class="c-nav"></div></div>
+                </div>
+                <p class="passo-expl">Cada área tem as abas Objetivo, Organograma e Documentos.</p>
+              </li>
+              <li class="passo-item" data-passo="3" data-acao="Na aba Documentos, clique em Visualizar documento.">
+                <div class="cena" style="--x0: 45%; --y0: 90%; --x1: 79%; --y1: 76.75%;">
+                  <div class="cena-in"><div class="tela" data-tela="area-docs"></div><div class="c-nav"></div>
+                    <div class="c-janela surge">
+                      <div class="c-abas-nav"><span>Portal do Colaborador</span><span class="on">PS.06-0.1-politica-de-privacidade.pdf</span></div>
+                      <div class="c-endereco"><span>maycon-mb.github.io/…/documentos/PS.06-0.1-politica-de-privacidade.pdf</span></div>
+                      <div class="c-janela-corpo"><div class="c-pdf"><strong>Política de Privacidade</strong><i class="linha"></i><i class="linha"></i><i class="linha"></i><i class="linha" style="width: 60%;"></i><i class="linha"></i><i class="linha"></i></div></div>
+                    </div></div>
+                </div>
+                <p class="passo-expl">O documento abre numa nova aba. Logo abaixo fica o botão Fluxo do processo.</p>
+              </li>
+            </ol>
           </div>
+
           <div class="funcao">
             <h4>SISTEMA MONITORA</h4>
             <ol class="passos">
-            <li class="passo-item"><button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">1</span><span class="passo-acao">Clique em SISTEMA MONITORA na tela inicial.</span><svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="passo-corpo" hidden><div class="video-previa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4Z"/></svg>Mini vídeo deste passo entra na versão final</div><p class="passo-expl">O sistema abre numa nova aba, e o Portal continua aberto na anterior.</p></div></li>
-          </ol>
+              <li class="passo-item" data-passo="1" data-acao="Clique em SISTEMA MONITORA na tela inicial.">
+                <div class="cena" style="--x0: 70%; --y0: 50%; --x1: 33.25%; --y1: 76.25%;">
+                  <div class="cena-in"><div class="tela" data-tela="home" data-hover=".c-atalho:nth-child(4)"></div><div class="c-nav"></div>
+                    <div class="c-janela surge">
+                      <div class="c-abas-nav"><span>Portal do Colaborador</span><span class="on">Sistema Monitora</span></div>
+                      <div class="c-endereco"><span>monitora.smrede.net.br</span></div>
+                      <div class="c-janela-corpo"><div class="c-monitora"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M12 17v4"/><path d="M8 21h8"/><path d="m9 10 2 2 4-4"/></svg><b>SISTEMA MONITORA</b></div></div>
+                    </div></div>
+                </div>
+                <p class="passo-expl">O sistema abre numa nova aba, e o Portal continua aberto na anterior.</p>
+              </li>
+            </ol>
           </div>
         </div>
       </div>
@@ -518,93 +820,229 @@
   </div>
 
   <div class="p-rodape">
-    <span class="p-rodape-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
-    <span><b>OUVIDORIA SMREDE</b><small>Canal de escuta ativa, transparente e acessível!</small></span>
+    <div class="p-rodape-marca">
+      <span class="p-rodape-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+      <span><b>OUVIDORIA SMREDE</b><small>Canal de escuta ativa, transparente e acessível!</small></span>
+    </div>
+    <div class="p-rodape-copy">© 2026 Santa Mônica Rede de Ensino — Portal do Colaborador</div>
   </div>
 </div>
 
-<!-- Telas simuladas reaproveitadas pelas cenas (copiadas para cada [data-tela]) -->
-<template id="tela-home">
+<!-- ================= telas-modelo das cenas (nomes e números são fictícios) ================= -->
+<template id="tpl-nav">
+  <img class="c-logo" src="logo.png" alt="">
+  <span class="c-nav-dir">Olá, Mônica! <i class="c-av">M</i><svg class="c-pontos" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg></span>
+</template>
+
+<template id="tpl-home">
   <div class="c-atalho" style="left: 4%; top: 17%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/></svg><b>ANIVERSARIANTES</b></div>
   <div class="c-atalho" style="left: 24.5%; top: 17%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><b>CONTRACHEQUE</b></div>
   <div class="c-atalho" style="left: 4%; top: 57.5%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg><b>GESTÃO DA QUALIDADE</b></div>
   <div class="c-atalho" style="left: 24.5%; top: 57.5%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M12 17v4"/><path d="M8 21h8"/><path d="m9 10 2 2 4-4"/></svg><b>SISTEMA MONITORA</b></div>
-  <div class="c-comunicados"><b>ÚLTIMOS COMUNICADOS</b><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="c-comunicados">
+    <b class="c-com-cab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>ÚLTIMOS COMUNICADOS</b>
+    <div class="c-com-item" style="top: 9%;"><b>Comunicação | Agenda da semana</b><small>22/09/2026</small></div>
+    <div class="c-com-item" style="top: 20.5%;"><b>Qualidade | Organograma atualizado</b><small>21/09/2026</small></div>
+    <div class="c-com-item" style="top: 32%;"><b>Gente &amp; Gestão | Calendário de feriados</b><small>18/09/2026</small></div>
+    <div class="c-com-item" style="top: 43.5%;"><b>Eventos | Festa da primavera</b><small>15/09/2026</small></div>
+    <div class="c-com-item" style="top: 55%;"><b>TI | Atualização do Portal</b><small>12/09/2026</small></div>
+  </div>
 </template>
 
-<template id="tela-ramais">
+<template id="tpl-home-rodape">
+  <div class="c-atalho" style="left: 4%; top: 14%; height: 30%;"><b>GESTÃO DA QUALIDADE</b></div>
+  <div class="c-atalho" style="left: 24.5%; top: 14%; height: 30%;"><b>SISTEMA MONITORA</b></div>
+  <div class="c-comunicados" style="top: 12%; bottom: 56%; border-radius: 0 0 .8em .8em;"><div class="c-com-texto" style="margin-top: 6%;"><i class="linha"></i><i class="linha"></i><i class="linha" style="width: 60%;"></i></div></div>
+  <div class="c-rodape">
+    <span class="c-rodape-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+    <span class="c-rodape-txt"><b>OUVIDORIA SMREDE</b><small>Canal de escuta ativa, transparente e acessível!</small></span>
+    <span class="c-rodape-copy">© 2026 Santa Mônica Rede de Ensino — Portal do Colaborador</span>
+  </div>
+</template>
+
+<template id="tpl-voltar">
   <div class="c-botoes"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg></i><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></i></div>
+</template>
+
+<template id="tpl-ramais">
+  <div data-inclui="voltar"></div>
   <div class="c-titulo">Ramais Telefônicos</div>
-  <div class="c-abas" style="top: 30%;"><span class="on">CENTRAL ADMINISTRATIVA</span><span>UNIDADES</span><span>BENTO RIBEIRO</span></div>
-  <div class="c-painel" style="top: 38%; bottom: 6%;"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="c-busca"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Buscar por setor, responsável ou número do ramal...</div>
+  <div class="c-abas" style="top: 33.5%;"><span class="on">CENTRAL ADMINISTRATIVA</span><span>UNIDADES</span><span>BENTO RIBEIRO</span></div>
+  <div class="c-lista" style="top: 38.6%; bottom: 5%;">
+    <div class="lin cab" style="grid-template-columns: 38% 42% 20%;"><span>SETOR</span><span>RESPONSÁVEL</span><span>RAMAL</span></div>
+    <div class="lin" style="grid-template-columns: 38% 42% 20%;"><b>Arquivo</b><span>Paulo</span><span class="azul">9630</span></div>
+    <div class="lin" style="grid-template-columns: 38% 42% 20%;"><b>Cobrança</b><span>Renata</span><span class="azul">9614</span></div>
+    <div class="lin" style="grid-template-columns: 38% 42% 20%;"><b>Comercial / SAC</b><span>Tiago / Vera</span><span class="azul">9572</span></div>
+    <div class="lin" style="grid-template-columns: 38% 42% 20%;"><b>Compras</b><span>Lúcia</span><span class="azul">9591</span></div>
+    <div class="lin" style="grid-template-columns: 38% 42% 20%;"><b>Contabilidade</b><span>Marcos / Sônia</span><span class="azul">9628</span></div>
+    <div class="lin" style="grid-template-columns: 38% 42% 20%;"><b>DGP</b><span>Helena</span><span class="azul">9602</span></div>
+  </div>
 </template>
 
-<template id="tela-area">
-  <div class="c-botoes"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg></i><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></i></div>
-  <div class="c-faixa">TECNOLOGIA DA INFORMAÇÃO</div>
-  <div class="c-abas" style="top: 41%;"><span class="on">OBJETIVO</span><span>DOCUMENTOS</span><span>ORGANOGRAMA</span></div>
-  <div class="c-painel" style="top: 48.5%; bottom: 6%;"><i></i><i></i><i></i><i></i><i style="width: 60%;"></i></div>
+<template id="tpl-ramais-unidades">
+  <div data-inclui="voltar"></div>
+  <div class="c-titulo">Ramais Telefônicos</div>
+  <div class="c-busca"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Buscar por setor, responsável ou número do ramal...</div>
+  <div class="c-abas" style="top: 33.5%;"><span>CENTRAL ADMINISTRATIVA</span><span class="on">UNIDADES</span><span>BENTO RIBEIRO</span></div>
+  <div class="c-lista" style="top: 38.6%; bottom: 5%;">
+    <div class="lin cab" style="grid-template-columns: 30% 30% 18% 22%;"><span>UNIDADE</span><span>GESTOR DE UNIDADE</span><span>RAMAL</span><span>TELEFONE</span></div>
+    <div class="lin" style="grid-template-columns: 30% 30% 18% 22%;"><b>Barra da Tijuca</b><span>Fábio</span><span class="azul">9408</span><span class="azul">2493-4554</span></div>
+    <div class="lin" style="grid-template-columns: 30% 30% 18% 22%;"><b>Bento Ribeiro</b><span>Clara / Ivo</span><span class="azul">9557</span><span class="azul">3369-9595</span></div>
+    <div class="lin" style="grid-template-columns: 30% 30% 18% 22%;"><b>Campo Grande</b><span>Rui</span><span class="azul">9407</span><span class="azul">3394-6740</span></div>
+    <div class="lin" style="grid-template-columns: 30% 30% 18% 22%;"><b>Cascadura</b><span>Luís / Gil</span><span class="azul">9405</span><span class="azul">2594-2836</span></div>
+    <div class="lin" style="grid-template-columns: 30% 30% 18% 22%;"><b>Freguesia</b><span>Otávio</span><span class="azul">9411</span><span class="azul">3116-4601</span></div>
+    <div class="lin" style="grid-template-columns: 30% 30% 18% 22%;"><b>Ilha do Governador</b><span>Sílvia</span><span class="azul">9410</span><span class="azul">2466-1600</span></div>
+  </div>
 </template>
 
-<template id="tela-grade">
-  <div class="c-botoes"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg></i><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></i></div>
+<template id="tpl-ramais-busca">
+  <div data-inclui="voltar"></div>
+  <div class="c-titulo">Ramais Telefônicos</div>
+  <div class="c-busca" style="border-color: var(--azul);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><span class="c-digitado">Contabilidade</span></div>
+  <div class="c-lista surge tarde" style="top: 34%; bottom: 40%; border-radius: .5em;">
+    <div class="lin cab" style="grid-template-columns: 30% 30% 22% 18%;"><span>SETOR</span><span>RESPONSÁVEL</span><span>UNIDADE</span><span>RAMAL</span></div>
+    <div class="lin" style="grid-template-columns: 30% 30% 22% 18%;"><b>Contabilidade</b><span>Marcos / Sônia</span><span>Central Administrativa</span><span class="azul">9628</span></div>
+    <div class="lin" style="grid-template-columns: 30% 30% 22% 18%;"><b>Contabilidade</b><span>Jorge</span><span>Central Administrativa</span><span class="azul">9627</span></div>
+  </div>
+</template>
+
+<template id="tpl-aniversariantes">
+  <div data-inclui="voltar"></div>
+  <div class="c-titulo">Aniversariantes do Mês</div>
+  <div class="c-filtro cinza" style="left: 4%; width: 60.5%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Buscar por nome ou setor...</div>
+  <div class="c-filtro" style="left: 65.5%; width: 18.5%;"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4h2a2 2 0 0 1 2 2v10h-6v-4h-4v4Z"/></svg>Todas as unidades (131)<svg class="fim" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 9 6 6 6-6"/></svg></div>
+  <div class="c-filtro" style="left: 85%; width: 11%;"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="5" width="18" height="16" rx="2"/></svg>Setembro<svg class="fim" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 9 6 6 6-6"/></svg></div>
+  <div class="c-lista" style="top: 36%; bottom: 5%; border-radius: .5em;">
+    <div class="lin cab" style="grid-template-columns: 14% 42% 28% 16%;"><span>DIA</span><span>NOME</span><span>SETOR</span><span>UNIDADE</span></div>
+    <div class="lin" style="grid-template-columns: 14% 42% 28% 16%;"><b>01/09</b><b>Ana Souza</b><span>Secretaria</span><span>Barra</span></div>
+    <div class="lin" style="grid-template-columns: 14% 42% 28% 16%;"><b>02/09</b><b>Bruno Lima</b><span>Ensino Fundamental II</span><span>Cascadura</span></div>
+    <div class="lin" style="grid-template-columns: 14% 42% 28% 16%;"><b>03/09</b><b>Carla Nunes</b><span>Coordenação</span><span>Freguesia</span></div>
+    <div class="lin" style="grid-template-columns: 14% 42% 28% 16%;"><b>05/09</b><b>Diego Alves</b><span>Serviços Gerais</span><span>Taquara</span></div>
+    <div class="lin" style="grid-template-columns: 14% 42% 28% 16%;"><b>08/09</b><b>Elisa Rocha</b><span>Educação Infantil</span><span>Recreio</span></div>
+    <div class="lin" style="grid-template-columns: 14% 42% 28% 16%;"><b>11/09</b><b>Felipe Dias</b><span>Inspetoria</span><span>Madureira</span></div>
+  </div>
+</template>
+
+<template id="tpl-contracheque">
+  <div data-inclui="voltar"></div>
+  <div class="c-lista" style="top: 30%; height: 45%; border-radius: .5em;">
+    <div class="lin cab" style="grid-template-columns: 9% 9% 22% 16% 20% 12% 12%;"><span>ID</span><span>AÇÃO</span><span>UNIDADE</span><span>MATRÍCULA</span><span>DOC</span><span>MÊS</span><span>ANO</span></div>
+    <div class="lin" style="grid-template-columns: 9% 9% 22% 16% 20% 12% 12%;"><span>10231</span><span><i class="c-env"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></i></span><span>Unidade Centro</span><span>000123</span><span>Contracheque</span><span>08</span><span>2026</span></div>
+    <div class="lin" style="grid-template-columns: 9% 9% 22% 16% 20% 12% 12%;"><span>9874</span><span><i class="c-env"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></i></span><span>Unidade Centro</span><span>000123</span><span>Contracheque</span><span>07</span><span>2026</span></div>
+    <div class="lin" style="grid-template-columns: 9% 9% 22% 16% 20% 12% 12%;"><span>9520</span><span><i class="c-env"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></i></span><span>Unidade Centro</span><span>000123</span><span>Contracheque</span><span>06</span><span>2026</span></div>
+  </div>
+</template>
+
+<template id="tpl-grade">
+  <div data-inclui="voltar"></div>
   <div class="c-titulo">Gestão da Qualidade</div>
-  <div class="c-area" style="left: 4%; top: 30%;"><b>COMERCIAL</b><span style="background:#4ea8de">PROCESSOS DE NEGÓCIO</span></div>
-  <div class="c-area" style="left: 27.5%; top: 30%;"><b>DGP</b><span style="background:#4ea8de">PROCESSOS DE NEGÓCIO</span></div>
-  <div class="c-area" style="left: 51%; top: 30%;"><b>GENTE &amp; GESTÃO</b><span style="background:#0d47a1">PROCESSOS DE SUPORTE</span></div>
-  <div class="c-area" style="left: 74.5%; top: 30%;"><b>GESTÃO FINANCEIRA</b><span style="background:#6c757d">PROCESSOS ESTRATÉGICOS</span></div>
-  <div class="c-area" style="left: 4%; top: 63%;"><b>GOVERNANÇA</b><span style="background:#6c757d">PROCESSOS ESTRATÉGICOS</span></div>
-  <div class="c-area" style="left: 27.5%; top: 63%;"><b>QUALIDADE</b><span style="background:#6c757d">PROCESSOS ESTRATÉGICOS</span></div>
-  <div class="c-area" style="left: 51%; top: 63%;"><b>TECNOLOGIA DA INFORMAÇÃO</b><span style="background:#0d47a1">PROCESSOS DE SUPORTE</span></div>
-  <div class="c-area" style="left: 74.5%; top: 63%;"><b>GESTÃO DE PRODUTOS</b><span style="background:#0d47a1">PROCESSOS DE SUPORTE</span></div>
+  <div class="c-area" style="left: 4%; top: 30%;"><b>COMERCIAL</b><span style="background: #4ea8de;">PROCESSOS DE NEGÓCIO</span></div>
+  <div class="c-area" style="left: 27.5%; top: 30%;"><b>DGP</b><span style="background: #4ea8de;">PROCESSOS DE NEGÓCIO</span></div>
+  <div class="c-area" style="left: 51%; top: 30%;"><b>GENTE &amp; GESTÃO</b><span style="background: #0d47a1;">PROCESSOS DE SUPORTE</span></div>
+  <div class="c-area" style="left: 74.5%; top: 30%;"><b>GESTÃO FINANCEIRA</b><span style="background: #6c757d;">PROCESSOS ESTRATÉGICOS</span></div>
+  <div class="c-area" style="left: 4%; top: 63%;"><b>GOVERNANÇA</b><span style="background: #6c757d;">PROCESSOS ESTRATÉGICOS</span></div>
+  <div class="c-area" style="left: 27.5%; top: 63%;"><b>QUALIDADE</b><span style="background: #6c757d;">PROCESSOS ESTRATÉGICOS</span></div>
+  <div class="c-area" style="left: 51%; top: 63%;"><b>TECNOLOGIA DA INFORMAÇÃO</b><span style="background: #0d47a1;">PROCESSOS DE SUPORTE</span></div>
+  <div class="c-area" style="left: 74.5%; top: 63%;"><b>GESTÃO DE PRODUTOS</b><span style="background: #0d47a1;">PROCESSOS DE SUPORTE</span></div>
+</template>
+
+<template id="tpl-area">
+  <div data-inclui="voltar"></div>
+  <div class="c-faixa">TECNOLOGIA DA INFORMAÇÃO</div>
+  <div class="c-abas centro" style="top: 41%;"><span class="on">OBJETIVO</span><span>ORGANOGRAMA</span><span>DOCUMENTOS</span><span>SUBÁREAS</span></div>
+  <div class="c-painel" style="top: 46.1%; bottom: 6%;"><i class="linha"></i><i class="linha"></i><i class="linha"></i><i class="linha"></i><i class="linha" style="width: 60%;"></i></div>
+</template>
+
+<template id="tpl-area-docs">
+  <div data-inclui="voltar"></div>
+  <div class="c-faixa">TECNOLOGIA DA INFORMAÇÃO</div>
+  <div class="c-abas centro" style="top: 41%;"><span>OBJETIVO</span><span>ORGANOGRAMA</span><span class="on">DOCUMENTOS</span><span>SUBÁREAS</span></div>
+  <div class="c-painel" style="top: 46.1%; bottom: 4%;"></div>
+  <div class="c-busca" style="left: 8%; right: 8%; top: 49.5%; height: 5%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Pesquisar documento...</div>
+  <div class="c-doc-cab"><span>PS.06-0.1 - Política de Privacidade</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m18 15-6-6-6 6"/></svg></div>
+  <div class="c-doc-corpo"><i class="linha"></i><i class="linha" style="width: 55%;"></i></div>
+  <div class="c-btn-doc" style="top: 74%;">VISUALIZAR DOCUMENTO »</div>
+  <div class="c-btn-doc" style="top: 81.5%;">FLUXO DO PROCESSO</div>
+</template>
+
+<template id="tpl-fone-portal">
+  <div class="f-status"><span>9:41</span><span>▮▮▮ ◔</span></div>
+  <div class="f-chrome"><span class="f-url">🔒 maycon-mb.github.io/front…</span><svg class="f-pontos" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></div>
+  <div class="f-portal"><span>PORTAL DO COLABORADOR</span><i>M</i></div>
+  <div class="f-atalho" style="left: 5%; top: 21%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/></svg><b>ANIVERSARIANTES</b></div>
+  <div class="f-atalho" style="left: 53%; top: 21%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><b>CONTRACHEQUE</b></div>
+  <div class="f-atalho" style="left: 5%; top: 40%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg><b>QUALIDADE</b></div>
+  <div class="f-atalho" style="left: 53%; top: 40%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M12 17v4"/><path d="M8 21h8"/></svg><b>MONITORA</b></div>
+  <div class="f-com"><b>ÚLTIMOS COMUNICADOS</b><i class="linha"></i><i class="linha"></i><i class="linha"></i></div>
+</template>
+
+<template id="tpl-fone-inicio">
+  <div class="f-inicio">
+    <div class="f-status" style="color: #fff;"><span>9:42</span><span>▮▮▮ ◔</span></div>
+    <span class="f-app" style="left: 4.5%; top: 12%;"><i style="background: #34a853;"></i><b>Telefone</b></span>
+    <span class="f-app" style="left: 29.5%; top: 12%;"><i style="background: #fbbc04;"></i><b>Mensagens</b></span>
+    <span class="f-app" style="left: 54.5%; top: 12%;"><i style="background: #ea4335;"></i><b>Câmera</b></span>
+    <span class="f-app" style="left: 79.5%; top: 12%;"><i style="background: #4285f4;"></i><b>Fotos</b></span>
+    <span class="f-app" style="left: 4.5%; top: 29%;"><i style="background: #a142f4;"></i><b>Agenda</b></span>
+    <span class="f-app portal" style="left: 29.5%; top: 29%;"><i><img src="logo.png" alt=""></i><b>Portal</b></span>
+    <span class="f-app" style="left: 54.5%; top: 29%;"><i style="background: #24c1e0;"></i><b>E-mail</b></span>
+    <span class="f-app" style="left: 79.5%; top: 29%;"><i style="background: #f06292;"></i><b>Relógio</b></span>
+  </div>
 </template>
 
 <script>
-  const frame = document.getElementById('frame');
+  const CURSOR = '<svg class="cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v17l4.5-4.2 3 6.7 3-1.3-3-6.6H17Z" fill="#fff" stroke="#111" stroke-width="1.4" stroke-linejoin="round"/></svg>';
   const ICONE_PAUSA = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>';
   const ICONE_PLAY = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg>';
+  const SETA = '<svg class="passo-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
+  const modelo = (nome) => document.getElementById('tpl-' + nome).content.cloneNode(true);
 
-  document.querySelectorAll('[data-tela]').forEach((el) => {
-    const modelo = document.getElementById('tela-' + el.dataset.tela);
-    if (modelo && el.classList.contains('tela')) el.appendChild(modelo.content.cloneNode(true));
+  // Cabeçalho clicável de cada passo, montado a partir de data-passo/data-acao.
+  document.querySelectorAll('.passo-item').forEach((li) => {
+    const corpo = document.createElement('div');
+    corpo.className = 'passo-corpo';
+    corpo.hidden = true;
+    while (li.firstChild) corpo.appendChild(li.firstChild);
+    li.insertAdjacentHTML('afterbegin', `<button type="button" class="passo-cab" aria-expanded="false"><span class="passo-num">${li.dataset.passo}</span><span class="passo-acao">${li.dataset.acao}</span>${SETA}</button>`);
+    li.appendChild(corpo);
   });
 
-  function marcar(seletor, ativo) {
-    document.querySelectorAll(seletor).forEach((b) => b.setAttribute('aria-pressed', String(ativo(b))));
+  document.querySelectorAll('.c-nav').forEach((nav) => nav.appendChild(modelo('nav')));
+  document.querySelectorAll('.tela[data-tela]').forEach((tela) => {
+    tela.appendChild(modelo(tela.dataset.tela));
+    tela.querySelectorAll('[data-inclui]').forEach((ph) => ph.replaceWith(modelo(ph.dataset.inclui)));
+    if (tela.dataset.hover) tela.querySelector(tela.dataset.hover).classList.add('anima-hover');
+    if (tela.dataset.aperta) tela.querySelector(tela.dataset.aperta).classList.add('anima-aperta');
+  });
+  document.querySelectorAll('.cena').forEach((cena) => {
+    const dentro = cena.querySelector('.cena-in');
+    if (!cena.hasAttribute('data-sem-clique')) dentro.insertAdjacentHTML('beforeend', '<div class="clique"></div>');
+    dentro.insertAdjacentHTML('beforeend', CURSOR);
+    cena.insertAdjacentHTML('beforeend', `<button type="button" class="pausar" aria-label="Pausar mini vídeo">${ICONE_PAUSA}</button>`);
+  });
+
+  document.querySelectorAll('.pausar').forEach((b) => b.addEventListener('click', () => {
+    const pausada = b.closest('.cena').classList.toggle('pausada');
+    b.innerHTML = pausada ? ICONE_PLAY : ICONE_PAUSA;
+    b.setAttribute('aria-label', pausada ? 'Continuar mini vídeo' : 'Pausar mini vídeo');
+  }));
+
+  function alternar(cab, grupo) {
+    const abrir = cab.getAttribute('aria-expanded') !== 'true';
+    grupo.forEach((outro) => {
+      outro.setAttribute('aria-expanded', 'false');
+      outro.nextElementSibling.hidden = true;
+    });
+    cab.setAttribute('aria-expanded', String(abrir));
+    cab.nextElementSibling.hidden = !abrir;
   }
+  document.querySelectorAll('.acc-cab').forEach((cab) => cab.addEventListener('click', () => alternar(cab, document.querySelectorAll('.acc-cab'))));
+  document.querySelectorAll('.passo-cab').forEach((cab) => cab.addEventListener('click', () => alternar(cab, cab.closest('.passos').querySelectorAll('.passo-cab'))));
 
-  document.querySelectorAll('.seg [data-tela]').forEach((b) => b.addEventListener('click', () => {
-    frame.classList.toggle('celular', b.dataset.tela === 'cel');
-    marcar('.seg [data-tela]', (x) => x === b);
-  }));
-
-  document.querySelectorAll('.acc-cab').forEach((cab) => cab.addEventListener('click', () => {
-    const abrir = cab.getAttribute('aria-expanded') !== 'true';
-    document.querySelectorAll('.acc-cab').forEach((outro) => {
-      outro.setAttribute('aria-expanded', 'false');
-      outro.nextElementSibling.hidden = true;
-    });
-    cab.setAttribute('aria-expanded', String(abrir));
-    cab.nextElementSibling.hidden = !abrir;
-  }));
-
-  document.querySelectorAll('[data-pausar]').forEach((b) => {
-    b.innerHTML = ICONE_PAUSA;
-    b.addEventListener('click', () => {
-      const pausada = b.closest('.cena').classList.toggle('pausada');
-      b.innerHTML = pausada ? ICONE_PLAY : ICONE_PAUSA;
-      b.setAttribute('aria-label', pausada ? 'Continuar mini vídeo' : 'Pausar mini vídeo');
-    });
-  });
-
-  document.querySelectorAll('.passo-cab').forEach((cab) => cab.addEventListener('click', () => {
-    const abrir = cab.getAttribute('aria-expanded') !== 'true';
-    cab.closest('.passos').querySelectorAll('.passo-cab').forEach((outro) => {
-      outro.setAttribute('aria-expanded', 'false');
-      outro.nextElementSibling.hidden = true;
-    });
-    cab.setAttribute('aria-expanded', String(abrir));
-    cab.nextElementSibling.hidden = !abrir;
+  document.querySelectorAll('[data-modo]').forEach((b) => b.addEventListener('click', () => {
+    document.getElementById('frame').classList.toggle('celular', b.dataset.modo === 'cel');
+    document.querySelectorAll('[data-modo]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
   }));
 </script>
 </body>
