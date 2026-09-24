@@ -13,6 +13,30 @@ const normalizar = (txt) => String(txt ?? '').normalize('NFD').replace(/[̀-ͯ]/
 const ordenarAlfa = (lista, extrairTexto) =>
     [...lista].sort((a, b) => normalizar(extrairTexto(a)).localeCompare(normalizar(extrairTexto(b))));
 
+const ABA_UNIDADES = 'Gestores Unidades';
+const ROTULOS_ABA = { [ABA_UNIDADES]: 'Unidades' };
+
+// A planilha de ramais não tem telefone fixo; chave = nome da unidade normalizado, sem o "UND.".
+const TELEFONES_UNIDADES = {
+    'barra da tijuca': '2493-4554',
+    'bento ribeiro': '3369-9595',
+    'campo grande': '3394-6740',
+    'cascadura': '2594-2836',
+    'freguesia': '3116-4601',
+    'ilha do governador': '2466-1600',
+    'madureira': '2450-1222',
+    'mangueira': '3437-0741',
+    'marica': '2637-3106',
+    'nilopolis': '3743-3590',
+    'recreio dos bandeirantes': '2437-6505',
+    'santa cruz': '3395-0647',
+    'seropedica': '3781-2819',
+    'taquara': '2440-1772',
+    'tecnica': '3369-9570',
+};
+
+const telefoneDaUnidade = (setor) => TELEFONES_UNIDADES[normalizar(setor).replace(/^und\.\s*/, '')];
+
 function RamalLinks({ valor }) {
     const numeros = String(valor).split('/').map((n) => n.trim()).filter(Boolean);
     return (
@@ -27,35 +51,43 @@ function RamalLinks({ valor }) {
     );
 }
 
-function TabelaRamais({ itens, mostrarUnidade }) {
+function TabelaRamais({ itens, mostrarUnidade, modoUnidades }) {
     if (itens.length === 0) {
         return <div className="ramais-estado">Nenhum ramal encontrado.</div>;
     }
     return (
-        <Table striped hover responsive className="ramais-tabela">
+        <Table striped hover responsive className={`ramais-tabela${modoUnidades ? ' ramais-tabela-unidades' : ''}`}>
             <colgroup>
                 <col className="ramais-col-setor" />
                 <col className="ramais-col-responsavel" />
                 {mostrarUnidade && <col className="ramais-col-unidade" />}
                 <col className="ramais-col-ramal" />
+                {modoUnidades && <col className="ramais-col-telefone" />}
             </colgroup>
             <thead>
                 <tr>
-                    <th>Setor</th>
-                    <th>Responsável</th>
+                    <th>{modoUnidades ? 'Unidade' : 'Setor'}</th>
+                    <th>{modoUnidades ? 'Gestor de unidade' : 'Responsável'}</th>
                     {mostrarUnidade && <th>Unidade</th>}
                     <th>Ramal</th>
+                    {modoUnidades && <th>Telefone fixo</th>}
                 </tr>
             </thead>
             <tbody>
-                {itens.map((item, i) => (
-                    <tr key={i}>
-                        <td className="ramais-td-setor">{item.Setor}</td>
-                        <td>{item.Responsável || '—'}</td>
-                        {mostrarUnidade && <td>{item.Unidade}</td>}
-                        <td><RamalLinks valor={item.Ramal} /></td>
-                    </tr>
-                ))}
+                {itens.map((item, i) => {
+                    const telefone = modoUnidades ? telefoneDaUnidade(item.Setor) : null;
+                    return (
+                        <tr key={i}>
+                            <td className="ramais-td-setor">{item.Setor}</td>
+                            <td>{item.Responsável || '—'}</td>
+                            {mostrarUnidade && <td>{item.Unidade}</td>}
+                            <td><RamalLinks valor={item.Ramal} /></td>
+                            {modoUnidades && (
+                                <td>{telefone ? <span className="ramais-numero">{telefone}</span> : '—'}</td>
+                            )}
+                        </tr>
+                    );
+                })}
             </tbody>
         </Table>
     );
@@ -102,7 +134,7 @@ function Ramais() {
     const unidades = useMemo(() => {
         if (!dados) return [];
         const presentes = [...new Set(dados.map((d) => d.Unidade))];
-        const ordemFixa = ['Central Administrativa', 'Gestores Unidades', 'Bento Ribeiro'];
+        const ordemFixa = ['Central Administrativa', ABA_UNIDADES, 'Bento Ribeiro'];
         const ordenadas = ordemFixa.filter((u) => presentes.includes(u));
         const restantes = ordenarAlfa(presentes.filter((u) => !ordemFixa.includes(u)), (u) => u);
         return [...ordenadas, ...restantes];
@@ -177,9 +209,9 @@ function Ramais() {
                                 {unidades.map((unidade) => {
                                     const itensUnidade = ordenarAlfa(dados.filter((d) => d.Unidade === unidade), (d) => d.Setor);
                                     return (
-                                        <Tab key={unidade} eventKey={unidade} title={unidade}>
+                                        <Tab key={unidade} eventKey={unidade} title={ROTULOS_ABA[unidade] ?? unidade}>
                                             <div className="ramais-tab-content">
-                                                <TabelaRamais itens={itensUnidade} />
+                                                <TabelaRamais itens={itensUnidade} modoUnidades={unidade === ABA_UNIDADES} />
                                             </div>
                                         </Tab>
                                     );

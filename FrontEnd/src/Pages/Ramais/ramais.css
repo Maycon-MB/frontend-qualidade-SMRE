@@ -159,6 +159,10 @@
 .ramais-col-responsavel { width: 38%; }
 .ramais-col-unidade { width: 18%; }
 .ramais-col-ramal { width: 20%; }
+.ramais-col-telefone { width: 22%; }
+.ramais-tabela-unidades .ramais-col-setor { width: 30%; }
+.ramais-tabela-unidades .ramais-col-responsavel { width: 30%; }
+.ramais-tabela-unidades .ramais-col-ramal { width: 18%; }
 
 .ramais-tabela thead {
     background: linear-gradient(90deg, #006CB5 0%, #00A6E4 100%);
