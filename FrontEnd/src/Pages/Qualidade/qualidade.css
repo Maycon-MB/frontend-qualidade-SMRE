@@ -28,6 +28,11 @@
 }
 
 /* ====== ABAS (TABS) PREMIUM COM GLASSMORPHISM ====== */
+/* Folga até o rodapé azul, igual à grade de áreas */
+.qualidade-tabs {
+    margin-bottom: 40px;
+}
+
 .qualidade-tabs .nav-tabs {
     border-bottom: none;
     gap: 8px;
