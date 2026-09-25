@@ -205,8 +205,8 @@ export const TEMAS = [
                         ),
                     },
                     {
-                        acao: 'Filtre pela sua unidade.',
-                        expl: 'Clique em “Todas as unidades” e deixe marcadas só as que você quer ver.',
+                        acao: 'Prefere visualizar somente a sua Unidade?',
+                        expl: 'Clique no botão “Todas as unidades” e selecione apenas a unidade que deseja visualizar.',
                         cena: (
                             <MiniVideo x0="45%" y0="85%" x1="74.75%" y1="28.5%">
                                 <Tela><TelaAniversariantes /></Tela><NavCena /><MenuUnidades />
