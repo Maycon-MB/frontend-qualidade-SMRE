@@ -450,6 +450,110 @@
     .GuiaPortal .passo-corpo { padding: 4px 12px 16px; }
 }
 
+/* ====== formulário do Termo de Compromisso (Hello Ethics) ====== */
+.GuiaPortal .t-tela { position: absolute; inset: 0; background: #ffffff; }
+.GuiaPortal .t-topo { position: absolute; left: 0; right: 0; top: 0; height: 8%; background: #0066b3; color: #ffffff; display: grid; place-items: center; font-size: .46em; font-weight: 700; }
+.GuiaPortal .t-rot { position: absolute; left: 4%; font-size: .42em; color: #222222; }
+.GuiaPortal .t-campo { position: absolute; left: 4%; right: 4%; height: 6%; border: 1px solid #3b82c4; border-radius: .35em; background: #ffffff; display: flex; align-items: center; padding: 0 1.2%; font-size: .42em; color: #222222; }
+.GuiaPortal .t-lista { position: absolute; left: 4%; right: 4%; height: 6%; border-radius: .35em; background: #0a66b7; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: .42em; font-weight: 700; }
+.GuiaPortal .t-lista .surge { display: inline-block; }
+.GuiaPortal .t-lista svg { position: absolute; right: 1.2%; width: 1.6em; height: 1.6em; }
+.GuiaPortal .t-token { position: absolute; top: 73%; height: 7%; display: flex; align-items: center; font-size: .42em; }
+.GuiaPortal .t-btn-token { left: 4%; width: 11%; justify-content: center; background: #0a66b7; color: #ffffff; font-weight: 700; border-radius: .3em 0 0 .3em; }
+.GuiaPortal .t-campo-token { left: 15%; width: 18%; padding: 0 1.2%; background: #f1f1f1; border: 1px solid #cccccc; border-radius: 0 .3em .3em 0; color: #777777; }
+.GuiaPortal .t-campo-token b { color: #222222; letter-spacing: .1em; }
+.GuiaPortal .t-linha { position: absolute; left: 4%; right: 4%; top: 86%; border-top: 3px double #bbbbbb; }
+.GuiaPortal .t-opcoes { position: absolute; z-index: 4; left: 4%; width: 52%; background: #ffffff; border: 1px solid #9aabbb; box-shadow: 0 .3em 1em rgba(0, 0, 0, .2); font-size: .4em; }
+.GuiaPortal .t-opcoes div { padding: .45em .8em; color: #222222; }
+.GuiaPortal .t-opcoes div.on { background: #0a66b7; color: #ffffff; }
+.GuiaPortal .t-dica { position: absolute; z-index: 4; left: 18%; top: 58%; width: 30%; background: #ffffff; border-radius: .4em; box-shadow: 0 .3em 1.2em rgba(0, 0, 0, .25); padding: 1.2% 1.5% 1.2% 1.5%; font-size: .36em; color: #333333; line-height: 1.45; }
+
+.GuiaPortal .t-cartao { position: absolute; left: 4%; right: 4%; height: 9.5%; border: 1px solid #dddddd; border-radius: .4em; padding: 0 1.5% 0 5.5%; display: flex; flex-direction: column; justify-content: center; gap: .15em; }
+.GuiaPortal .t-cartao b { font-size: .4em; color: #1a66c9; text-decoration: underline; }
+.GuiaPortal .t-cartao small { font-size: .3em; color: #444444; font-weight: 700; }
+.GuiaPortal .t-cartao.lgpd { height: 12%; }
+.GuiaPortal .t-cartao.lgpd b { font-size: .36em; line-height: 1.35; color: #222222; text-decoration: none; }
+.GuiaPortal .t-caixa { position: absolute; left: 5.6%; width: 1.8%; height: 2.9%; border: 1px solid #bbbbbb; border-radius: .2em; background: #eeeeee; }
+.GuiaPortal .t-caixa.captcha { left: 6.3%; top: 81%; width: 2.2%; height: 3.5%; background: #ffffff; border: 2px solid #c1c1c1; }
+.GuiaPortal .t-marca { position: absolute; z-index: 3; left: 5.6%; width: 1.8%; height: 2.9%; border-radius: .2em; background: #0a66b7; color: #ffffff; display: grid; place-items: center; }
+.GuiaPortal .t-marca svg { width: 80%; height: 80%; }
+.GuiaPortal .t-marca.captcha { left: 6.3%; width: 2.2%; height: 3.5%; background: transparent; color: #0f9d58; }
+.GuiaPortal .t-marca.cascata { animation-fill-mode: backwards; }
+.GuiaPortal .t-captcha { position: absolute; left: 4%; top: 77%; width: 28%; height: 11%; border: 1px solid #d3d3d3; border-radius: .2em; background: #f9f9f9; box-shadow: 0 0 .3em rgba(0, 0, 0, .08); display: flex; align-items: center; padding-left: 5.5%; font-size: .4em; color: #222222; }
+.GuiaPortal .t-recaptcha { margin-left: auto; margin-right: 4%; font-size: .7em; color: #777777; }
+.GuiaPortal .t-enviar { position: absolute; left: 4%; right: 4%; top: 90.5%; height: 6.5%; border-radius: .3em; background: #b3d4ee; color: #ffffff; display: grid; place-items: center; font-size: .44em; font-weight: 700; }
+.GuiaPortal .t-enviar.ativo { background: #0a66b7; }
+
+.GuiaPortal .t-fundo { position: absolute; inset: 0; z-index: 4; background: rgba(15, 25, 40, .45); display: grid; place-items: center; }
+.GuiaPortal .t-sucesso { width: 50%; background: #ffffff; border-radius: .6em; padding: 3% 3% 3.5%; display: grid; justify-items: center; gap: .5em; text-align: center; box-shadow: 0 .6em 2em rgba(0, 0, 0, .3); }
+.GuiaPortal .t-sucesso i { width: 2.6em; height: 2.6em; border-radius: 50%; background: #0f9d58; color: #ffffff; display: grid; place-items: center; }
+.GuiaPortal .t-sucesso i svg { width: 60%; height: 60%; }
+.GuiaPortal .t-sucesso strong { font-size: .56em; color: #1c2530; }
+.GuiaPortal .t-sucesso span { font-size: .42em; color: #555555; }
+.GuiaPortal .t-sucesso .t-registro { font-size: .7em; font-weight: 900; color: #0a66b7; letter-spacing: .08em; background: #eef5fc; border-radius: .3em; padding: .3em 1em; }
+
+.GuiaPortal .t-mail { position: absolute; inset: 0; background: #ffffff; }
+.GuiaPortal .t-mail-assunto { position: absolute; left: 6%; top: 5%; display: flex; align-items: center; gap: .6em; font-size: .6em; color: #1f1f1f; }
+.GuiaPortal .t-mail-assunto em { font-style: normal; font-size: .55em; background: #dddddd; border-radius: .3em; padding: .15em .5em; color: #444444; }
+.GuiaPortal .t-mail-de { position: absolute; left: 6%; top: 13%; display: flex; align-items: center; gap: .6em; }
+.GuiaPortal .t-mail-de i { width: 2.2em; height: 2.2em; border-radius: 50%; background: #e3e3e3; display: block; }
+.GuiaPortal .t-mail-de span { display: grid; gap: .2em; font-size: .42em; color: #444444; }
+.GuiaPortal .t-mail-de b { color: #1f1f1f; }
+.GuiaPortal .t-mail-corpo { position: absolute; left: 6%; right: 6%; top: 24%; bottom: 3%; border: 1px solid #eeeeee; border-radius: .4em; display: grid; justify-items: center; align-content: start; gap: .55em; padding-top: 2%; text-align: center; }
+.GuiaPortal .t-mail-corpo img { height: 3.2em; }
+.GuiaPortal .t-mail-corpo p { margin: 0; font-size: .4em; color: #333333; }
+.GuiaPortal .t-mail-token { width: 80%; background: #f7f8fa; border: 1px solid #e3e6ea; border-radius: .4em; padding: .4em 0; font-size: 1.1em; font-weight: 900; color: #222222; letter-spacing: .05em; }
+
+.GuiaPortal .t-mural {
+    position: absolute; left: 4%; top: 8%; width: 44%; height: 84%; border-radius: .6em; display: grid; place-items: center;
+    background: #c8a06a repeating-linear-gradient(45deg, rgba(0, 0, 0, .04) 0 .3em, transparent .3em .6em);
+    box-shadow: inset 0 0 0 .4em #8a6437;
+}
+.GuiaPortal .t-cartaz { position: relative; width: 70%; background: #ffffff; padding: 5% 5% 6%; transform: rotate(-2deg); box-shadow: 0 .4em 1em rgba(0, 0, 0, .25); display: grid; justify-items: center; gap: .4em; text-align: center; }
+.GuiaPortal .t-cartaz::before { content: ''; position: absolute; top: -.4em; left: 50%; width: .8em; height: .8em; margin-left: -.4em; border-radius: 50%; background: #e74c3c; box-shadow: 0 .1em .2em rgba(0, 0, 0, .3); }
+.GuiaPortal .t-cartaz b { font-size: .5em; color: #0066b3; letter-spacing: .06em; }
+.GuiaPortal .t-cartaz small { font-size: .32em; color: #555555; }
+.GuiaPortal .t-cartaz img { width: 55%; image-rendering: pixelated; }
+.GuiaPortal .t-camera { position: absolute; inset: 0; background: linear-gradient(160deg, #3a3f47, #1d2127); display: grid; place-items: center; }
+.GuiaPortal .t-camera img { width: 58%; image-rendering: pixelated; }
+.GuiaPortal .t-mira { position: absolute; left: 13%; width: 74%; top: 50%; transform: translateY(-50%); aspect-ratio: 1; border: .15em solid #ffd400; border-radius: .6em; }
+.GuiaPortal .t-link-qr { position: absolute; left: 10%; right: 10%; top: 78%; height: 8%; border-radius: 2em; background: rgba(255, 255, 255, .92); display: grid; place-items: center; font-size: .26em; color: #1a73e8; font-weight: 700; }
+.GuiaPortal .t-fone-form { position: absolute; inset: 0; background: #ffffff; }
+.GuiaPortal .t-fone-form .t-topo { top: 0; height: 10%; padding: 0 6%; font-size: .24em; text-align: center; }
+.GuiaPortal .t-fone-form img { position: absolute; left: 30%; width: 40%; top: 14%; }
+.GuiaPortal .t-fone-form p { position: absolute; left: 7%; right: 7%; top: 34%; margin: 0; font-size: .28em; font-weight: 700; color: #222222; }
+.GuiaPortal .t-fone-form i { position: absolute; left: 7%; right: 7%; height: 1.6%; border-radius: .3em; background: #e3e8ee; }
+.GuiaPortal .t-fone-form .campo { position: absolute; left: 7%; right: 7%; height: 5%; border: 1px solid #3b82c4; border-radius: .3em; }
+.GuiaPortal .t-fone-form .lista { position: absolute; left: 7%; right: 7%; height: 5%; border-radius: .3em; background: #0a66b7; }
+
+/* O `img { width/height: 100%; object-fit: cover }` global do login esticaria estas imagens */
+.GuiaPortal .t-cartaz img, .GuiaPortal .t-camera img, .GuiaPortal .t-fone-form img, .GuiaPortal .f-app.portal img { height: auto; object-fit: contain; }
+.GuiaPortal .t-mail-corpo img { width: auto; object-fit: contain; }
+
+.GuiaPortal .t-digita { display: inline-block; white-space: nowrap; animation: guiaDigitaRecorte 5s steps(var(--n), end) infinite; }
+.GuiaPortal .t-digita.tarde { animation-name: guiaDigitaRecorteTarde; }
+.GuiaPortal .surge.breve { opacity: 0; animation-name: guiaSurgeBreve; }
+.GuiaPortal .pulsa { animation: guiaPulsa 1.6s ease-out infinite; }
+
+/* recorte em vez de largura: revela o texto letra a letra sem depender da largura da fonte */
+@keyframes guiaDigitaRecorte {
+    0%, 52%   { clip-path: inset(0 100% 0 0); }
+    70%, 100% { clip-path: inset(0 0 0 0); }
+}
+@keyframes guiaDigitaRecorteTarde {
+    0%, 72%   { clip-path: inset(0 100% 0 0); }
+    88%, 100% { clip-path: inset(0 0 0 0); }
+}
+@keyframes guiaSurgeBreve {
+    0%, 46%   { opacity: 0; transform: translateY(-.5em); }
+    52%, 70%  { opacity: 1; transform: translateY(0); }
+    74%, 100% { opacity: 0; }
+}
+@keyframes guiaPulsa {
+    0%        { box-shadow: 0 0 0 0 rgba(245, 130, 31, .6); }
+    80%, 100% { box-shadow: 0 0 0 .6em rgba(245, 130, 31, 0); }
+}
+
 /* Sem movimento: cada mini vídeo vira a foto do seu último quadro. */
 @media (prefers-reduced-motion: reduce) {
     .GuiaPortal .cena * { animation: none !important; }

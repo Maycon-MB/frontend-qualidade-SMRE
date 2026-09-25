@@ -1,11 +1,18 @@
 import React from 'react';
-import { Star, LayoutDashboard, Compass, LayoutGrid } from 'lucide-react';
+import { Star, LayoutDashboard, Compass, LayoutGrid, FileSignature } from 'lucide-react';
 import MiniVideo, { Tela, Fone, Destaque } from './MiniVideo';
 import {
     NavCena, TelaHome, TelaHomeRodape, TelaRamais, TelaRamaisUnidades, TelaRamaisBusca, TelaAniversariantes,
     TelaContracheque, TelaGrade, TelaArea, TelaAreaDocs, FonePortal, FoneInicio, NavegadorPC, MenuChrome,
     MenuPontos, ComunicadoAberto, ToastEnviado, MenuMes, MenuUnidades, JanelaPdf, JanelaMonitora,
 } from './telas';
+import {
+    Digita, MuralQrCode, CameraQrCode, FoneFormulario, TelaTermoForm, OpcoesUnidade, OpcoesArea, DicaToken,
+    TelaEmailToken, TelaTermoCaixas, SucessoTermo,
+} from './telasTermo';
+
+// Dados do Leozinho usados em todas as telas do termo (fictícios).
+const LEOZINHO = { nome: 'Leozinho', unidade: 'Central Administrativa', area: 'CSC - Qualidade', cpf: '000.000.000-00', email: 'leozinho@email.com' };
 
 export const TEMAS = [
     {
@@ -55,7 +62,7 @@ export const TEMAS = [
         grupos: [{
             passos: [
                 {
-                    acao: 'No topo ficam a sua saudação e a sua foto.',
+                    acao: 'No topo da tela, você encontra uma saudação personalizada e a sua foto.',
                     expl: 'O “Olá, Leozinho!” confirma que você entrou com a sua conta.',
                     cena: (
                         <MiniVideo semClique x0="50%" y0="70%" x1="91.5%" y1="6%">
@@ -65,8 +72,8 @@ export const TEMAS = [
                     ),
                 },
                 {
-                    acao: 'À esquerda estão os atalhos.',
-                    expl: 'Cada quadrado leva a uma área do Portal: Aniversariantes, Contracheque, Gestão da Qualidade e Sistema Monitora.',
+                    acao: 'À esquerda, você encontra os atalhos que facilitam a sua navegação.',
+                    expl: 'Por meio dos atalhos, você acessa facilmente as opções do menu.',
                     cena: (
                         <MiniVideo semClique x0="70%" y0="85%" x1="23%" y1="56%">
                             <Tela><TelaHome /></Tela><NavCena />
@@ -75,8 +82,8 @@ export const TEMAS = [
                     ),
                 },
                 {
-                    acao: 'À direita, os Últimos Comunicados.',
-                    expl: 'Clique no título para ler o comunicado completo. Clique de novo para fechar.',
+                    acao: 'À direita, você encontra os comunicados mais recentes.',
+                    expl: 'Clique no título para visualizar o comunicado completo. Para fechá-lo, clique novamente.',
                     cena: (
                         <MiniVideo x0="30%" y0="85%" x1="62%" y1="28.5%">
                             <Tela><TelaHome /></Tela><NavCena /><ComunicadoAberto />
@@ -84,8 +91,8 @@ export const TEMAS = [
                     ),
                 },
                 {
-                    acao: 'No rodapé, a Ouvidoria.',
-                    expl: 'No fim de todas as páginas fica a Ouvidoria SMREDE, o canal de escuta da rede, aberto a todos.',
+                    acao: 'No rodapé da página, você encontra o acesso à Ouvidoria SMREDE.',
+                    expl: 'Ao final de todas as páginas, você encontra a Ouvidoria SMREDE, um canal de escuta aberto a todos.',
                     cena: (
                         <MiniVideo semClique x0="60%" y0="30%" x1="12%" y1="66%">
                             <Tela><TelaHomeRodape /></Tela><NavCena />
@@ -100,22 +107,13 @@ export const TEMAS = [
         id: 'navegar',
         titulo: 'Como Navegar',
         sub: 'Ande pelo Portal sem se perder',
-        qtd: '4 passos',
+        qtd: '3 passos',
         Icone: Compass,
         grupos: [{
             passos: [
                 {
-                    acao: 'Clique no logo para voltar à tela inicial.',
-                    expl: 'Funciona em qualquer página do Portal.',
-                    cena: (
-                        <MiniVideo x0="60%" y0="80%" x1="7.5%" y1="6%">
-                            <Tela fase="antes"><TelaRamais /></Tela><Tela fase="depois"><TelaHome /></Tela><NavCena />
-                        </MiniVideo>
-                    ),
-                },
-                {
-                    acao: 'Abra o menu nos três pontinhos.',
-                    expl: 'Ele fica no canto superior direito e lista todas as áreas do Portal, inclusive este Guia.',
+                    acao: 'Clique nos três pontinhos e confira as opções do menu.',
+                    expl: 'No canto superior direito, você encontra o menu do Portal e também o acesso a este Guia.',
                     cena: (
                         <MiniVideo x0="55%" y0="85%" x1="95.35%" y1="6%">
                             <Tela><TelaHome /></Tela><NavCena /><MenuPontos destaque="guia" className="surge" />
@@ -123,8 +121,8 @@ export const TEMAS = [
                     ),
                 },
                 {
-                    acao: 'Use a seta para voltar à página anterior.',
-                    expl: 'Ela aparece logo abaixo do topo, em todas as páginas internas.',
+                    acao: 'Para retornar à página anterior, clique na seta.',
+                    expl: 'Nas páginas internas, ela fica sempre disponível logo abaixo do cabeçalho.',
                     cena: (
                         <MiniVideo x0="60%" y0="85%" x1="6.25%" y1="19.6%">
                             <Tela fase="antes"><TelaArea /></Tela><Tela fase="depois"><TelaGrade /></Tela><NavCena />
@@ -132,8 +130,8 @@ export const TEMAS = [
                     ),
                 },
                 {
-                    acao: 'Use a casinha para ir direto ao início.',
-                    expl: 'Ela fica ao lado da seta.',
+                    acao: 'Para voltar ao início, clique na casinha ou na logo do Portal.',
+                    expl: 'Você encontra o ícone ao lado da seta.',
                     cena: (
                         <MiniVideo x0="65%" y0="85%" x1="12%" y1="19.6%">
                             <Tela fase="antes"><TelaArea /></Tela><Tela fase="depois"><TelaHome /></Tela><NavCena />
@@ -298,5 +296,148 @@ export const TEMAS = [
                 ],
             },
         ],
+    },
+    {
+        id: 'termo',
+        titulo: 'Termo de Compromisso',
+        sub: 'Assine o Código de Ética e as Políticas Internas',
+        qtd: '13 passos',
+        Icone: FileSignature,
+        grupos: [{
+            passos: [
+                {
+                    acao: 'Abra o formulário pelo QR Code dos murais ou pelo link do e-mail.',
+                    expl: 'Aponte a câmera do celular para o QR Code e toque no link que aparecer. O mesmo link também chega por e-mail.',
+                    cena: (
+                        <MiniVideo x0="30%" y0="85%" x1="73%" y1="79.4%">
+                            <MuralQrCode />
+                            <Fone style={{ left: '58%' }}>
+                                <Tela fase="antes"><CameraQrCode /></Tela>
+                                <Tela fase="depois"><FoneFormulario /></Tela>
+                            </Fone>
+                        </MiniVideo>
+                    ),
+                },
+                {
+                    acao: 'Preencha seu nome completo.',
+                    expl: 'Digite o nome como está no seu cadastro.',
+                    cena: (
+                        <MiniVideo x0="60%" y0="85%" x1="30%" y1="17.5%">
+                            <TelaTermoForm nome={<Digita n={8}>{LEOZINHO.nome}</Digita>} />
+                        </MiniVideo>
+                    ),
+                },
+                {
+                    acao: 'Em Unidade, escolha o local de atuação.',
+                    expl: 'O Leozinho trabalha na Central Administrativa.',
+                    cena: (
+                        <MiniVideo x0="60%" y0="85%" x1="50%" y1="29.5%">
+                            <TelaTermoForm nome={LEOZINHO.nome} unidade={<span className="surge tarde">{LEOZINHO.unidade}</span>} />
+                            <OpcoesUnidade />
+                        </MiniVideo>
+                    ),
+                },
+                {
+                    acao: 'Em Área, escolha o seu setor.',
+                    expl: 'A lista traz todas as áreas da rede, em ordem alfabética.',
+                    cena: (
+                        <MiniVideo x0="60%" y0="85%" x1="50%" y1="41.5%">
+                            <TelaTermoForm nome={LEOZINHO.nome} unidade={LEOZINHO.unidade} area={<span className="surge tarde">{LEOZINHO.area}</span>} />
+                            <OpcoesArea />
+                        </MiniVideo>
+                    ),
+                },
+                {
+                    acao: 'Preencha o seu CPF e o seu e-mail.',
+                    expl: 'Use um e-mail que você consegue abrir agora: o token vai chegar nele.',
+                    cena: (
+                        <MiniVideo x0="60%" y0="88%" x1="30%" y1="53.5%">
+                            <TelaTermoForm
+                                nome={LEOZINHO.nome}
+                                unidade={LEOZINHO.unidade}
+                                area={LEOZINHO.area}
+                                cpf={<Digita n={14}>{LEOZINHO.cpf}</Digita>}
+                                email={<Digita n={18} tarde>{LEOZINHO.email}</Digita>}
+                            />
+                        </MiniVideo>
+                    ),
+                },
+                {
+                    acao: 'Clique em Enviar Token.',
+                    expl: 'Aparece o aviso para verificar a sua caixa de e-mail.',
+                    cena: (
+                        <MiniVideo x0="60%" y0="88%" x1="9.5%" y1="76.5%">
+                            <TelaTermoForm {...LEOZINHO} apertaToken />
+                            <DicaToken />
+                        </MiniVideo>
+                    ),
+                },
+                {
+                    acao: 'Abra o seu e-mail e veja o token.',
+                    expl: 'O e-mail “TOKEN - Termos de compromisso SMREDE” chega da Ouvidoria SMREDE. Se não estiver na caixa de entrada, procure no spam.',
+                    cena: (
+                        <MiniVideo semClique x0="75%" y0="90%" x1="50%" y1="56%">
+                            <TelaEmailToken />
+                        </MiniVideo>
+                    ),
+                },
+                {
+                    acao: 'Digite o token no campo “Informe o token aqui”.',
+                    expl: 'São 4 números.',
+                    cena: (
+                        <MiniVideo x0="60%" y0="88%" x1="24%" y1="76.5%">
+                            <TelaTermoForm {...LEOZINHO} token={<Digita n={4}>4827</Digita>} />
+                        </MiniVideo>
+                    ),
+                },
+                {
+                    acao: 'Marque as 5 caixas “Declaro que li e compreendi…”, uma de cada vez e não esqueça de fazer a leitura das políticas.',
+                    expl: 'Clique no nome de cada documento para abrir e ler antes de marcar.',
+                    cena: (
+                        <MiniVideo x0="60%" y0="90%" x1="6.5%" y1="14.75%">
+                            <TelaTermoCaixas docs="animar" />
+                        </MiniVideo>
+                    ),
+                },
+                {
+                    acao: 'Marque a caixa de proteção de dados.',
+                    expl: 'É a declaração sobre o uso dos seus dados pessoais, conforme a LGPD.',
+                    cena: (
+                        <MiniVideo x0="60%" y0="90%" x1="6.5%" y1="68.5%">
+                            <TelaTermoCaixas docs="sim" lgpd="animar" />
+                        </MiniVideo>
+                    ),
+                },
+                {
+                    acao: 'Marque “Não sou um robô”.',
+                    expl: 'É a confirmação de segurança do formulário.',
+                    cena: (
+                        <MiniVideo x0="60%" y0="60%" x1="7.4%" y1="82.75%">
+                            <TelaTermoCaixas docs="sim" lgpd="sim" captcha="animar" />
+                        </MiniVideo>
+                    ),
+                },
+                {
+                    acao: 'Clique em Enviar Formulário.',
+                    expl: 'O botão só fica azul depois que tudo estiver preenchido e marcado.',
+                    cena: (
+                        <MiniVideo x0="70%" y0="60%" x1="50%" y1="93.25%">
+                            <TelaTermoCaixas docs="sim" lgpd="sim" captcha="sim" ativo aperta />
+                            <SucessoTermo />
+                        </MiniVideo>
+                    ),
+                },
+                {
+                    acao: 'Pronto! Guarde o seu número de registro.',
+                    expl: 'Ele comprova a sua assinatura do termo.',
+                    cena: (
+                        <MiniVideo semClique x0="75%" y0="90%" x1="52%" y1="66%">
+                            <TelaTermoCaixas docs="sim" lgpd="sim" captcha="sim" ativo />
+                            <SucessoTermo fixo pulsa />
+                        </MiniVideo>
+                    ),
+                },
+            ],
+        }],
     },
 ];
