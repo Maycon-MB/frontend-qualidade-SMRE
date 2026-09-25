@@ -1,0 +1,54 @@
+/* ====== Termo de Compromisso no celular (cena 9:16, 1em = 5% da largura) ====== */
+.GuiaPortal .cena.cel [class*="mt-"] { box-sizing: border-box; }
+.GuiaPortal .cena.cel .mt-tela { position: absolute; inset: 0; background: #ffffff; }
+.GuiaPortal .cena.cel .mt-topo { position: absolute; left: 0; right: 0; top: 0; height: 7%; padding: 0 4%; background: #0066b3; color: #ffffff; display: grid; place-items: center; text-align: center; font-size: .62em; line-height: 1.25; font-weight: 700; }
+.GuiaPortal .cena.cel .mt-rot { position: absolute; left: 5%; font-size: .66em; color: #222222; }
+.GuiaPortal .cena.cel .mt-campo { position: absolute; left: 5%; right: 5%; border: 1px solid #3b82c4; border-radius: .35em; background: #ffffff; display: flex; align-items: center; padding: 0 .6em; font-size: .72em; color: #222222; white-space: nowrap; overflow: hidden; }
+.GuiaPortal .cena.cel .mt-lista { position: absolute; left: 5%; right: 5%; border-radius: .35em; background: #0a66b7; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: .72em; font-weight: 700; white-space: nowrap; }
+.GuiaPortal .cena.cel .mt-lista .surge { display: inline-block; }
+.GuiaPortal .cena.cel .mt-lista svg { position: absolute; right: 3%; width: 1.5em; height: 1.5em; }
+.GuiaPortal .cena.cel .mt-btn-token { position: absolute; left: 5%; right: 5%; border-radius: .3em; background: #0a66b7; color: #ffffff; display: grid; place-items: center; font-size: .72em; font-weight: 700; }
+.GuiaPortal .cena.cel .mt-campo-token { position: absolute; display: flex; align-items: center; padding: 0 .6em; background: #f1f1f1; border: 1px solid #cccccc; border-radius: .3em; font-size: .66em; color: #777777; white-space: nowrap; }
+.GuiaPortal .cena.cel .mt-campo-token b { color: #222222; letter-spacing: .1em; }
+.GuiaPortal .cena.cel .mt-linha { position: absolute; left: 5%; right: 5%; top: 85%; border-top: 3px double #bbbbbb; }
+.GuiaPortal .cena.cel .mt-opcoes { position: absolute; z-index: 4; left: 5%; right: 5%; background: #ffffff; border: 1px solid #9aabbb; box-shadow: 0 .3em 1em rgba(0, 0, 0, .2); font-size: .7em; }
+.GuiaPortal .cena.cel .mt-opcoes div { padding: .5em .8em; color: #222222; }
+.GuiaPortal .cena.cel .mt-opcoes div.on { background: #0a66b7; color: #ffffff; }
+.GuiaPortal .cena.cel .mt-dica { position: absolute; z-index: 4; left: 5%; right: 5%; background: #ffffff; border-radius: .5em; box-shadow: 0 .3em 1.2em rgba(0, 0, 0, .25); padding: .7em .9em; font-size: .6em; line-height: 1.4; color: #333333; }
+
+.GuiaPortal .cena.cel .mt-cartao { position: absolute; left: 5%; right: 5%; border: 1px solid #dddddd; border-radius: .35em; padding: 0 .5em 0 2.2em; display: flex; flex-direction: column; justify-content: center; gap: .15em; overflow: hidden; }
+.GuiaPortal .cena.cel .mt-cartao b { font-size: .52em; line-height: 1.2; color: #1a66c9; text-decoration: underline; }
+.GuiaPortal .cena.cel .mt-cartao small { font-size: .44em; line-height: 1.2; color: #444444; font-weight: 700; }
+.GuiaPortal .cena.cel .mt-cartao.lgpd b { font-size: .46em; line-height: 1.25; color: #222222; text-decoration: none; }
+.GuiaPortal .cena.cel .mt-caixa { position: absolute; left: 7.5%; width: .9em; height: .9em; border: 1px solid #bbbbbb; border-radius: .15em; background: #eeeeee; }
+.GuiaPortal .cena.cel .mt-caixa.captcha { left: 9%; width: 1.2em; height: 1.2em; background: #ffffff; border: 2px solid #c1c1c1; }
+.GuiaPortal .cena.cel .mt-marca { position: absolute; z-index: 3; left: 7.5%; width: .9em; height: .9em; border-radius: .15em; background: #0a66b7; color: #ffffff; display: grid; place-items: center; }
+.GuiaPortal .cena.cel .mt-marca svg { width: 80%; height: 80%; }
+.GuiaPortal .cena.cel .mt-marca.captcha { left: 9%; width: 1.2em; height: 1.2em; background: transparent; color: #0f9d58; }
+.GuiaPortal .cena.cel .mt-marca.cascata { animation-fill-mode: backwards; }
+.GuiaPortal .cena.cel .mt-captcha { position: absolute; left: 5%; width: 72%; border: 1px solid #d3d3d3; border-radius: .2em; background: #f9f9f9; box-shadow: 0 0 .3em rgba(0, 0, 0, .08); display: flex; align-items: center; padding-left: 2.4em; font-size: .66em; color: #222222; }
+.GuiaPortal .cena.cel .mt-recaptcha { margin-left: auto; margin-right: .6em; font-size: .7em; color: #777777; }
+.GuiaPortal .cena.cel .mt-enviar { position: absolute; left: 5%; right: 5%; border-radius: .3em; background: #b3d4ee; color: #ffffff; display: grid; place-items: center; font-size: .74em; font-weight: 700; }
+.GuiaPortal .cena.cel .mt-enviar.ativo { background: #0a66b7; }
+
+.GuiaPortal .cena.cel .mt-fundo { position: absolute; inset: 0; z-index: 4; background: rgba(15, 25, 40, .45); }
+.GuiaPortal .cena.cel .mt-sucesso { position: absolute; left: 8%; right: 8%; background: #ffffff; border-radius: .6em; padding: 1.4em 1em 0; display: flex; flex-direction: column; align-items: center; gap: .7em; text-align: center; box-shadow: 0 .6em 2em rgba(0, 0, 0, .3); }
+.GuiaPortal .cena.cel .mt-sucesso i { flex: none; width: 3em; height: 3em; border-radius: 50%; background: #0f9d58; color: #ffffff; display: grid; place-items: center; }
+.GuiaPortal .cena.cel .mt-sucesso i svg { width: 60%; height: 60%; }
+.GuiaPortal .cena.cel .mt-sucesso strong { font-size: .8em; line-height: 1.25; color: #1c2530; }
+.GuiaPortal .cena.cel .mt-sucesso span { font-size: .64em; line-height: 1.3; color: #555555; }
+.GuiaPortal .cena.cel .mt-sucesso .mt-registro { position: absolute; left: 12%; right: 12%; display: grid; place-items: center; font-size: 1.05em; font-weight: 900; color: #0a66b7; letter-spacing: .08em; background: #eef5fc; border-radius: .3em; }
+
+.GuiaPortal .cena.cel .mt-mail { position: absolute; inset: 0; background: #ffffff; }
+.GuiaPortal .cena.cel .mt-mail-assunto { position: absolute; left: 5%; right: 5%; top: 4%; font-size: .9em; line-height: 1.25; color: #1f1f1f; }
+.GuiaPortal .cena.cel .mt-mail-assunto em { display: inline-block; font-style: normal; font-size: .55em; background: #dddddd; border-radius: .3em; padding: .15em .5em; color: #444444; vertical-align: middle; }
+.GuiaPortal .cena.cel .mt-mail-de { position: absolute; left: 5%; right: 5%; top: 13%; display: flex; align-items: center; gap: .5em; }
+.GuiaPortal .cena.cel .mt-mail-de i { flex: none; width: 2em; height: 2em; border-radius: 50%; background: #e3e3e3; display: block; }
+.GuiaPortal .cena.cel .mt-mail-de span { display: grid; gap: .2em; font-size: .56em; color: #444444; }
+.GuiaPortal .cena.cel .mt-mail-de b { color: #1f1f1f; overflow-wrap: anywhere; }
+.GuiaPortal .cena.cel .mt-mail-corpo { position: absolute; left: 5%; right: 5%; top: 23%; bottom: 4%; border: 1px solid #eeeeee; border-radius: .4em; }
+.GuiaPortal .cena.cel .mt-mail-logo { position: absolute; left: 50%; top: 26%; width: auto; height: 7%; object-fit: contain; transform: translateX(-50%); }
+.GuiaPortal .cena.cel .mt-mail-ola { position: absolute; left: 10%; right: 10%; top: 36%; margin: 0; text-align: center; font-size: .72em; font-weight: 700; color: #222222; }
+.GuiaPortal .cena.cel .mt-mail-texto { position: absolute; left: 10%; right: 10%; top: 41%; margin: 0; text-align: center; font-size: .62em; line-height: 1.4; color: #333333; }
+.GuiaPortal .cena.cel .mt-mail-token { position: absolute; left: 15%; right: 15%; display: grid; place-items: center; background: #f7f8fa; border: 1px solid #e3e6ea; border-radius: .4em; font-size: 2em; font-weight: 900; color: #222222; letter-spacing: .05em; }
+.GuiaPortal .cena.cel .mt-mail-fim { position: absolute; left: 10%; right: 10%; top: 67%; margin: 0; text-align: center; font-size: .62em; line-height: 1.4; color: #333333; }

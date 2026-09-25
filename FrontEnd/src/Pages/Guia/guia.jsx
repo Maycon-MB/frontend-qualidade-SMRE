@@ -6,9 +6,11 @@ import Menu from '../HomePage/homepage_menu';
 import Footer from '../Components/footer';
 import { busca_foto } from '../../services/api';
 import { TEMAS } from './conteudo';
+import { useCelular } from './MiniVideo';
 import './guia.css';
 
-function Passo({ numero, acao, expl, cena, aberto, onAlternar }) {
+function Passo({ numero, acao, expl, cena, cenaCel, aberto, onAlternar }) {
+    const celular = useCelular();
     return (
         <li className="passo-item">
             <button type="button" className="passo-cab" aria-expanded={aberto} onClick={onAlternar}>
@@ -18,7 +20,7 @@ function Passo({ numero, acao, expl, cena, aberto, onAlternar }) {
             </button>
             {aberto && (
                 <div className="passo-corpo">
-                    {cena}
+                    {celular && cenaCel ? cenaCel : cena}
                     <p className="passo-expl">{expl}</p>
                 </div>
             )}

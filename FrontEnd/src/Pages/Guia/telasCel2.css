@@ -1,0 +1,127 @@
+/* Telas do celular: 1em = 5% da largura e 2,8125% da altura da cena */
+.GuiaPortal .cena.cel .mn-btn {
+    position: absolute; display: grid; place-items: center; background: var(--branco); color: var(--azul);
+    border-radius: .35em; box-shadow: 0 .1em .4em rgba(0, 40, 80, .14); font-style: normal;
+}
+.GuiaPortal .cena.cel .mn-btn svg { width: 48%; height: 48%; }
+.GuiaPortal .cena.cel .mn-titulo {
+    position: absolute; display: flex; align-items: center; color: var(--azul); font-weight: 900; font-size: .8em; white-space: nowrap;
+}
+
+.GuiaPortal .cena.cel .mn-filtro {
+    position: absolute; display: flex; align-items: center; gap: .6em; padding: 0 .9em; box-sizing: border-box;
+    background: var(--branco); border: .08em solid rgba(0, 108, 181, .28); border-radius: .6em;
+    color: var(--azul); font-size: .62em; font-weight: 700; white-space: nowrap;
+}
+.GuiaPortal .cena.cel .mn-filtro.cinza { background: #f5f8fb; border-color: #dbe3ec; color: var(--texto-suave); font-weight: 400; }
+.GuiaPortal .cena.cel .mn-filtro svg { width: 1.3em; height: 1.3em; flex: none; }
+.GuiaPortal .cena.cel .mn-filtro .mn-fim { margin-left: auto; }
+
+.GuiaPortal .cena.cel .mn-tabela {
+    position: absolute; overflow: hidden; background: var(--branco); border-radius: .5em .5em 0 0;
+    box-shadow: 0 .15em .5em rgba(0, 40, 80, .1);
+}
+.GuiaPortal .cena.cel .mn-niver {
+    display: grid; grid-template-columns: 22% 42% 36%; align-items: center; height: 3em; padding: 0 3%;
+    box-sizing: border-box; border-bottom: .06em solid #e3e8ee; color: var(--texto);
+}
+.GuiaPortal .cena.cel .mn-niver:nth-child(even) { background: #f3f4f6; }
+.GuiaPortal .cena.cel .mn-niver.cab {
+    height: 1.8em; background: linear-gradient(90deg, #005fa3, var(--azul) 55%, var(--ciano)); color: var(--branco); border: 0;
+}
+.GuiaPortal .cena.cel .mn-niver > * { font-size: .58em; line-height: 1.25; }
+.GuiaPortal .cena.cel .mn-niver.cab > * { font-weight: 900; }
+.GuiaPortal .cena.cel .mn-niver > b { font-size: .64em; }
+.GuiaPortal .cena.cel .mn-niver span b { display: block; font-size: 1.08em; }
+.GuiaPortal .cena.cel .mn-niver small { display: block; margin-top: .3em; font-size: .82em; color: var(--texto-suave); font-weight: 700; }
+
+.GuiaPortal .cena.cel .mn-menu {
+    position: absolute; z-index: 5; padding: .3em .5em .5em; box-sizing: border-box; background: var(--branco);
+    border-radius: .6em; box-shadow: 0 .3em 1em rgba(0, 40, 80, .22);
+}
+.GuiaPortal .cena.cel .mn-menu-cab {
+    display: flex; justify-content: space-between; align-items: center; height: 1.4em; padding: 0 .3em;
+    border-bottom: .06em solid #e3e8ee; color: var(--texto-suave);
+}
+.GuiaPortal .cena.cel .mn-menu-cab span { font-size: .48em; font-weight: 900; letter-spacing: .06em; }
+.GuiaPortal .cena.cel .mn-meses { display: grid; grid-template-columns: 1fr 1fr; gap: 0 .5em; margin-top: .3em; }
+.GuiaPortal .cena.cel .mn-meses span {
+    position: relative; display: flex; align-items: center; height: 2.6em; padding: 0 .9em; border-radius: .5em;
+    font-size: .6em; font-weight: 700; color: var(--texto);
+}
+.GuiaPortal .cena.cel .mn-meses span.on { background: linear-gradient(90deg, var(--azul), var(--ciano)); color: var(--branco); }
+.GuiaPortal .cena.cel .mn-meses span.on::after {
+    content: ''; position: absolute; right: .9em; width: .55em; height: .55em; border-radius: 50%; background: var(--laranja);
+}
+.GuiaPortal .cena.cel .mn-marca-lin {
+    display: flex; align-items: center; gap: .7em; height: 2.4em; padding: 0 .4em; color: var(--azul); font-size: .58em; font-weight: 700;
+}
+.GuiaPortal .cena.cel .mn-marca-lin.todas { border-bottom: .1em solid #e3e8ee; }
+.GuiaPortal .cena.cel .mn-marca-lin i {
+    display: grid; place-items: center; width: 1.3em; height: 1.3em; flex: none; border-radius: .25em; background: var(--azul); color: var(--branco);
+}
+.GuiaPortal .cena.cel .mn-marca-lin i svg { width: 80%; height: 80%; }
+.GuiaPortal .cena.cel .mn-marca-lin em {
+    margin-left: auto; min-width: 1.6em; padding: .15em .5em; border-radius: 1em; background: #e3eef8; font-style: normal; text-align: center; font-size: .85em;
+}
+.GuiaPortal .cena.cel .mn-menu-rodape { display: flex; gap: .4em; margin-top: .4em; padding-top: .4em; border-top: .06em solid #e3e8ee; }
+.GuiaPortal .cena.cel .mn-menu-rodape span {
+    flex: 1; display: grid; place-items: center; height: 2.8em; border-radius: .5em; font-size: .56em; font-weight: 700;
+}
+.GuiaPortal .cena.cel .mn-menu-rodape .limpar { border: .1em solid var(--laranja); color: var(--laranja); }
+.GuiaPortal .cena.cel .mn-menu-rodape .marcar { background: linear-gradient(90deg, #8fc3e6, #8fd6f2); color: var(--branco); }
+
+.GuiaPortal .cena.cel .mn-cc {
+    position: absolute; display: grid; align-items: center; justify-items: center; text-align: center;
+    background: var(--branco); border-bottom: .06em solid #e3e8ee; color: var(--texto);
+}
+.GuiaPortal .cena.cel .mn-cc.cab {
+    background: linear-gradient(90deg, #005fa3, var(--azul) 55%, var(--ciano)); color: var(--branco); border: 0; border-radius: .5em .5em 0 0;
+}
+.GuiaPortal .cena.cel .mn-cc.ultima { border: 0; border-radius: 0 0 .5em .5em; box-shadow: 0 .2em .4em rgba(0, 40, 80, .08); }
+.GuiaPortal .cena.cel .mn-cc > span { font-size: .56em; line-height: 1.15; padding: 0 .3em; }
+.GuiaPortal .cena.cel .mn-cc.cab > span { font-weight: 900; }
+.GuiaPortal .cena.cel .mn-env {
+    display: grid; place-items: center; width: 2.6em; height: 2.6em; border-radius: .5em; font-style: normal;
+    background: linear-gradient(135deg, var(--azul), var(--ciano)); color: var(--branco);
+}
+.GuiaPortal .cena.cel .mn-env svg { width: 60%; height: 60%; }
+
+.GuiaPortal .cena.cel .mn-toast {
+    position: absolute; z-index: 6; display: flex; align-items: center; gap: .6em; height: 6%; padding: 0 .8em; box-sizing: border-box;
+    overflow: hidden; background: var(--branco); border-radius: .5em; box-shadow: 0 .3em 1em rgba(0, 40, 80, .22);
+}
+.GuiaPortal .cena.cel .mn-toast i {
+    display: grid; place-items: center; width: 1.2em; height: 1.2em; flex: none; border-radius: 50%; background: var(--verde); color: var(--branco);
+}
+.GuiaPortal .cena.cel .mn-toast i svg { width: 62%; height: 62%; }
+.GuiaPortal .cena.cel .mn-toast span { font-size: .62em; color: var(--texto); }
+.GuiaPortal .cena.cel .mn-toast em { position: absolute; left: 0; bottom: 0; width: 70%; height: .18em; background: var(--verde); }
+
+.GuiaPortal .cena.cel .mn-card {
+    position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5em;
+    box-sizing: border-box; padding: .5em; background: var(--branco); color: var(--azul); border-radius: .8em;
+    box-shadow: 0 .15em .6em rgba(0, 40, 80, .12); text-align: center;
+}
+.GuiaPortal .cena.cel .mn-card b { white-space: pre-line; color: inherit; font-weight: 400; font-size: .64em; line-height: 1.2; }
+.GuiaPortal .cena.cel .mn-card span {
+    width: 76%; padding: .6em .3em; box-sizing: border-box; border-radius: 1.2em; color: var(--branco);
+    font-size: .42em; font-weight: 900; line-height: 1.35; text-transform: uppercase;
+}
+
+.GuiaPortal .cena.cel .mn-faixa {
+    position: absolute; display: grid; place-items: center; border-radius: .5em; text-align: center;
+    background: linear-gradient(90deg, #005fa3, var(--azul) 55%, var(--ciano)); color: var(--branco);
+    font-size: .72em; font-weight: 900; letter-spacing: .04em;
+}
+.GuiaPortal .cena.cel .mn-abas { position: absolute; display: flex; gap: .4em; overflow: hidden; }
+.GuiaPortal .cena.cel .mn-abas span {
+    flex: none; display: grid; place-items: center; min-width: 13em; padding: 0 .6em; border-radius: .5em;
+    background: var(--branco); border: .08em solid rgba(0, 108, 181, .28); color: var(--azul); font-size: .56em; font-weight: 700;
+}
+.GuiaPortal .cena.cel .mn-abas span.on { background: linear-gradient(135deg, var(--azul), var(--ciano)); color: var(--branco); border-color: transparent; }
+.GuiaPortal .cena.cel .mn-painel {
+    position: absolute; display: flex; flex-direction: column; gap: .55em; padding: 1em .9em; box-sizing: border-box;
+    overflow: hidden; background: var(--branco); border-radius: .5em; box-shadow: 0 .15em .5em rgba(0, 40, 80, .1);
+}
+.GuiaPortal .cena.cel .mn-linha { display: block; width: 100%; height: .38em; flex: none; border-radius: .2em; background: #dfe5ec; }
