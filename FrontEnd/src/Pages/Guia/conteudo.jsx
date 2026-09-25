@@ -172,8 +172,8 @@ export const TEMAS = [
                         ),
                     },
                     {
-                        acao: 'Clique no envelope dessa linha.',
-                        expl: 'O comprovante é enviado para o seu e-mail cadastrado e aparece o aviso “Comprovante enviado.”',
+                        acao: 'Na linha do comprovante desejado, clique no ícone da cartinha.',
+                        expl: 'Pronto! O comprovante será enviado para o seu e-mail cadastrado e a mensagem “Comprovante enviado.” aparecerá na tela.',
                         cena: (
                             <MiniVideo x0="55%" y0="88%" x1="16.4%" y1="45%">
                                 <Tela><TelaContracheque aperta /></Tela><NavCena /><ToastEnviado />
@@ -186,8 +186,8 @@ export const TEMAS = [
                 titulo: 'ANIVERSARIANTES',
                 passos: [
                     {
-                        acao: 'Clique em ANIVERSARIANTES na tela inicial.',
-                        expl: 'A lista abre no mês atual, com todas as unidades.',
+                        acao: 'Para acessar, clique em Aniversariantes na tela inicial.',
+                        expl: 'A lista abre automaticamente no mês atual, exibindo todas as unidades.',
                         cena: (
                             <MiniVideo x0="60%" y0="88%" x1="12.75%" y1="35.75%">
                                 <Tela fase="antes"><TelaHome hover="aniversariantes" /></Tela>
