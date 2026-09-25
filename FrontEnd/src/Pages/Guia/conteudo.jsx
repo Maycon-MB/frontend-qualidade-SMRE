@@ -196,8 +196,8 @@ export const TEMAS = [
                         ),
                     },
                     {
-                        acao: 'Escolha o mês.',
-                        expl: 'Clique no botão do mês e escolha outro. Os meses aparecem em duas colunas.',
+                        acao: 'Para consultar outro mês, é bem simples.',
+                        expl: 'Clique no mês atual e selecione o mês desejado.',
                         cena: (
                             <MiniVideo x0="50%" y0="80%" x1="90.5%" y1="28.5%">
                                 <Tela><TelaAniversariantes /></Tela><NavCena /><MenuMes />
