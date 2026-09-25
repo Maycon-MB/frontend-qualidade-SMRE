@@ -134,7 +134,7 @@ const DOCUMENTOS = [
 ];
 const TOPO_CARTOES = [10, 20.5, 31, 41.5, 52];
 
-// estado de cada marcação: undefined = vazia, 'sim' = já marcada, 'animar' = marca no clique do vídeo
+// estado: undefined = vazia, 'sim' = já marcada, 'animar' = marca no clique do vídeo
 function Marca({ estado, top, atraso, className = '' }) {
     if (!estado) return null;
     const animada = estado === 'animar';
