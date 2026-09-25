@@ -288,7 +288,28 @@ const areaDetails = {
             {
                 id: 'ps-06-1-infraestrutura',
                 nome: 'PS.06.1 - Infraestrutura',
-                documentos: [],
+                documentos: [
+                    {
+                        eventKey: 'ps-06-1-1',
+                        titulo: 'PS.06.1.1 - Procedimento de Gestão de Backups e Recuperação de Dados',
+                        corpo: (
+                            <>
+                                <p>Este documento regulamenta os critérios do processo <strong>PS.06.1.1 - Procedimento de Gestão de Backups e Recuperação de Dados</strong>, relacionado à área de TI, com o objetivo de estabelecer o processo para a salvaguarda e recuperação dos dados institucionais, garantindo a disponibilidade dos serviços acadêmicos e administrativos em caso de falhas críticas, erros humanos ou ataques cibernéticos.</p>
+                                <p>O processo se aplica à área de TI, tendo a equipe de Infraestrutura como principal executora das atividades.</p>
+                                <Button
+                                    as="a"
+                                    href={`${process.env.PUBLIC_URL}/documentos/PS.06.1.1-procedimento-de-gestao-de-backups-e-recuperacao-de-dados.pdf`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="btn-visualizar-doc"
+                                >
+                                    VISUALIZAR DOCUMENTO <i className="fa-solid fa-angles-right"></i>
+                                </Button>
+                                <div style={{ clear: 'both' }}></div>
+                            </>
+                        ),
+                    },
+                ],
             },
             {
                 id: 'ps-06-2-sistemas',
