@@ -2,9 +2,9 @@ import React from 'react';
 import { Star, LayoutDashboard, Compass, LayoutGrid, FileSignature } from 'lucide-react';
 import MiniVideo, { Tela, Fone, Destaque } from './MiniVideo';
 import {
-    NavCena, TelaHome, TelaHomeRodape, TelaRamais, TelaRamaisUnidades, TelaRamaisBusca, TelaAniversariantes,
-    TelaContracheque, TelaGrade, TelaArea, TelaAreaDocs, FonePortal, FoneInicio, NavegadorPC, MenuChrome,
-    MenuPontos, ComunicadoAberto, ToastEnviado, MenuMes, MenuUnidades, JanelaPdf, JanelaMonitora,
+    NavCena, TelaHome, TelaHomeRodape, TelaAniversariantes,
+    TelaContracheque, TelaGrade, TelaArea, FonePortal, FoneInicio, NavegadorPC, MenuChrome,
+    MenuPontos, ComunicadoAberto, ToastEnviado, MenuMes, MenuUnidades,
 } from './telas';
 import {
     Digita, MuralQrCode, CameraQrCode, FoneFormulario, TelaTermoForm, OpcoesUnidade, OpcoesArea, DicaToken,
@@ -144,8 +144,8 @@ export const TEMAS = [
     {
         id: 'funcionalidades',
         titulo: 'Principais Funcionalidades',
-        sub: 'Contracheque, aniversariantes, ramais e mais',
-        qtd: '5 temas',
+        sub: 'Contracheque e aniversariantes',
+        qtd: '2 temas',
         Icone: LayoutGrid,
         grupos: [
             {
@@ -210,86 +210,6 @@ export const TEMAS = [
                         cena: (
                             <MiniVideo x0="45%" y0="85%" x1="74.75%" y1="28.5%">
                                 <Tela><TelaAniversariantes /></Tela><NavCena /><MenuUnidades />
-                            </MiniVideo>
-                        ),
-                    },
-                ],
-            },
-            {
-                titulo: 'RAMAIS',
-                passos: [
-                    {
-                        acao: 'Abra RAMAIS no menu dos três pontinhos.',
-                        expl: 'A página abre na aba Central Administrativa.',
-                        cena: (
-                            <MiniVideo x0="50%" y0="85%" x1="72%" y1="43.3%">
-                                <Tela fase="antes"><TelaHome><MenuPontos destaque="ramais" /></TelaHome></Tela>
-                                <Tela fase="depois"><TelaRamais /></Tela><NavCena />
-                            </MiniVideo>
-                        ),
-                    },
-                    {
-                        acao: 'Escolha a aba da unidade.',
-                        expl: 'A aba Unidades traz o gestor, o ramal e o telefone de cada escola.',
-                        cena: (
-                            <MiniVideo x0="50%" y0="85%" x1="40.8%" y1="36%">
-                                <Tela fase="antes"><TelaRamais /></Tela><Tela fase="depois"><TelaRamaisUnidades /></Tela><NavCena />
-                            </MiniVideo>
-                        ),
-                    },
-                    {
-                        acao: 'Ou digite na busca.',
-                        expl: 'Vale o setor, o nome do responsável ou o número do ramal. A busca procura em todas as abas.',
-                        cena: (
-                            <MiniVideo x0="55%" y0="80%" x1="20%" y1="28%">
-                                <Tela fase="antes"><TelaRamais /></Tela><Tela fase="depois"><TelaRamaisBusca /></Tela><NavCena />
-                            </MiniVideo>
-                        ),
-                    },
-                ],
-            },
-            {
-                titulo: 'GESTÃO DA QUALIDADE',
-                passos: [
-                    {
-                        acao: 'Clique em GESTÃO DA QUALIDADE na tela inicial.',
-                        expl: 'Aparecem os quadros de todas as áreas da rede.',
-                        cena: (
-                            <MiniVideo x0="60%" y0="50%" x1="12.75%" y1="76.25%">
-                                <Tela fase="antes"><TelaHome hover="qualidade" /></Tela>
-                                <Tela fase="depois"><TelaGrade /></Tela><NavCena />
-                            </MiniVideo>
-                        ),
-                    },
-                    {
-                        acao: 'Escolha a área.',
-                        expl: 'Cada área tem as abas Objetivo, Organograma e Documentos.',
-                        cena: (
-                            <MiniVideo x0="40%" y0="50%" x1="61.75%" y1="77.5%">
-                                <Tela fase="antes"><TelaGrade hover="ti" /></Tela><Tela fase="depois"><TelaArea /></Tela><NavCena />
-                            </MiniVideo>
-                        ),
-                    },
-                    {
-                        acao: 'Na aba Documentos, clique em Visualizar documento.',
-                        expl: 'O documento abre numa nova aba. Logo abaixo fica o botão Fluxo do processo.',
-                        cena: (
-                            <MiniVideo x0="45%" y0="90%" x1="79%" y1="76.75%">
-                                <Tela><TelaAreaDocs /></Tela><NavCena /><JanelaPdf />
-                            </MiniVideo>
-                        ),
-                    },
-                ],
-            },
-            {
-                titulo: 'SISTEMA MONITORA',
-                passos: [
-                    {
-                        acao: 'Clique em SISTEMA MONITORA na tela inicial.',
-                        expl: 'O sistema abre numa nova aba, e o Portal continua aberto na anterior.',
-                        cena: (
-                            <MiniVideo x0="70%" y0="50%" x1="33.25%" y1="76.25%">
-                                <Tela><TelaHome hover="monitora" /></Tela><NavCena /><JanelaMonitora />
                             </MiniVideo>
                         ),
                     },
