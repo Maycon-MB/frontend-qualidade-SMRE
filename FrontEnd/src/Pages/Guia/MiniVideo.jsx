@@ -40,8 +40,8 @@ export function Tela({ fase, children }) {
     return <div className={fase ? `tela ${fase}` : 'tela'}>{children}</div>;
 }
 
-export function Fone({ children }) {
-    return <div className="fone">{children}</div>;
+export function Fone({ style, children }) {
+    return <div className="fone" style={style}>{children}</div>;
 }
 
 export function Destaque({ style, tarde }) {
