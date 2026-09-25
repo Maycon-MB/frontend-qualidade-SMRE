@@ -11,14 +11,14 @@ export const TEMAS = [
     {
         id: 'primeiro-acesso',
         titulo: 'Primeiro Acesso',
-        sub: 'Deixe o Portal sempre à mão',
+        sub: 'Tenha acesso ao Portal de forma rápida e prática.',
         qtd: '3 passos',
         Icone: Star,
         grupos: [{
             passos: [
                 {
                     acao: 'No computador, clique na estrela da barra de endereço.',
-                    expl: 'O Portal fica salvo nos favoritos do navegador e abre com um clique.',
+                    expl: 'Salve o Portal nos favoritos do navegador e acesse com apenas um clique.',
                     cena: <MiniVideo x0="50%" y0="70%" x1="89.2%" y1="11.5%"><NavegadorPC /></MiniVideo>,
                 },
                 {
@@ -32,7 +32,7 @@ export const TEMAS = [
                 },
                 {
                     acao: 'Toque em “Adicionar à tela inicial”.',
-                    expl: 'O ícone do Portal aparece junto com os seus aplicativos, pronto para abrir.',
+                    expl: 'Pronto! Agora o Portal está junto aos seus aplicativos, a um clique de distância.',
                     cena: (
                         <MiniVideo x0="45%" y0="85%" x1="54.5%" y1="54.2%">
                             <Fone>
@@ -49,7 +49,7 @@ export const TEMAS = [
     {
         id: 'conhecendo',
         titulo: 'Conhecendo o Portal',
-        sub: 'O que tem na tela inicial',
+        sub: 'Explore a tela inicial!',
         qtd: '4 passos',
         Icone: LayoutDashboard,
         grupos: [{

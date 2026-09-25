@@ -114,7 +114,7 @@ function Guia() {
                     </button>
                     <span className="guia-nav-titulo">Guia do Portal</span>
                 </div>
-                <p className="guia-intro">Aprenda a usar o Portal em poucos minutos. Abra um tema e clique no passo que você quer ver.</p>
+                <p className="guia-intro">Aprenda a usar o Portal em poucos minutos. Abra um dos temas e clique para visualizar o passo a passo.</p>
 
                 <div className="acordeao">
                     {TEMAS.map((tema) => (
