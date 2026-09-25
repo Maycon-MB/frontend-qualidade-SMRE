@@ -1,4 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+const CONSULTA_CELULAR = '(max-width: 767px)';
+
+// Mesmo corte do layout do Portal: abaixo de 768px o Portal vira o layout de celular.
+export function useCelular() {
+    const [celular, setCelular] = useState(() => window.matchMedia(CONSULTA_CELULAR).matches);
+    useEffect(() => {
+        const consulta = window.matchMedia(CONSULTA_CELULAR);
+        const aoMudar = () => setCelular(consulta.matches);
+        consulta.addEventListener('change', aoMudar);
+        return () => consulta.removeEventListener('change', aoMudar);
+    }, []);
+    return celular;
+}
+
+function Dedo() {
+    return <span className="dedo" aria-hidden="true" />;
+}
 
 function Cursor() {
     return (
@@ -9,15 +27,15 @@ function Cursor() {
 }
 
 // Cena animada só com CSS: a setinha vai de (x0, y0) até (x1, y1), em % da cena, e clica no meio do ciclo.
-function MiniVideo({ x0, y0, x1, y1, semClique, children }) {
+function MiniVideo({ x0, y0, x1, y1, semClique, cel, children }) {
     const [pausado, setPausado] = useState(false);
 
     return (
-        <div className={`cena${pausado ? ' pausada' : ''}`} style={{ '--x0': x0, '--y0': y0, '--x1': x1, '--y1': y1 }}>
+        <div className={`cena${cel ? ' cel' : ''}${pausado ? ' pausada' : ''}`} style={{ '--x0': x0, '--y0': y0, '--x1': x1, '--y1': y1 }}>
             <div className="cena-in">
                 {children}
                 {!semClique && <div className="clique" />}
-                <Cursor />
+                {cel ? <Dedo /> : <Cursor />}
             </div>
             <button
                 type="button"
@@ -40,8 +58,8 @@ export function Tela({ fase, children }) {
     return <div className={fase ? `tela ${fase}` : 'tela'}>{children}</div>;
 }
 
-export function Fone({ style, children }) {
-    return <div className="fone" style={style}>{children}</div>;
+export function Fone({ style, cheio, children }) {
+    return <div className={cheio ? 'fone cheio' : 'fone'} style={style}>{children}</div>;
 }
 
 export function Destaque({ style, tarde }) {

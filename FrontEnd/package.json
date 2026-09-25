@@ -24,12 +24,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "cross-env GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "cross-env REACT_APP_FASE=producao react-scripts build",
+    "predeploy": "cross-env REACT_APP_FASE=producao GENERATE_SOURCEMAP=false react-scripts build",
     "deploy": "gh-pages -d build --add",
-    "build:beta": "cross-env PUBLIC_URL=https://Maycon-MB.github.io/frontend-qualidade-SMRE/beta react-scripts build",
+    "build:beta": "cross-env PUBLIC_URL=https://Maycon-MB.github.io/frontend-qualidade-SMRE/beta GENERATE_SOURCEMAP=false react-scripts build",
     "deploy:beta": "npm run build:beta && gh-pages -d build -e beta"
   },
   "eslintConfig": {

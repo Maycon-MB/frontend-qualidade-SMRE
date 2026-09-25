@@ -526,6 +526,21 @@
 .GuiaPortal .t-fone-form .campo { position: absolute; left: 7%; right: 7%; height: 5%; border: 1px solid #3b82c4; border-radius: .3em; }
 .GuiaPortal .t-fone-form .lista { position: absolute; left: 7%; right: 7%; height: 5%; border-radius: .3em; background: #0a66b7; }
 
+/* ====== mini vídeo no celular: tela em pé e toque de dedo no lugar da setinha ====== */
+.GuiaPortal .cena.cel { aspect-ratio: 9 / 16; max-width: 340px; margin: 0 auto; border-radius: 20px; }
+.GuiaPortal .cena.cel .cena-in { font-size: 5cqw; }
+.GuiaPortal .cena.cel .clique { width: 3em; height: 3em; }
+.GuiaPortal .dedo {
+    position: absolute; left: var(--x1); top: var(--y1); width: 2.2em; height: 2.2em; z-index: 6; border-radius: 50%;
+    transform: translate(-50%, -50%); background: rgba(255, 255, 255, .55); border: .15em solid rgba(0, 40, 80, .55);
+    box-shadow: 0 .2em .6em rgba(0, 0, 0, .3); animation: guiaCursorAnda 5s ease-in-out infinite;
+}
+.GuiaPortal .cena.cel .fone.cheio {
+    left: 0; top: 0; width: 100%; height: 100%; border: 0; border-radius: 0; font-size: 1.667em;
+}
+/* a lista do navegador do celular usa altura fixa em cqw; aqui o aparelho ocupa a cena toda */
+.GuiaPortal .cena.cel .fone.cheio .f-menu div { height: 13.33cqw; }
+
 /* atalhos em mais de duas linhas (beta tem mais atalhos que produção) */
 .GuiaPortal .c-atalho.mini { gap: .25em; }
 .GuiaPortal .c-atalho.mini svg { width: 1.5em; height: 1.5em; }
