@@ -9,22 +9,26 @@ import './menu.css';
 import LogoNegativa from '../../img/Portal_Func/SMRE_logo_negativo.png';
 import IconMenu from '../../img/Portal_Func/Três pontos Desktop - Menu de Usuário.png';
 
+const ITENS_MENU = [
+    { id: 1, nome: 'ANIVERSARIANTES', Icon: PartyPopper, link: '/aniversariantes' },
+    { id: 2, nome: 'BENEFÍCIOS', Icon: HeartPulse, link: linkEmConstrucao('Benefícios'), ocultoEmProducao: true },
+    { id: 3, nome: 'CONTRACHEQUE', Icon: FileText, link: '/contraCheque' },
+    { id: 4, nome: 'FÉRIAS', Icon: Palmtree, link: linkEmConstrucao('Férias'), ocultoEmProducao: true },
+    { id: 5, nome: 'GESTÃO DA QUALIDADE', Icon: BadgeCheck, link: '/qualidade' },
+    { id: 9, nome: 'GUIA DO PORTAL', Icon: BookOpen, link: '/guia' },
+    { id: 6, nome: 'INFORME DE RENDIMENTOS', Icon: Receipt, link: linkEmConstrucao('Informe de Rendimentos'), ocultoEmProducao: true },
+    { id: 7, nome: 'RAMAIS', Icon: Phone, link: '/ramais' },
+    { id: 8, nome: 'SISTEMA MONITORA', Icon: MonitorCheck, link: 'https://monitora.smrede.net.br/', externo: true },
+];
+
+export const itensMenuVisiveis = () => ITENS_MENU.filter((botao) => !(emProducao && botao.ocultoEmProducao));
+
 function Menu({ foto, nome }) {
     const [fotoComErro, setFotoComErro] = useState(false);
     const fotoValida = typeof foto === 'string' && foto.length > 100 && !fotoComErro;
     const fotoSrc = fotoValida && (foto.startsWith('data:image') ? foto : `data:image/jpeg;base64,${foto}`);
 
-    const botoes = [
-        { id: 1, nome: 'ANIVERSARIANTES', Icon: PartyPopper, link: '/aniversariantes' },
-        { id: 2, nome: 'BENEFÍCIOS', Icon: HeartPulse, link: linkEmConstrucao('Benefícios'), ocultoEmProducao: true },
-        { id: 3, nome: 'CONTRACHEQUE', Icon: FileText, link: '/contraCheque' },
-        { id: 4, nome: 'FÉRIAS', Icon: Palmtree, link: linkEmConstrucao('Férias'), ocultoEmProducao: true },
-        { id: 5, nome: 'GESTÃO DA QUALIDADE', Icon: BadgeCheck, link: '/qualidade' },
-        { id: 9, nome: 'GUIA DO PORTAL', Icon: BookOpen, link: '/guia' },
-        { id: 6, nome: 'INFORME DE RENDIMENTOS', Icon: Receipt, link: linkEmConstrucao('Informe de Rendimentos'), ocultoEmProducao: true },
-        { id: 7, nome: 'RAMAIS', Icon: Phone, link: '/ramais' },
-        { id: 8, nome: 'SISTEMA MONITORA', Icon: MonitorCheck, link: 'https://monitora.smrede.net.br/', externo: true },
-    ].filter((botao) => !(emProducao && botao.ocultoEmProducao));
+    const botoes = itensMenuVisiveis();
 
     return (
         <>

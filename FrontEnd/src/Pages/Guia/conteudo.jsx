@@ -4,12 +4,17 @@ import MiniVideo, { Tela, Fone, Destaque } from './MiniVideo';
 import {
     NavCena, TelaHome, TelaHomeRodape, TelaAniversariantes,
     TelaContracheque, TelaGrade, TelaArea, FonePortal, FoneInicio, NavegadorPC, MenuChrome,
-    MenuPontos, ComunicadoAberto, ToastEnviado, MenuMes, MenuUnidades,
+    MenuPontos, ComunicadoAberto, ToastEnviado, MenuMes, MenuUnidades, layoutHome, centroAtalho,
 } from './telas';
 import {
     Digita, MuralQrCode, CameraQrCode, FoneFormulario, TelaTermoForm, OpcoesUnidade, OpcoesArea, DicaToken,
     TelaEmailToken, TelaTermoCaixas, SucessoTermo,
 } from './telasTermo';
+
+// Posições calculadas a partir dos atalhos reais do ambiente (beta mostra mais atalhos que produção).
+const AREA_ATALHOS = layoutHome().area;
+const CONTRACHEQUE = centroAtalho('CONTRACHEQUE');
+const ANIVERSARIANTES = centroAtalho('ANIVERSARIANTES');
 
 // Dados do Leozinho usados em todas as telas do termo (fictícios).
 const LEOZINHO = { nome: 'Leozinho', unidade: 'Central Administrativa', area: 'CSC - Qualidade', cpf: '000.000.000-00', email: 'leozinho@email.com' };
@@ -75,9 +80,22 @@ export const TEMAS = [
                     acao: 'À esquerda, você encontra os atalhos que facilitam a sua navegação.',
                     expl: 'Por meio dos atalhos, você acessa facilmente as opções do menu.',
                     cena: (
-                        <MiniVideo semClique x0="70%" y0="85%" x1="23%" y1="56%">
+                        <MiniVideo
+                            semClique
+                            x0="70%"
+                            y0="85%"
+                            x1={`${AREA_ATALHOS.left + AREA_ATALHOS.width / 2}%`}
+                            y1={`${AREA_ATALHOS.top + AREA_ATALHOS.height / 2}%`}
+                        >
                             <Tela><TelaHome /></Tela><NavCena />
-                            <Destaque style={{ left: '2.5%', top: '15.5%', width: '41.5%', height: '81%' }} />
+                            <Destaque
+                                style={{
+                                    left: `${AREA_ATALHOS.left - 1.5}%`,
+                                    top: `${AREA_ATALHOS.top - 1.5}%`,
+                                    width: `${AREA_ATALHOS.width + 3}%`,
+                                    height: `${AREA_ATALHOS.height + 3}%`,
+                                }}
+                            />
                         </MiniVideo>
                     ),
                 },
@@ -116,7 +134,7 @@ export const TEMAS = [
                     expl: 'No canto superior direito, você encontra o menu do Portal e também o acesso a este Guia.',
                     cena: (
                         <MiniVideo x0="55%" y0="85%" x1="95.35%" y1="6%">
-                            <Tela><TelaHome /></Tela><NavCena /><MenuPontos destaque="guia" className="surge" />
+                            <Tela><TelaHome /></Tela><NavCena /><MenuPontos destaque="GUIA DO PORTAL" className="surge" />
                         </MiniVideo>
                     ),
                 },
@@ -155,8 +173,8 @@ export const TEMAS = [
                         acao: 'Para acessar, clique em Contracheque na tela inicial.',
                         expl: 'Ao clicar, você verá a lista dos seus comprovantes.',
                         cena: (
-                            <MiniVideo x0="70%" y0="85%" x1="33.25%" y1="35.75%">
-                                <Tela fase="antes"><TelaHome hover="contracheque" /></Tela>
+                            <MiniVideo x0="70%" y0="85%" x1={CONTRACHEQUE.x} y1={CONTRACHEQUE.y}>
+                                <Tela fase="antes"><TelaHome hover="CONTRACHEQUE" /></Tela>
                                 <Tela fase="depois"><TelaContracheque /></Tela><NavCena />
                             </MiniVideo>
                         ),
@@ -189,8 +207,8 @@ export const TEMAS = [
                         acao: 'Para acessar, clique em Aniversariantes na tela inicial.',
                         expl: 'A lista abre automaticamente no mês atual, exibindo todas as unidades.',
                         cena: (
-                            <MiniVideo x0="60%" y0="88%" x1="12.75%" y1="35.75%">
-                                <Tela fase="antes"><TelaHome hover="aniversariantes" /></Tela>
+                            <MiniVideo x0="60%" y0="88%" x1={ANIVERSARIANTES.x} y1={ANIVERSARIANTES.y}>
+                                <Tela fase="antes"><TelaHome hover="ANIVERSARIANTES" /></Tela>
                                 <Tela fase="depois"><TelaAniversariantes /></Tela><NavCena />
                             </MiniVideo>
                         ),
