@@ -2,6 +2,32 @@
 import React from 'react';
 import Logo from '../../img/Portal_Func/SMRE_logo_negativo.png';
 import Leozinho from '../../img/Portal_Func/leozinho-avatar.png';
+import { atalhosVisiveis } from '../Components/Atalhos';
+import { itensMenuVisiveis } from '../HomePage/homepage_menu';
+import { areas as AREAS_QUALIDADE } from '../Qualidade/qualidade';
+
+const pct = (n) => `${n}%`;
+
+// Mesma regra da tela inicial real: até 3 atalhos numa coluna estreita; mais que isso, em duas.
+export function layoutHome() {
+  const lista = atalhosVisiveis();
+  const cols = lista.length <= 3 ? 1 : 2;
+  const linhas = Math.ceil(lista.length / cols);
+  const area = { left: 4, top: 17, width: cols === 1 ? 21 : 38, height: 78 };
+  const w = (area.width - (cols - 1) * 3) / cols;
+  const h = (area.height - (linhas - 1) * 3) / linhas;
+  const cartoes = lista.map((botao, i) => {
+    const left = area.left + (i % cols) * (w + 3);
+    const top = area.top + Math.floor(i / cols) * (h + 3);
+    return { ...botao, left, top, w, h, cx: left + w / 2, cy: top + h / 2 };
+  });
+  return { cartoes, area, compacto: linhas > 2, comunicadosLeft: area.left + area.width + 3 };
+}
+
+export function centroAtalho(nome) {
+  const cartao = layoutHome().cartoes.find((b) => b.nome === nome);
+  return cartao ? { x: pct(cartao.cx), y: pct(cartao.cy) } : { x: '20%', y: '50%' };
+}
 
 export function NavCena() {
   return (
@@ -19,14 +45,21 @@ export function Voltar() {
 }
 
 export function TelaHome({ hover, children }) {
+  const { cartoes, compacto, comunicadosLeft } = layoutHome();
   return (
     <>
       {children}
-      <div className={hover === 'aniversariantes' ? 'c-atalho anima-hover' : 'c-atalho'} style={{ left: '4%', top: '17%' }}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/></svg><b>ANIVERSARIANTES</b></div>
-      <div className={hover === 'contracheque' ? 'c-atalho anima-hover' : 'c-atalho'} style={{ left: '24.5%', top: '17%' }}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><b>CONTRACHEQUE</b></div>
-      <div className={hover === 'qualidade' ? 'c-atalho anima-hover' : 'c-atalho'} style={{ left: '4%', top: '57.5%' }}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg><b>GESTÃO DA QUALIDADE</b></div>
-      <div className={hover === 'monitora' ? 'c-atalho anima-hover' : 'c-atalho'} style={{ left: '24.5%', top: '57.5%' }}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M12 17v4"/><path d="M8 21h8"/><path d="m9 10 2 2 4-4"/></svg><b>SISTEMA MONITORA</b></div>
-      <div className="c-comunicados">
+      {cartoes.map(({ id, nome, Icon, left, top, w, h }) => (
+        <div
+          key={id}
+          className={`c-atalho${compacto ? ' mini' : ''}${hover === nome ? ' anima-hover' : ''}`}
+          style={{ left: pct(left), top: pct(top), width: pct(w), height: pct(h) }}
+        >
+          <Icon strokeWidth={1.5} />
+          <b>{nome}</b>
+        </div>
+      ))}
+      <div className="c-comunicados" style={{ left: pct(comunicadosLeft) }}>
         <b className="c-com-cab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>ÚLTIMOS COMUNICADOS</b>
         <div className="c-com-item" style={{ top: '9%' }}><b>Comunicação | Agenda da semana</b><small>22/09/2026</small></div>
         <div className="c-com-item" style={{ top: '20.5%' }}><b>Qualidade | Organograma atualizado</b><small>21/09/2026</small></div>
@@ -143,19 +176,24 @@ export function TelaContracheque({ aperta }) {
   );
 }
 
+// Grade real da Qualidade no computador: 6 quadros quadrados por linha.
 export function TelaGrade({ hover }) {
+  const w = (92 - 5 * 1.5) / 6;
+  const h = w * 1.6;
   return (
     <>
       <Voltar />
       <div className="c-titulo">Gestão da Qualidade</div>
-      <div className="c-area" style={{ left: '4%', top: '30%' }}><b>COMERCIAL</b><span style={{ background: '#4ea8de' }}>PROCESSOS DE NEGÓCIO</span></div>
-      <div className="c-area" style={{ left: '27.5%', top: '30%' }}><b>DGP</b><span style={{ background: '#4ea8de' }}>PROCESSOS DE NEGÓCIO</span></div>
-      <div className="c-area" style={{ left: '51%', top: '30%' }}><b>GENTE & GESTÃO</b><span style={{ background: '#0d47a1' }}>PROCESSOS DE SUPORTE</span></div>
-      <div className="c-area" style={{ left: '74.5%', top: '30%' }}><b>GESTÃO FINANCEIRA</b><span style={{ background: '#6c757d' }}>PROCESSOS ESTRATÉGICOS</span></div>
-      <div className="c-area" style={{ left: '4%', top: '63%' }}><b>GOVERNANÇA</b><span style={{ background: '#6c757d' }}>PROCESSOS ESTRATÉGICOS</span></div>
-      <div className="c-area" style={{ left: '27.5%', top: '63%' }}><b>QUALIDADE</b><span style={{ background: '#6c757d' }}>PROCESSOS ESTRATÉGICOS</span></div>
-      <div className={hover === 'ti' ? 'c-area anima-hover' : 'c-area'} style={{ left: '51%', top: '63%' }}><b>TECNOLOGIA DA INFORMAÇÃO</b><span style={{ background: '#0d47a1' }}>PROCESSOS DE SUPORTE</span></div>
-      <div className="c-area" style={{ left: '74.5%', top: '63%' }}><b>GESTÃO DE PRODUTOS</b><span style={{ background: '#0d47a1' }}>PROCESSOS DE SUPORTE</span></div>
+      {AREAS_QUALIDADE.map((area, i) => (
+        <div
+          key={area.id}
+          className={hover === area.id ? 'c-area anima-hover' : 'c-area'}
+          style={{ left: pct(4 + (i % 6) * (w + 1.5)), top: pct(28 + Math.floor(i / 6) * (h + 2.4)), width: pct(w), height: pct(h) }}
+        >
+          <b>{area.nome}</b>
+          <span style={{ background: area.color }}>{area.tipo}</span>
+        </div>
+      ))}
     </>
   );
 }
@@ -187,17 +225,41 @@ export function TelaAreaDocs() {
   );
 }
 
+// Atalhos do celular: duas colunas; a altura encolhe quando há mais de 4 atalhos.
+function gradeFone() {
+  const lista = atalhosVisiveis();
+  const linhas = Math.ceil(lista.length / 2);
+  const h = Math.min(17, (40 - (linhas - 1) * 2) / linhas);
+  return { lista, linhas, h };
+}
+
+function topoComunicadosFone() {
+  const { linhas, h } = gradeFone();
+  return 21 + linhas * (h + 2) + 1;
+}
+
+function atalhosFone() {
+  const { lista, linhas, h } = gradeFone();
+  return lista.map(({ id, nome, Icon }, i) => (
+    <div
+      key={id}
+      className={`f-atalho${linhas > 2 ? ' mini' : ''}`}
+      style={{ left: i % 2 === 0 ? '5%' : '53%', top: pct(21 + Math.floor(i / 2) * (h + 2)), height: pct(h) }}
+    >
+      <Icon strokeWidth={1.6} />
+      <b>{nome}</b>
+    </div>
+  ));
+}
+
 export function FonePortal({ children }) {
   return (
     <>
       <div className="f-status"><span>9:41</span><span>▮▮▮ ◔</span></div>
       <div className="f-chrome"><span className="f-url">🔒 maycon-mb.github.io/front…</span><svg className="f-pontos" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></div>
       <div className="f-portal"><span>PORTAL DO COLABORADOR</span><img src={Leozinho} alt="" /></div>
-      <div className="f-atalho" style={{ left: '5%', top: '21%' }}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/></svg><b>ANIVERSARIANTES</b></div>
-      <div className="f-atalho" style={{ left: '53%', top: '21%' }}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><b>CONTRACHEQUE</b></div>
-      <div className="f-atalho" style={{ left: '5%', top: '40%' }}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg><b>QUALIDADE</b></div>
-      <div className="f-atalho" style={{ left: '53%', top: '40%' }}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M12 17v4"/><path d="M8 21h8"/></svg><b>MONITORA</b></div>
-      <div className="f-com"><b>ÚLTIMOS COMUNICADOS</b><i className="linha"></i><i className="linha"></i><i className="linha"></i></div>
+      {atalhosFone()}
+      <div className="f-com" style={{ top: pct(topoComunicadosFone()) }}><b>ÚLTIMOS COMUNICADOS</b><i className="linha"></i><i className="linha"></i><i className="linha"></i></div>
       {children}
     </>
   );
@@ -219,6 +281,17 @@ export function FoneInicio() {
   );
 }
 
+function atalhosNavegador() {
+  const lista = atalhosVisiveis();
+  const linhas = Math.ceil(lista.length / 2);
+  const h = (64 - (linhas - 1) * 4) / linhas;
+  return lista.map(({ id, nome }, i) => (
+    <div key={id} className="c-atalho" style={{ left: i % 2 === 0 ? '4%' : '24%', top: pct(30 + Math.floor(i / 2) * (h + 4)), width: '17%', height: pct(h) }}>
+      <b>{nome}</b>
+    </div>
+  ));
+}
+
 export function NavegadorPC() {
   return (
     <>
@@ -230,10 +303,7 @@ export function NavegadorPC() {
       <svg className="c-estrela" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
       <svg className="c-estrela cheia surge" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
       <div className="c-mini-nav"><span>PORTAL DO COLABORADOR</span><span>Olá, Leozinho!</span></div>
-      <div className="c-atalho" style={{ left: '4%', top: '30%', width: '17%', height: '30%' }}><b>ANIVERSARIANTES</b></div>
-      <div className="c-atalho" style={{ left: '24%', top: '30%', width: '17%', height: '30%' }}><b>CONTRACHEQUE</b></div>
-      <div className="c-atalho" style={{ left: '4%', top: '64%', width: '17%', height: '30%' }}><b>GESTÃO DA QUALIDADE</b></div>
-      <div className="c-atalho" style={{ left: '24%', top: '64%', width: '17%', height: '30%' }}><b>SISTEMA MONITORA</b></div>
+      {atalhosNavegador()}
       <div className="c-comunicados" style={{ top: '30%' }}><b className="c-com-cab" style={{ height: '12%' }}>ÚLTIMOS COMUNICADOS</b></div>
       <div className="c-popup surge"><strong>Favorito adicionado</strong><span>Nome</span><span className="campo">Portal do Colaborador</span><span>Pasta</span><span className="campo">Barra de favoritos</span><span className="botoes"><span>Remover</span><span className="azul">Concluído</span></span></div>
     </>
@@ -248,7 +318,11 @@ export function MenuChrome({ className }) {
 
 export function MenuPontos({ destaque, className }) {
   return (
-    <div className={className ? `c-drop ${className}` : 'c-drop'}><div>ANIVERSARIANTES</div><div>CONTRACHEQUE</div><div>GESTÃO DA QUALIDADE</div><div className={destaque === 'guia' ? 'guia' : undefined}>GUIA DO PORTAL</div><div className={destaque === 'ramais' ? 'guia' : undefined}>RAMAIS</div><div>SISTEMA MONITORA</div></div>
+    <div className={className ? `c-drop ${className}` : 'c-drop'}>
+      {itensMenuVisiveis().map(({ id, nome }) => (
+        <div key={id} className={destaque === nome ? 'guia' : undefined}>{nome}</div>
+      ))}
+    </div>
   );
 }
 

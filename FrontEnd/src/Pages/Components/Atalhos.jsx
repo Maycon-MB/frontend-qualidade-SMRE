@@ -18,6 +18,8 @@ const botoes = [
 export const contarAtalhosVisiveis = () =>
     botoes.filter((botao) => !(emProducao && botao.ocultoEmProducao)).length;
 
+export const atalhosVisiveis = () => botoes.filter((botao) => !(emProducao && botao.ocultoEmProducao));
+
 const Atalhos = () => {
     const itensVisiveis = botoes.filter((botao) => !(emProducao && botao.ocultoEmProducao));
     const colunas = itensVisiveis.length <= 3 ? 1 : 2;

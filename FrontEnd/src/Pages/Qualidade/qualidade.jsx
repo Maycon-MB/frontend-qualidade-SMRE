@@ -23,7 +23,7 @@ function BotaoFluxoProcesso({ codigo }) {
     );
 }
 
-const areas = [
+export const areas = [
     { id: 'comercial', nome: 'COMERCIAL', tipo: 'PROCESSOS DE NEGÓCIO', color: '#4ea8de' },
     { id: 'dgp', nome: 'DGP', tipo: 'PROCESSOS DE NEGÓCIO', color: '#4ea8de' },
     { id: 'gente', nome: 'GENTE\n&\nGESTÃO', tipo: 'PROCESSOS DE SUPORTE', color: '#0d47a1' },

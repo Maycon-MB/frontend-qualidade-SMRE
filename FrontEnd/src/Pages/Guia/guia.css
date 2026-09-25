@@ -526,6 +526,14 @@
 .GuiaPortal .t-fone-form .campo { position: absolute; left: 7%; right: 7%; height: 5%; border: 1px solid #3b82c4; border-radius: .3em; }
 .GuiaPortal .t-fone-form .lista { position: absolute; left: 7%; right: 7%; height: 5%; border-radius: .3em; background: #0a66b7; }
 
+/* atalhos em mais de duas linhas (beta tem mais atalhos que produção) */
+.GuiaPortal .c-atalho.mini { gap: .25em; }
+.GuiaPortal .c-atalho.mini svg { width: 1.5em; height: 1.5em; }
+.GuiaPortal .c-atalho.mini b { font-size: .4em; }
+.GuiaPortal .f-atalho.mini svg { width: .9em; height: .9em; }
+.GuiaPortal .f-atalho.mini b { font-size: .2em; }
+.GuiaPortal .c-area b { white-space: pre-line; line-height: 1.25; }
+
 /* O `img { width/height: 100%; object-fit: cover }` global do login esticaria estas imagens */
 .GuiaPortal .t-cartaz img, .GuiaPortal .t-camera img, .GuiaPortal .t-fone-form img, .GuiaPortal .f-app.portal img { height: auto; object-fit: contain; }
 .GuiaPortal .t-mail-corpo img { width: auto; object-fit: contain; }
