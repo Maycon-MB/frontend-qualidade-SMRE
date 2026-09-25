@@ -152,8 +152,8 @@ export const TEMAS = [
                 titulo: 'CONTRACHEQUE',
                 passos: [
                     {
-                        acao: 'Clique em CONTRACHEQUE na tela inicial.',
-                        expl: 'Abre a lista com os seus comprovantes.',
+                        acao: 'Para acessar, clique em Contracheque na tela inicial.',
+                        expl: 'Ao clicar, você verá a lista dos seus comprovantes.',
                         cena: (
                             <MiniVideo x0="70%" y0="85%" x1="33.25%" y1="35.75%">
                                 <Tela fase="antes"><TelaHome hover="contracheque" /></Tela>
@@ -162,8 +162,8 @@ export const TEMAS = [
                         ),
                     },
                     {
-                        acao: 'Encontre a linha do mês que você quer.',
-                        expl: 'Cada linha é um comprovante. O mês e o ano ficam nas duas últimas colunas.',
+                        acao: 'Localize o mês que você deseja consultar.',
+                        expl: 'Cada linha corresponde a um comprovante. Nas duas últimas colunas, você encontra o mês e o ano de referência.',
                         cena: (
                             <MiniVideo x0="45%" y0="88%" x1="79.4%" y1="45%">
                                 <Tela><TelaContracheque /></Tela><NavCena />
