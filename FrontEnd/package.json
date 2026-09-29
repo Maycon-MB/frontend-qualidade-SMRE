@@ -30,7 +30,9 @@
     "predeploy": "cross-env REACT_APP_FASE=producao GENERATE_SOURCEMAP=false react-scripts build",
     "deploy": "gh-pages -d build --add",
     "build:beta": "cross-env PUBLIC_URL=https://Maycon-MB.github.io/frontend-qualidade-SMRE/beta GENERATE_SOURCEMAP=false react-scripts build",
-    "deploy:beta": "npm run build:beta && gh-pages -d build -e beta"
+    "deploy:beta": "npm run build:beta && gh-pages -d build -e beta",
+    "build:tutorial-termo": "cross-env REACT_APP_ALVO=tutorial-termo PUBLIC_URL=https://Maycon-MB.github.io/frontend-qualidade-SMRE/tutorial-termo GENERATE_SOURCEMAP=false react-scripts build",
+    "deploy:tutorial-termo": "npm run build:tutorial-termo && gh-pages -d build -e tutorial-termo"
   },
   "eslintConfig": {
     "extends": [
