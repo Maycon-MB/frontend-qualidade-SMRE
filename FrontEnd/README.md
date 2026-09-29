@@ -2,6 +2,22 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Publicar
+
+Tudo sai no GitHub Pages, cada versão numa pasta. Rode na pasta `FrontEnd`.
+
+| Comando | Endereço | Quando |
+|---|---|---|
+| `npm run deploy:beta` | https://maycon-mb.github.io/frontend-qualidade-SMRE/beta/ | Sempre primeiro, para conferir |
+| `npm run deploy` | https://maycon-mb.github.io/frontend-qualidade-SMRE/ | Produção, só depois do beta aprovado (não verificado nesta versão do README) |
+| `npm run deploy:tutorial-termo` | https://maycon-mb.github.io/frontend-qualidade-SMRE/tutorial-termo/ | Tutorial dos Termos de Compromisso, sem login nem Portal |
+
+O tutorial usa os mesmos arquivos do Guia do Portal (`src/Pages/Guia/conteudoTermo.jsx`): ajuste de
+texto ali vale para os dois, mas cada endereço só muda depois do seu deploy.
+
+Para hospedar o tutorial em outro servidor, `npm run build:tutorial-termo` gera a pasta `build`;
+troque antes o `PUBLIC_URL` do script pelo endereço novo.
+
 ## Available Scripts
 
 In the project directory, you can run:
