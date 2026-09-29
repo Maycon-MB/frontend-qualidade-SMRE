@@ -2,13 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+
+// require dentro do ternário: o webpack descarta o ramo não usado, então a build do tutorial
+// não leva o código do Portal.
+const Raiz = process.env.REACT_APP_ALVO === "tutorial-termo"
+  ? require("./Pages/Guia/TutorialTermo").default
+  : require("./App").default;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Raiz />
   </React.StrictMode>
 );
 
