@@ -123,6 +123,12 @@
 .GuiaPortal .passo-cab[aria-expanded="true"] .passo-seta { transform: rotate(180deg); }
 .GuiaPortal .passo-corpo { padding: 4px 16px 18px; display: grid; gap: 12px; }
 .GuiaPortal .passo-expl { margin: 0; color: var(--texto-suave); line-height: 1.6; }
+.GuiaPortal .passo-expl a { color: var(--azul); font-weight: 700; }
+.GuiaPortal .t-qr-real {
+    justify-self: center; display: block; width: min(240px, 70%); padding: 14px; background: var(--branco);
+    border: 1px solid rgba(0, 108, 181, .15); border-radius: 14px; box-shadow: 0 6px 18px rgba(0, 108, 181, .08);
+}
+.GuiaPortal .t-qr-real img { display: block; width: 100%; height: auto; image-rendering: pixelated; }
 
 /* ================= mini vídeos: 1em = 2,5% da largura e 4% da altura da cena ================= */
 .GuiaPortal .cena {

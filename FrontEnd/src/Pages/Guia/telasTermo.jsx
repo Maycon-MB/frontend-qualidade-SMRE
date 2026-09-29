@@ -16,6 +16,16 @@ export function Digita({ n, tarde, children }) {
     return <span className={tarde ? 't-digita tarde' : 't-digita'} style={{ '--n': n }}>{children}</span>;
 }
 
+export const LINK_FORMULARIO_TERMO = 'https://www.helloethics.com/ouvidoriasmrede/form/';
+
+export function QrCodeFormulario() {
+    return (
+        <a className="t-qr-real" href={LINK_FORMULARIO_TERMO} target="_blank" rel="noopener noreferrer">
+            <img src={QrCodeTermo} alt="QR CODE do formulário dos Termos de Compromisso" />
+        </a>
+    );
+}
+
 export function MuralQrCode() {
     return (
         <div className="t-mural">
