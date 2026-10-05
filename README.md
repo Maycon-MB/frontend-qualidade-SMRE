@@ -18,8 +18,7 @@ cp .env.example .env
 npm start
 ```
 
-Abra http://localhost:3000/frontend-qualidade-SMRE/. Abrir só `localhost:3000` não carrega o app,
-porque o caminho vem do `homepage` do `package.json`.
+Abra http://localhost:3000/frontend-qualidade-SMRE/. O caminho vem do `homepage` do `package.json`.
 
 > **Atenção:** o ambiente local e o beta usam o backend de produção. Login, upload e cadastro
 > mexem em dados reais.
