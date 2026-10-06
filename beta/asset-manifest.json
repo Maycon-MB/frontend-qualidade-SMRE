@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/beta/static/css/main.6f3972f5.css",
-    "main.js": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/beta/static/js/main.7f03c7f7.js",
-    "static/js/27.9b9280a3.chunk.js": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/beta/static/js/27.9b9280a3.chunk.js",
-    "static/media/teste.jpg": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/beta/static/media/teste.ee9c25c6ee5da7f3e97c.jpg",
-    "static/media/leozinho-avatar.png": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/beta/static/media/leozinho-avatar.c074ad0a33795792ebc2.png",
-    "static/media/logomarca.png": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/beta/static/media/logomarca.c3aa2d6442ba78913451.png",
-    "static/media/SMRE_logo_negativo.png": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/beta/static/media/SMRE_logo_negativo.b4b54e646ce8d2d153b5.png",
-    "index.html": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/beta/index.html"
+    "main.css": "/frontend-qualidade-SMRE/beta/static/css/main.ed261479.css",
+    "main.js": "/frontend-qualidade-SMRE/beta/static/js/main.bd55a1f3.js",
+    "static/js/27.9b9280a3.chunk.js": "/frontend-qualidade-SMRE/beta/static/js/27.9b9280a3.chunk.js",
+    "static/media/teste.jpg": "/frontend-qualidade-SMRE/beta/static/media/teste.ee9c25c6ee5da7f3e97c.jpg",
+    "static/media/leozinho-avatar.png": "/frontend-qualidade-SMRE/beta/static/media/leozinho-avatar.c074ad0a33795792ebc2.png",
+    "static/media/logomarca.png": "/frontend-qualidade-SMRE/beta/static/media/logomarca.c3aa2d6442ba78913451.png",
+    "static/media/SMRE_logo_negativo.png": "/frontend-qualidade-SMRE/beta/static/media/SMRE_logo_negativo.b4b54e646ce8d2d153b5.png",
+    "static/media/csc-logo.png": "/frontend-qualidade-SMRE/beta/static/media/csc-logo.5b26b6e15697d8e3e72b.png",
+    "index.html": "/frontend-qualidade-SMRE/beta/index.html"
   },
   "entrypoints": [
-    "static/css/main.6f3972f5.css",
-    "static/js/main.7f03c7f7.js"
+    "static/css/main.ed261479.css",
+    "static/js/main.bd55a1f3.js"
   ]
 }
