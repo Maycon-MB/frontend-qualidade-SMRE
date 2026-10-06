@@ -22,18 +22,18 @@ const surgeTarde = (conteudo) => <span className="surge tarde">{conteudo}</span>
 
 export const TEMA_HELPDESK = {
     id: 'helpdesk-desligamento',
-    titulo: 'Desligamento e Contratação no CSC',
-    sub: 'Como abrir o ticket de desligamento e contratação na Central de Serviços Compartilhados.',
+    titulo: 'Desligamento e Contratação',
+    sub: 'Como abrir o ticket de desligamento e contratação no Suporte CSC.',
     qtd: '8 passos',
     Icone: Ticket,
     grupos: [{
         passos: [
             {
-                acao: 'No CSC, clique em “Abrir Novo Ticket”.',
+                acao: 'No Suporte CSC, clique em “Abrir Novo Ticket”.',
                 expl: (
                     <>
-                        Acesse o <a href={LINK_CSC} target="_blank" rel="noopener noreferrer">CSC</a> e entre com o seu
-                        e-mail e a sua senha. A opção fica no menu, logo abaixo do logo.
+                        Acesse o sistema <a href={LINK_CSC} target="_blank" rel="noopener noreferrer">Suporte CSC</a> e
+                        entre com o seu e-mail e senha. A opção fica no menu, logo abaixo do logo.
                     </>
                 ),
                 ...ambos((cel) => (
