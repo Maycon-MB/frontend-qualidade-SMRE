@@ -6,10 +6,10 @@ import reportWebVitals from "./reportWebVitals";
 
 // require dentro do ternário: o webpack descarta o ramo não usado, então a build do tutorial
 // não leva o código do Portal.
-const ALVO = process.env.REACT_APP_ALVO;
-const Raiz = ALVO === "tutorial-termo"
+// A comparação fica com process.env direto: com uma variável no meio o webpack não descarta o ramo.
+const Raiz = process.env.REACT_APP_ALVO === "tutorial-termo"
   ? require("./Pages/Guia/TutorialTermo").default
-  : ALVO === "tutorial-helpdesk"
+  : process.env.REACT_APP_ALVO === "tutorial-helpdesk"
     ? require("./Pages/Guia/TutorialHelpdesk").default
     : require("./App").default;
 
