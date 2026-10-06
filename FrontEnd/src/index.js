@@ -6,9 +6,12 @@ import reportWebVitals from "./reportWebVitals";
 
 // require dentro do ternário: o webpack descarta o ramo não usado, então a build do tutorial
 // não leva o código do Portal.
-const Raiz = process.env.REACT_APP_ALVO === "tutorial-termo"
+const ALVO = process.env.REACT_APP_ALVO;
+const Raiz = ALVO === "tutorial-termo"
   ? require("./Pages/Guia/TutorialTermo").default
-  : require("./App").default;
+  : ALVO === "tutorial-helpdesk"
+    ? require("./Pages/Guia/TutorialHelpdesk").default
+    : require("./App").default;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
