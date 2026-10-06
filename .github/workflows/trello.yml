@@ -1,0 +1,21 @@
+name: trello
+
+on:
+  create:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened, reopened, closed]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  trello:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Santa-Monica-Rede-de-Ensino/automacoes/trello@main
+        with:
+          trello-key: ${{ secrets.TRELLO_KEY }}
+          trello-token: ${{ secrets.TRELLO_TOKEN }}
