@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/tutorial-helpdesk/static/css/main.ed261479.css",
+    "main.js": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/tutorial-helpdesk/static/js/main.350fb06f.js",
+    "static/js/27.9b9280a3.chunk.js": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/tutorial-helpdesk/static/js/27.9b9280a3.chunk.js",
+    "static/media/teste.jpg": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/tutorial-helpdesk/static/media/teste.ee9c25c6ee5da7f3e97c.jpg",
+    "static/media/leozinho-avatar.png": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/tutorial-helpdesk/static/media/leozinho-avatar.c074ad0a33795792ebc2.png",
+    "static/media/logomarca.png": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/tutorial-helpdesk/static/media/logomarca.c3aa2d6442ba78913451.png",
+    "static/media/SMRE_logo_negativo.png": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/tutorial-helpdesk/static/media/SMRE_logo_negativo.b4b54e646ce8d2d153b5.png",
+    "static/media/csc-logo.png": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/tutorial-helpdesk/static/media/csc-logo.5b26b6e15697d8e3e72b.png",
+    "index.html": "https://Maycon-MB.github.io/frontend-qualidade-SMRE/tutorial-helpdesk/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.ed261479.css",
+    "static/js/main.350fb06f.js"
+  ]
+}
