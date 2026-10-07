@@ -1,0 +1,80 @@
+/* ====== CSC (osTicket): formulário de Desligamento e Contratação ====== */
+/* Linha: 1em = .42em da cena no computador e .62em no celular (mesma altura em % nos dois) */
+.GuiaPortal .h-tela { position: absolute; inset: 0; overflow: hidden; background: linear-gradient(90deg, #c4c4c4, #ededed 50%, #c4c4c4); font-family: Arial, Helvetica, sans-serif; }
+.GuiaPortal .h-folha { position: absolute; left: 6%; right: 6%; background: #ffffff; box-shadow: 0 0 .5em rgba(0, 0, 0, .35); }
+.GuiaPortal .h-pilha { position: absolute; left: 0; right: 0; height: 100%; }
+.GuiaPortal .h-linha { position: absolute; left: 8.5%; right: 8.5%; box-sizing: border-box; display: flex; flex-direction: column; align-items: flex-start; font-size: .42em; line-height: 1.3; color: #000000; }
+.GuiaPortal .h-linha.cheia { left: 0; right: 0; }
+.GuiaPortal .h-linha.risco { padding-top: .6em; border-top: 1px solid #cccccc; }
+.GuiaPortal .h-linha.cheia.risco { border-top: 0; }
+.GuiaPortal .h-linha.cheia.risco::before { content: ''; position: absolute; left: 8.5%; right: 8.5%; top: 0; border-top: 1px solid #cccccc; }
+
+.GuiaPortal .h-linha.h-topo { flex-direction: row; align-items: center; justify-content: space-between; }
+.GuiaPortal .h-tela .h-logo { width: auto; height: 4.3em; object-fit: contain; }
+.GuiaPortal .h-usuario { text-align: right; line-height: 1.4; }
+.GuiaPortal .h-tela u { text-decoration: none; color: #0b7dc1; }
+
+.GuiaPortal .h-nav { position: absolute; left: 8.5%; right: 8.5%; top: 50%; height: 2.4em; transform: translateY(-50%); background: linear-gradient(#ececec, #bdbdbd); border: 1px solid #a8a8a8; box-shadow: 0 .25em .35em rgba(0, 0, 0, .3); }
+.GuiaPortal .h-nav-item { position: absolute; top: 50%; height: 1.6em; transform: translateY(-50%); display: flex; align-items: center; justify-content: center; gap: .35em; border-radius: .8em; color: #222222; white-space: nowrap; }
+.GuiaPortal .h-nav-item.on { background: #d4ebfa; }
+.GuiaPortal .h-nav-item svg { width: 1.2em; height: 1.2em; flex: none; color: #5b7d3a; }
+
+.GuiaPortal .h-h1 { margin-top: .4em; font-size: 1.65em; color: #1ba1e2; }
+.GuiaPortal .h-h3 { font-size: 1.2em; font-weight: 700; }
+.GuiaPortal .h-cliente { display: grid; grid-template-columns: 1fr 1fr; width: 100%; }
+.GuiaPortal .h-rot { margin-bottom: .25em; }
+.GuiaPortal .h-rot.obrig { font-weight: 700; }
+.GuiaPortal .h-tela i { font-style: normal; color: #e00000; }
+.GuiaPortal .h-dica { margin: .3em 0; line-height: 1.3; color: #777777; font-style: italic; }
+.GuiaPortal .h-com-obrig { display: flex; align-items: center; gap: .3em; }
+
+.GuiaPortal .h-sel, .GuiaPortal .h-campo {
+    box-sizing: border-box; height: 1.8em; display: flex; align-items: center; gap: .3em; padding: 0 .35em;
+    border: 1px solid #767676; border-radius: .2em; background: #ffffff; white-space: nowrap; overflow: hidden;
+}
+.GuiaPortal .h-sel { justify-content: space-between; }
+.GuiaPortal .h-sel svg { width: 1em; height: 1em; flex: none; }
+.GuiaPortal .h-valor { overflow: hidden; text-overflow: ellipsis; }
+.GuiaPortal .h-area { height: 4.5em; align-items: flex-start; padding-top: .4em; border-color: #dddddd; }
+.GuiaPortal .h-multi { height: 2em; border-color: #aaaaaa; border-radius: .3em; }
+.GuiaPortal .h-vazio { color: #999999; }
+.GuiaPortal .h-chip { padding: 0 .4em; border: 1px solid #aaaaaa; border-radius: .25em; background: #e4e4e4; }
+.GuiaPortal .h-caixa { box-sizing: border-box; width: .9em; height: .9em; border: 1px solid #767676; border-radius: .15em; background: #ffffff; }
+.GuiaPortal .h-arquivos { display: flex; align-items: center; gap: .25em; }
+.GuiaPortal .h-arquivos svg { width: 1em; height: 1em; flex: none; }
+
+.GuiaPortal .h-btn { position: absolute; top: calc(.6em + .4em); box-sizing: border-box; height: 2em; display: grid; place-items: center; border: 1px solid #767676; border-radius: .2em; background: #efefef; color: #000000; white-space: nowrap; }
+.GuiaPortal .h-btn.criar { color: #e00000; }
+.GuiaPortal .h-rodape { width: 100%; text-align: center; padding-top: .8em; font-size: .85em; color: #333333; }
+
+.GuiaPortal .h-inicio i { display: block; width: 90%; height: .8em; margin-top: .9em; border-radius: .3em; background: #e3e6ea; }
+.GuiaPortal .h-inicio .h-bloco { display: inline-block; width: 40%; height: 5em; margin: 1.5em 1.5em 0 0; border-radius: .4em; background: #eef1f4; }
+
+.GuiaPortal .h-opcoes { position: absolute; z-index: 4; box-sizing: border-box; background: #ffffff; border: 1px solid #767676; box-shadow: 0 .3em .8em rgba(0, 0, 0, .25); font-family: Arial, Helvetica, sans-serif; font-size: .42em; line-height: 1.3; color: #000000; }
+.GuiaPortal .h-opcoes div { padding: .2em .4em; white-space: nowrap; }
+.GuiaPortal .h-opcoes div.on { background: #1a6fd6; color: #ffffff; }
+.GuiaPortal .h-barra { display: inline-block; width: 70%; height: .6em; border-radius: .3em; background: #dddddd; }
+
+/* O valor da lista troca quando a lista do vídeo fecha (mesmo tempo do .surge.tarde) */
+.GuiaPortal .h-troca { display: inline-grid; }
+.GuiaPortal .h-troca > span { grid-area: 1 / 1; }
+.GuiaPortal .h-troca .sai { animation: hdSaiTarde 5s infinite; }
+.GuiaPortal .h-troca .entra, .GuiaPortal .h-revela { opacity: 0; animation: hdEntraTarde 5s infinite; }
+@keyframes hdSaiTarde { 0%, 72% { opacity: 1; } 76%, 90% { opacity: 0; } 96%, 100% { opacity: 1; } }
+@keyframes hdEntraTarde { 0%, 72% { opacity: 0; } 76%, 90% { opacity: 1; } 96%, 100% { opacity: 0; } }
+
+/* ---- celular: a folha ocupa a largura toda ---- */
+.GuiaPortal .cena.cel .h-folha { left: 0; right: 0; box-shadow: none; }
+.GuiaPortal .cena.cel .h-linha { left: 4%; right: 4%; font-size: .62em; }
+.GuiaPortal .cena.cel .h-linha.cheia { left: 0; right: 0; }
+.GuiaPortal .cena.cel .h-linha.cheia.risco::before { left: 4%; right: 4%; }
+.GuiaPortal .cena.cel .h-nav { left: 2%; right: 2%; }
+.GuiaPortal .cena.cel .h-nav-item { font-size: .8em; gap: .25em; }
+.GuiaPortal .cena.cel .h-tela .h-logo { height: 2.6em; }
+.GuiaPortal .cena.cel .h-usuario { max-width: 48%; font-size: .72em; }
+.GuiaPortal .cena.cel .h-opcoes { font-size: .62em; }
+
+@media (prefers-reduced-motion: reduce) {
+    .GuiaPortal .h-troca .sai { display: none; }
+    .GuiaPortal .h-troca .entra, .GuiaPortal .h-revela { opacity: 1; }
+}
